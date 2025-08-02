@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Icon from "../Icons/icon";
+import { div } from "framer-motion/client";
 
 interface contactformProps {
   titleline1?: string;
@@ -40,6 +41,7 @@ const contactform: React.FC<contactformProps> = ({
   };
 
   return (
+     <div className="relative z-20">
     <div className={`bg-white ${className}`}>
       <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -47,17 +49,16 @@ const contactform: React.FC<contactformProps> = ({
           <div className="space-y-6">
             <div>
               <div className="relative">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-primary font-extrabold text-blue-600 leading-tight">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-primary font-extrabold text-black leading-tight">
                   <span className="block">{titleline1}</span>
                   <div className="flex items-center">
-                    <Icon isBlack={false} className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 text-blue-600" />
                     <span>{titleline2}</span>
                   </div>
                 </h1>
               </div>
             </div>
 
-            <div className="font-secondary text-gray-700 text-lg md:text-xl">
+            <div className="font-secondary text-black text-lg md:text-xl">
               <p className="leading-relaxed">{description}</p>
             </div>
 
@@ -91,7 +92,13 @@ const contactform: React.FC<contactformProps> = ({
         </div>
       </div>
     </div>
+     </div>
   );
 };
 
 export default contactform;
+
+
+
+
+

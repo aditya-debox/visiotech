@@ -113,7 +113,7 @@ const AboutUsSection: React.FC<AboutUsSectionProps> = ({
 }) => {
   return (
     <div
-      className={`max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 py-16  ${className}`}
+      className={`max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 py-20  ${className}`}
     >
       {/* Hero Image */}
       <div className="relative mb-12  overflow-hidden">

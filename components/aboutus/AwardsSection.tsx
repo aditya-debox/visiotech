@@ -6,7 +6,6 @@ import {
   CarouselApi,
 } from "@/components/ui/carousel"
 import React, { useEffect, useState } from "react";
-import Heading from "@/components/common/Heading";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -64,12 +63,12 @@ const CardSection: React.FC<CardSectionProps> = ({
   const displayData = data && data.length > 0 ? data : sampleData;
 
   return (
-    <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 py-16">
+    <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 pb-16">
       <div className="flex flex-col max-w-7xl mx-auto">
         <div className="flex items-center justify-between pb-8 md:pb-12">
-          <Heading align="start" className="flex-1 pr-4">
+          <h1 className="justify-start flex-1 pr-4 font-primary text-4xl">
             {title}
-          </Heading>
+          </h1>
         </div>
         
         <Carousel setApi={setApi} className="w-full relative">
@@ -102,16 +101,16 @@ const CardSection: React.FC<CardSectionProps> = ({
                 : "bg-[#b8d4f0] text-gray-800";
               
               return (
-                <CarouselItem key={index} className="pl-3 md:basis-1/2 lg:basis-1/2">
+                <CarouselItem key={index} className="pl-3">
                   <div className="h-full">
                     {(() => {
                       const cardContent = (
                         <div className={`${cardColors} rounded-lg p-8 h-full min-h-[280px] flex flex-col justify-center cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}>
                           <div className="text-center space-y-4">
-                            <h3 className="text-xl md:text-2xl font-primary leading-tight">
+                            <h3 className="text-xl md:text-2xl leading-tight font-primary">
                               {item.title}
                             </h3>
-                            <p className="text-sm md:text-base leading-relaxed opacity-90">
+                            <p className="text-sm md:text-base font-secondary leading-relaxed opacity-90">
                               {item.desc}
                             </p>
                           </div>

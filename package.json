@@ -10,13 +10,17 @@
   },
   "dependencies": {
     "@next/font": "^14.2.15",
+    "blurhash": "^2.0.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.23.12",
     "graphql-request": "^7.2.0",
     "lucide-react": "^0.535.0",
     "next": "15.4.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
+    "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {

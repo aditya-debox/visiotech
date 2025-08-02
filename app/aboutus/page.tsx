@@ -1,12 +1,17 @@
 import React from "react";
-import AboutUsSection from "@/components/aboutus/AboutusHeadSection";
-import AboutusInfoSection from "@/components/aboutus/AboutusInfoSection";
 import { gql } from "graphql-request";
 import client from '@/utils/graphqlClient';
-import { RichText } from '@graphcms/rich-text-react-renderer';
-import CardSection from "@/components/aboutus/AwardsSection";
+import WhatMakesUsDifferentSection from "@/components/aboutus/AboutusCommitment";
+import TeamSection from "@/components/aboutus/AboutusOurTeam";
+import CommitmentSection from "@/components/aboutus/AboutusComittmentsection";
+import ServiceAreasSection from "@/components/aboutus/AboutusServiceAreas";
+import AboutusHeroSection from "@/components/aboutus/AboutusHeroSection";
+import OurStorySection from "@/components/aboutus/AboutusOurStory";
+import AboutusCommitment from "@/components/aboutus/AboutusCommitment";
 
 export interface IAboutUsData {
+  title: string;
+  heroTitle: string;
   aboutUsImage: {
     url: string;
   };
@@ -15,6 +20,11 @@ export interface IAboutUsData {
     html: string;
     text: string;
     raw: any; // Rich text raw content
+  };
+  highlights: {
+    html: string;
+    text: string;
+    raw: any; // Rich text raw content for highlights
   };
   teamSection: {
     teamImage: {
@@ -27,6 +37,8 @@ export interface IAboutUsData {
       raw: any; // Rich text raw content
     };
   }[];
+  commitment: string;
+  serviceArea: string;
 }
 
 // Blue Blob Background Component
@@ -35,7 +47,7 @@ const BlueBlobBackground = () => (
     <svg
       viewBox="0 0 1440 600"
       xmlns="http://www.w3.org/2000/svg"
-      className="h-[1400px] sm:h-[1000px] md:h-[1200px]"
+      className="h-[1400px] sm:h-[1000px] md:h-[1200px] 2xl:h-[1250px]"
     >
       {/* Base wave */}
       <path
@@ -53,17 +65,22 @@ const BlueBlobBackground = () => (
   </div>
 );
 
-
-
 export default async function AboutUs() {
   const query = gql`
     query GetAboutUs {
       aboutuses {
+        title
         aboutUsImage {
           url
         }
         aboutUsImageBlurHash
+        heroTitle
         aboutUsDescription {
+          html
+          text
+          raw
+        }
+        highlights{
           html
           text
           raw
@@ -79,6 +96,8 @@ export default async function AboutUs() {
             raw
           }
         }
+        commitment
+        serviceArea
       }
     }
   `;
@@ -87,17 +106,47 @@ export default async function AboutUs() {
   const aboutusdata = response.aboutuses[0];
   
   if (!aboutusdata) {
-    return null;
+    return (
+      <div className="relative min-h-screen">
+        {/* Blue Blob Background */}
+        <BlueBlobBackground />
+        
+        {/* Main Content with default data */}
+        <div className="relative z-10">
+          <AboutusHeroSection 
+            title="About Visiotech – Trusted Experts in Security & Low-Voltage Integration"
+            headline="Building Safer, Smarter Spaces Since 2016"
+          />
+          
+          <OurStorySection />
+          
+          <AboutusCommitment />
+          
+          <TeamSection />
+          
+          <CommitmentSection />
+          
+          <ServiceAreasSection />
+        </div>
+      </div>
+    );
   }
   
-  // Transform team data for AboutusInfoSection (owners)
-  const transformedOwners = aboutusdata.teamSection.map(member => ({
+  // Transform team data
+  const transformedTeamMembers = aboutusdata.teamSection?.map(member => ({
     name: member.teamTitle,
-    title: "Co-Owner & Dental Professional", // Default title, adjust as needed
-    image: member.teamImage.url,
-    imageAlt: `${member.teamTitle}, dental professional`,
-    bioRichText: member.teamDescription.raw // Pass raw rich text content
-  }));
+    title: "Team Member", // Default title, can be customized
+    description: member.teamDescription.html, // Use HTML content for proper entity decoding
+    descriptionRichText: member.teamDescription.raw, // Pass rich text content
+    image: member.teamImage?.url || "",
+    imageAlt: `${member.teamTitle}, team member`
+  })) || [];
+
+  // Extract rich text content - pass raw content for RichText component
+  const richTextContent = aboutusdata.aboutUsDescription.raw ? [aboutusdata.aboutUsDescription.raw] : undefined;
+  
+  // Extract highlights rich text content
+  const highlightsContent = aboutusdata.highlights?.raw || null;
   
   return (
     <div className="relative min-h-screen">
@@ -106,43 +155,32 @@ export default async function AboutUs() {
       
       {/* Main Content */}
       <div className="relative z-10">
-        <AboutUsSection
-          title="ABOUT US"
-          heroImage={aboutusdata.aboutUsImage.url}
-          heroImageAlt="About us - Dental practice"
-          richTextContent={aboutusdata.aboutUsDescription.raw}
-          showFeatures={true}
-          
+        <AboutusHeroSection 
+          title={aboutusdata.title || "About Visiotech – Trusted Experts in Security & Low-Voltage Integration"}
+          headline={aboutusdata.heroTitle || "Building Safer, Smarter Spaces Since 2016"}
+          heroImage={aboutusdata.aboutUsImage?.url}
+          heroImageAlt="About us - Professional security installation"
         />
-        <AboutusInfoSection
-          title="ABOUT THE OWNERS"
-          items={transformedOwners}
+        
+        <OurStorySection 
+          content={richTextContent}
         />
-        <CardSection 
-        title="Why Choose Us" 
-        data={[
-          {
-            title: "Trusted by Top Brands",
-            desc: "Shell, Circle K, and Gravity Autos",
-          },
-          {
-            title: "Registered & Insured", 
-            desc: "Compliant with Georgia's regulations",
-          },
-          {
-            title: "Certified Expertise",
-            desc: "Electro-mechanical engineering, IT integration, and networks",
-          },
-          {
-            title: "Proven Track Record",
-            desc: "100+ successful installations",
-          },
-          {
-            title: "Client Satisfaction",
-            desc: "5-star ratings across multiple platforms",
-          },
-        ]} 
-/>
+        
+        <AboutusCommitment 
+          content={highlightsContent}
+        />
+        
+        <TeamSection 
+          members={transformedTeamMembers.length > 0 ? transformedTeamMembers : undefined}
+        />
+        
+        <CommitmentSection 
+          content={aboutusdata.commitment || "We don't just install devices—we build long-term partnerships by offering support, maintenance, and upgrades that evolve with your business."}
+        />
+        
+        <ServiceAreasSection 
+          areas={aboutusdata.serviceArea ? aboutusdata.serviceArea.split(',').map(area => area.trim()) : undefined}
+        />
       </div>
     </div>
   );

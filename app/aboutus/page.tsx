@@ -135,9 +135,9 @@ export default async function AboutUs() {
   // Transform team data
   const transformedTeamMembers = aboutusdata.teamSection?.map(member => ({
     name: member.teamTitle,
-    title: "Team Member", // Default title, can be customized
-    description: member.teamDescription.html, // Use HTML content for proper entity decoding
-    descriptionRichText: member.teamDescription.raw, // Pass rich text content
+    title: "Team Member", 
+    description: member.teamDescription.html, 
+    descriptionRichText: member.teamDescription.raw, 
     image: member.teamImage?.url || "",
     imageAlt: `${member.teamTitle}, team member`
   })) || [];

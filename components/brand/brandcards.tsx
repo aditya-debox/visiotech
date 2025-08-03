@@ -51,7 +51,7 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index, isBlue = false }) =
     };
     
     return (
-        <Link href={`/brands/${brand.slug}`} className="">
+        <Link href={`/brand/${brand.slug}`} className="">
             <div className={`group relative ${bgColor} ${hoverBg} rounded-2xl overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl cursor-pointer min-h-[300px]  flex flex-col justify-center items-center p-8`}>
                 {/* Background Image with Overlay */}
                 {brand.brandImage?.url && (

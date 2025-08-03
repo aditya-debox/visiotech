@@ -91,10 +91,10 @@ const AboutusCommitment: React.FC<AboutusCommitmentProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {items.map((item, index) => (
             <div key={index} className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-600">
-              <h3 className="text-xl font-primary font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-primary font-bold text-black mb-3">
                 {item.title}
               </h3>
-              <p className="font-secondary text-gray-700 leading-relaxed">
+              <p className="font-secondary text-black leading-relaxed">
                 {item.description}
               </p>
             </div>

@@ -74,7 +74,7 @@ export default async function Brand() {
 
     return (
     <div>
-         <BrandCards brands={brandsdata} />
+        <BrandCards brands={brandsdata} />
     </div>
     );
 

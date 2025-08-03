@@ -51,8 +51,8 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index, isBlue = false }) =
     };
     
     return (
-        <Link href={`/brands/${brand.slug}`} className="block">
-            <div className={`group relative ${bgColor} ${hoverBg} rounded-2xl overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl cursor-pointer min-h-[300px] flex flex-col justify-center items-center p-8`}>
+        <Link href={`/brands/${brand.slug}`} className="">
+            <div className={`group relative ${bgColor} ${hoverBg} rounded-2xl overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl cursor-pointer min-h-[300px]  flex flex-col justify-center items-center p-8`}>
                 {/* Background Image with Overlay */}
                 {brand.brandImage?.url && (
                     <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
@@ -65,28 +65,24 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index, isBlue = false }) =
                 )}
                 
                 {/* Content */}
-                <div className="relative z-10 text-center">
+                <div className="relative z-10 text-center ">
                     {/* Brand Name - Always Visible */}
-                    <h3 className={`text-2xl font-bold ${textColor} mb-4 group-hover:transform group-hover:-translate-y-2 transition-all duration-300`}>
+                    <h3 className={`text:base xl:text-xl line-clamp-2  font-bold ${textColor} mb-4 group-hover:transform group-hover:-translate-y-2  font-primary transition-all duration-300`}>
                         {brand.heading}
                     </h3>
                     
                     {/* Title - Subtitle */}
-                    {brand.title && (
-                        <p className={`text-lg ${textColor} opacity-80 mb-6 group-hover:opacity-100 transition-all duration-300`}>
-                            {brand.title}
-                        </p>
-                    )}
+                  
                     
                     {/* Description - Show on Hover */}
-                    <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                        <p className={`text-sm ${textColor} leading-relaxed max-w-xs mx-auto line-clamp-4`}>
+                    <div className="2xl:opacity-0 2xl:group-hover:opacity-100  transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                        <p className={`text-base line-clamp-2 ${textColor} font-secondary leading-relaxed max-w-xs mx-auto line-clamp-4`}>
                             {getDescriptionText()}
                         </p>
                         
                         {/* Learn More Button */}
                         <div className="mt-6">
-                            <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                            <span className={`inline-flex font-secondary items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                                 isBlue 
                                     ? 'bg-white text-[#0e8de8] hover:bg-gray-100' 
                                     : 'bg-[#0e8de8] text-white hover:bg-[#0c7bd1]'
@@ -99,9 +95,6 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index, isBlue = false }) =
                         </div>
                     </div>
                 </div>
-                
-                {/* Decorative Corner Element */}
-                <div className={`absolute top-4 right-4 w-8 h-8 rounded-full ${isBlue ? 'bg-white bg-opacity-20' : 'bg-[#0e8de8] bg-opacity-20'} group-hover:scale-110 transition-transform duration-300`}></div>
             </div>
         </Link>
     );
@@ -116,9 +109,9 @@ interface BrandCardsProps {
 
 const BrandCards: React.FC<BrandCardsProps> = ({ 
     brands, 
-    title = "Our Services",
-    subtitle,
-    showCTA = true 
+    title = "Our Brands",
+    subtitle = "We partner with the best to bring you the best",
+    showCTA = true
 }) => {
     // Fallback to demo data only if no brands provided
     const demoData: IBrandData[] = [
@@ -173,14 +166,14 @@ const BrandCards: React.FC<BrandCardsProps> = ({
     const displayData = brands && brands.length > 0 ? brands : demoData;
 
     return (
-        <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 py-16">
+        <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 py-30">
             {/* Header */}
             <div className="text-center mb-16">
-                <h1 className="text-5xl md:text-6xl font-light text-gray-800 mb-4">
+                <h1 className="text-4xl md:text-6xl font-light text-black font-primary mb-4">
                     {title}
                 </h1>
                 {subtitle && (
-                    <p className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
+                    <p className="text-xl text-black mb-6 max-w-3xl mx-auto">
                         {subtitle}
                     </p>
                 )}
@@ -194,7 +187,7 @@ const BrandCards: React.FC<BrandCardsProps> = ({
                         key={brand.slug || index} 
                         brand={brand} 
                         index={index}
-                        isBlue={index % 3 === 0} // Every third card will be blue
+                        isBlue={index % 2 === 0} // Every third card will be blue
                     />
                 ))}
             </div>

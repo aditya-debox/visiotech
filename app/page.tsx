@@ -198,7 +198,6 @@ export default async function Home() {
       <Cta
         title="Schedule Your Free Security Consultation"
         buttonText="Get Started"
-        
       />
       
       

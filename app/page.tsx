@@ -73,16 +73,6 @@ export interface Brand {
   };
   brandImageBlurhash: string;
   title: string;
-  highlights: {
-    text: string;
-    html: string;
-    raw: any;
-  };
-  useCase: {
-    text: string;
-    html: string;
-    raw: any;
-  };
 }
 
 export default async function Home() {
@@ -146,16 +136,6 @@ export default async function Home() {
         }
         brandImageBlurhash
         title
-        highlights {
-          text
-          html
-          raw
-        }
-        useCase {
-          text
-          html
-          raw
-        }
       }
     }
   `;

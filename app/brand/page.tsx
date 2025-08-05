@@ -18,19 +18,15 @@ interface IBrandData {
   brandImageBlurhash: string;
   title: string;
   highlights: {
-    text: string;
-    html: string;
-    raw: any;
+    processTitle: string;
+    processDescription: string;
   };
-  useCase: {
-    text: string;
-    html: string;
-    raw: any;
-  };
+  useCase: string[];
   project: {
     title: string;
     description: string;
   };
+  projets: string[];
 }
 
 export default async function Brand() {
@@ -50,19 +46,15 @@ export default async function Brand() {
         brandImageBlurhash
         title
         highlights {
-          text
-          html
-          raw
+          processTitle
+          processDescription
         }
-        useCase {
-          text
-          html
-          raw
-        }
+        useCase
         project {
           title
           description
         }
+        projects
       }
     }
   `;

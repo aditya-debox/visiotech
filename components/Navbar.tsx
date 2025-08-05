@@ -219,6 +219,13 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
             </ul>
           </div>
 
+          <div
+            className="text-3xl lg:hidden cursor-pointer z-50 -mt-10"
+            onClick={toggleMenu}
+          >
+            {!isOpen && <HiMenu color="black" />}
+          </div>
+
           {/* Menu Button and Order Now grouped together */}
         </div>
       </div>

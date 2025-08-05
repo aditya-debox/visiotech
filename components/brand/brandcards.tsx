@@ -18,15 +18,10 @@ interface IBrandData {
   brandImageBlurhash: string;
   title: string;
   highlights: {
-    text: string;
-    html: string;
-    raw: any;
+    processTitle: string;
+    processDescription: string;
   };
-  useCase: {
-    text: string;
-    html: string;
-    raw: any;
-  };
+  useCase: string[];
   project: {
     title: string;
     description: string;
@@ -47,8 +42,8 @@ const BrandCard: React.FC<BrandCardProps> = ({
   // Get description text from available sources
   const getDescriptionText = () => {
     if (brand.shortDescription?.text) return brand.shortDescription.text;
-    if (brand.useCase?.text) return brand.useCase.text;
-    if (brand.highlights?.text) return brand.highlights.text;
+    // if (brand.useCase?.text) return brand.useCase.text;
+    // if (brand.highlights?.text) return brand.highlights.text;
     if (brand.project?.description) return brand.project.description;
     return "Discover more about this service by clicking to learn more.";
   };
@@ -153,59 +148,7 @@ const BrandCards: React.FC<BrandCardsProps> = ({
   showCTA = true,
 }) => {
   // Fallback to demo data only if no brands provided
-  const demoData: IBrandData[] = [
-    {
-      heading: "Dental Consultation",
-      slug: "dental-consultation",
-      title: "Expert Care",
-      shortDescription: {
-        text: "Comprehensive dental examination and personalized treatment planning for optimal oral health.",
-        html: "",
-        raw: null,
-      },
-      brandImage: {
-        url: "https://images.unsplash.com/photo-1559157734-a2bb9b0b4d2f?w=400&h=300&fit=crop",
-      },
-      brandImageBlurhash: "",
-      highlights: { text: "", html: "", raw: null },
-      useCase: { text: "", html: "", raw: null },
-      project: { title: "", description: "" },
-    },
-    {
-      heading: "Teeth Cleaning",
-      slug: "teeth-cleaning",
-      title: "Preventive Care",
-      shortDescription: {
-        text: "Professional dental cleaning to remove plaque, tartar, and stains for a healthier smile.",
-        html: "",
-        raw: null,
-      },
-      brandImage: {
-        url: "https://images.unsplash.com/photo-1588776814546-1ffcf47da822?w=400&h=300&fit=crop",
-      },
-      brandImageBlurhash: "",
-      highlights: { text: "", html: "", raw: null },
-      useCase: { text: "", html: "", raw: null },
-      project: { title: "", description: "" },
-    },
-    {
-      heading: "Orthodontics",
-      slug: "orthodontics",
-      title: "Smile Alignment",
-      shortDescription: {
-        text: "Modern orthodontic solutions including braces and clear aligners for perfect smile alignment.",
-        html: "",
-        raw: null,
-      },
-      brandImage: {
-        url: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop",
-      },
-      brandImageBlurhash: "",
-      highlights: { text: "", html: "", raw: null },
-      useCase: { text: "", html: "", raw: null },
-      project: { title: "", description: "" },
-    },
-  ];
+  const demoData: IBrandData[] = [];
 
   // Use provided brands or fallback to demo data
   const displayData = brands && brands.length > 0 ? brands : demoData;

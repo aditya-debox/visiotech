@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { RichText } from "@graphcms/rich-text-react-renderer";
+import Link from "next/link";
 
 interface ServiceDetail {
+  slug: string;
   serviceTitle: string;
   serviceDescription: {
     text: string;
@@ -28,41 +30,43 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   className = "",
 }) => {
   return (
-    <div
-      className={`bg-white group cursor-pointer rounded-2xl p-0 md:p-8 duration-300 flex flex-col h-full ${className}`}
-    >
-      {/* Service Icon */}
-      <div className="mb-6">
-        <div className="w-fit p-3.5 bg-blue-100 group-hover:bg-blue-400 transition-all duration-300 rounded-2xl flex items-center justify-center">
-          <Image
-            src={service.serviceIcon.url}
-            alt={`${service.serviceTitle} icon`}
-            width={32}
-            height={32}
-            className="w-5 h-5 object-contain"
+    <Link href={`service/${service.slug}`}>
+      <div
+        className={`bg-white group cursor-pointer rounded-2xl p-0 md:p-8 duration-300 flex flex-col h-full ${className}`}
+      >
+        {/* Service Icon */}
+        <div className="mb-6">
+          <div className="w-fit p-3.5 bg-blue-100 group-hover:bg-blue-400 transition-all duration-300 rounded-2xl flex items-center justify-center">
+            <Image
+              src={service.serviceIcon.url}
+              alt={`${service.serviceTitle} icon`}
+              width={32}
+              height={32}
+              className="w-5 h-5 object-contain"
+            />
+          </div>
+        </div>
+
+        {/* Service Title */}
+        <h3 className="text-lg font-medium text-black/60 group-hover:text-black mb-2">
+          {service.serviceTitle}
+        </h3>
+
+        {/* Service Description - Rich Text with Line Clamp */}
+        <div className="mt-auto">
+          <RichText
+            content={service.serviceDescription.raw}
+            renderers={{
+              p: ({ children }) => (
+                <p className="text-sm line-clamp-2 text-gray-500 group-hover:text-gray-600">
+                  {children}
+                </p>
+              ),
+            }}
           />
         </div>
       </div>
-
-      {/* Service Title */}
-      <h3 className="text-lg font-medium text-black/60 group-hover:text-black mb-2">
-        {service.serviceTitle}
-      </h3>
-
-      {/* Service Description - Rich Text with Line Clamp */}
-      <div className="mt-auto">
-        <RichText
-          content={service.serviceDescription.raw}
-          renderers={{
-            p: ({ children }) => (
-              <p className="text-sm line-clamp-2 text-gray-500 group-hover:text-gray-600">
-                {children}
-              </p>
-            ),
-          }}
-        />
-      </div>
-    </div>
+    </Link>
   );
 };
 

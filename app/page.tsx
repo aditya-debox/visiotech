@@ -27,6 +27,7 @@ export interface IHomePage {
     url: string;
   };
   serviceDetail: {
+    slug: string;
     serviceTitle: string;
     serviceDescription: {
       raw: any;
@@ -92,6 +93,7 @@ export default async function Home() {
           url
         }
         serviceDetail {
+          slug
           serviceTitle
           serviceDescription {
             raw

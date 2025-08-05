@@ -68,7 +68,7 @@ const Footer = () => {
             <div className="-my-1 flex justify-center gap-x-6">
               <a
                 className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
-                href="/services"
+                href="/service"
               >
                 Services
               </a>

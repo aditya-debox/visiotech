@@ -10,13 +10,13 @@ interface TeamMember {
   imageAlt?: string;
 }
 
-interface TeamSectionProps {
+interface AboutusOurTeamProps {
   title?: string;
   members?: TeamMember[];
   className?: string;
 }
 
-const TeamSection: React.FC<TeamSectionProps> = ({
+const AboutusOurTeam: React.FC<AboutusOurTeamProps> = ({
   title = "Our Team",
   members = [
     {
@@ -45,12 +45,12 @@ const TeamSection: React.FC<TeamSectionProps> = ({
 }) => {
   return (
     <div className={`max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 pb-16 ${className}`}>
-      <h2 className="text-3xl md:text-4xl font-primary text-gray-900 mb-12">
+      <h2 className="text-3xl font-extrabold md:text-4xl font-primary text-gray-900 mb-12">
         {title}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {members.map((member, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div key={index} className="bg-white rounded-lg ">
             {member.image && (
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -61,11 +61,9 @@ const TeamSection: React.FC<TeamSectionProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
               </div>
             )}
-            <div className="p-6">
-              <h3 className="text-xl font-primary font-bold text-gray-900 mb-2">
-                {member.name}
-              </h3>
-              <h4 className="text-blue-600 font-secondary font-semibold mb-3">
+            <div className="pb-6">
+              
+              <h4 className="text-blue-600 text-lg font-secondary font-semibold mb-3">
                 {member.title}
               </h4>
               
@@ -106,4 +104,4 @@ const TeamSection: React.FC<TeamSectionProps> = ({
   );
 };
 
-export default TeamSection;
+export default AboutusOurTeam;

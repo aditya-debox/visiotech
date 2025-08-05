@@ -103,14 +103,14 @@ const TestimonialCards: React.FC<TestimonialCardsProps> = ({
                 </div>
 
                 {/* Bottom CTA */}
-                <div className="text-center mt-16">
+                {/* <div className="text-center mt-16">
                     <div className="inline-flex items-center px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg cursor-pointer">
                         <span>See More Reviews</span>
                         <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

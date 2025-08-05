@@ -11,6 +11,7 @@ import client from "@/utils/graphqlClient";
 import { gql } from "graphql-request";
 import Image from "next/image";
 import TestimonialCards from "@/components/Home/TestimonialCards";
+import Cta from "@/components/Home/Cta";
 
 export interface IHomePage {
   title: string;
@@ -194,6 +195,11 @@ export default async function Home() {
       <ServiceGrid services={serviceDetails} />
       <BrandCards brands={brands}/>
       <TestimonialCards testimonials={homePageData.testimonial} />
+      <Cta
+        title="Schedule Your Free Security Consultation"
+        buttonText="Get Started"
+        
+      />
       
       
     </div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 interface Company {
   name: string;
@@ -12,19 +12,22 @@ interface TrustedCompaniesProps {
   className?: string;
 }
 
-const TrustedCompanies: React.FC<TrustedCompaniesProps> = ({ 
-  companies, 
+const TrustedCompanies: React.FC<TrustedCompaniesProps> = ({
+  companies,
   title = "Trusted by these companies so far",
-  className = ""
+  className = "",
 }) => {
   return (
     <div className={`${className}`}>
-      <div className="max-w-7xl mx-auto px-6 pb-20 lg:px-12 text-center">
+      <div className="max-w-7xl mx-auto px-6 pb-10 md:pb-20 lg:px-12 text-center">
         <p className="text-black text-lg">{title}</p>
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-12">
+        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-8 lg:gap-12">
           {companies.map((company, index) => (
-            <div key={index} className="flex items-center gap-2 transition-colors duration-200">
-              <div className="relative w-35 h-25 ">
+            <div
+              key={index}
+              className="flex items-center gap-2 transition-colors duration-200"
+            >
+              <div className="relative w-20 h-20 md:w-35 md:h-25">
                 <Image
                   src={company.logo}
                   alt={company.name}

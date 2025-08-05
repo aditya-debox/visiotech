@@ -31,15 +31,15 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
     },
     {
       name: "Services",
-      link: "/",
+      link: "/services",
     },
     {
       name: "Brands",
-      link: "/",
+      link: "/brand",
     },
     {
-      name: "Contact us",
-      link: "/",
+      name: "About us",
+      link: "/aboutus",
     },
   ];
 
@@ -137,7 +137,7 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
   return (
     <>
       <div
-        className={`fixed ${"top-0"}  left-0 w-full px-2 !z-50  font-primary 
+        className={`fixed ${"top-0"}  left-0 w-full px-2 !z-50  font-secondary 
        h-20 md:h-24 grid place-items-center border-b shadow-md transition-all duration-300 ${"bg-white"}`}
       >
         <div className="flex justify-between items-center px-6 xl:px-24 lg:px-12 w-full max-w-8xl mx-auto">
@@ -145,14 +145,14 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
             href={"/"}
             prefetch={false}
             passHref
-            className="relative w-24 md:!w-[200px] md:h-[120px] min-w-[115px] min-h-[53px]"
+            className="relative w-24 md:!w-[200px] h-[120px] min-w-[115px] min-h-[53px]"
           >
             <Image
               src={logo || ""}
               alt="logo"
               fill
               sizes={""}
-              className={`w-full h-full object-contain`}
+              className={`-mt-5 md:mt-0 object-contain`}
             />
           </Link>
 
@@ -233,17 +233,17 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
 
       {/* Sidebar Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-[400px] bg-primaryColor font-primary shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-full bg-white sm:w-[400px] bg-primaryColor font-primary shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Close button positioned in top right corner */}
         <div className="absolute top-6 right-6 text-3xl cursor-pointer">
-          <IoMdClose color="white" onClick={toggleMenu} />
+          <IoMdClose color="black" onClick={toggleMenu} />
         </div>
 
         <div className="flex flex-col h-full pt-24">
-          <ul className="flex flex-col text-xl text-gray-300">
+          <ul className="flex flex-col text-xl text-gray-900">
             {navItems.map((item, index) => (
               <li
                 key={index}

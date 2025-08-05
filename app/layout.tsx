@@ -17,7 +17,7 @@ import Footer from "@/components/Footer";
 
 const nunito = Montserrat({
   variable: "--font-primary",
-  weight: ["400", "600", "700"],
+  weight: ["400", "600", "700", "100", "200", "500"],
   subsets: ["latin"],
 });
 

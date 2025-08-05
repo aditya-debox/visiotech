@@ -20,9 +20,9 @@ export interface IHomePage {
   client: {
     clientLogo: {
       url: string;
-    }
+    };
     clientName: string;
-  }[]
+  }[];
   heroVideo: {
     url: string;
   };
@@ -57,7 +57,7 @@ export interface ServiceDetail {
   serviceIcon: {
     url: string;
   };
-  slug: string
+  slug: string;
 }
 
 export interface Brand {
@@ -160,16 +160,15 @@ export default async function Home() {
     }
   `;
 
-  const response = await client.request<{ 
+  const response = await client.request<{
     homePages: IHomePage[];
     serviceDetails: ServiceDetail[];
     brands: Brand[];
   }>(query);
-  
+
   const homePageData = response.homePages[0];
   const serviceDetails = response.serviceDetails;
   const brands = response.brands;
-
 
   if (!homePageData) {
     return null;
@@ -178,7 +177,7 @@ export default async function Home() {
   console.log(homePageData.serviceDetail);
   console.log(serviceDetails);
 
-  const companies = homePageData.client.map(c => ({
+  const companies = homePageData.client.map((c) => ({
     name: c.clientName,
     logo: c.clientLogo.url,
   }));
@@ -187,20 +186,22 @@ export default async function Home() {
     <div className="font-secondary">
       <NewHeroSection data={homePageData} />
       <TrustedCompanies companies={companies} />
-      <IntroSection 
+      <IntroSection
         introText="Visiotech specializes in commercial security camera installation, surveillance systems, access control, and network infrastructure in Atlanta and surrounding areas."
         authorName=""
         authorTitle=""
       />
       <ServiceGrid services={serviceDetails} />
-      <BrandCards brands={brands}/>
+      <BrandCards
+        title="Our Partners"
+        subtitle="Partners who we served"
+        brands={brands}
+      />
       <TestimonialCards testimonials={homePageData.testimonial} />
       <Cta
         title="Schedule Your Free Security Consultation"
         buttonText="Get Started"
       />
-      
-      
     </div>
   );
 }

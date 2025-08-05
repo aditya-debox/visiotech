@@ -15,7 +15,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
 }) => {
   return (
     <div
-      className={` max-w-7xl mx-auto px-6 lg:px-12 relative bg-gray-50 rounded-4xl py-30 ${className}`}
+      className={` max-w-7xl mx-auto px-6 lg:px-12 relative bg-blue-600 rounded-4xl py-30 ${className}`}
     >
       {/* Opening Quote Mark */}
       <div className="absolute top-8 left-20 bottom-10 md:bottom-5 overflow-hidden z-10">
@@ -42,11 +42,11 @@ const IntroSection: React.FC<IntroSectionProps> = ({
 
       <div className="max-w-6xl mx-auto text-center">
         {/* Main Quote Text */}
-        <p className="text-2xl md:text-3xl text-black font-medium leading-relaxed px-4">
+        <p className="text-2xl md:text-3xl text-white font-medium leading-relaxed px-4">
           {introText.split(" ").map((word, index) => (
             <React.Fragment key={index}>
               {index === 0 ? (
-                <span className="text-blue-600 font-semibold">{word}</span>
+                <span className="text-white font-semibold">{word}</span>
               ) : (
                 word
               )}
@@ -58,7 +58,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
       </div>
 
       {/* Closing Quote Mark */}
-      <div className="absolute  right-20 bottom-20 overflow-hidden z-10 rotate-180">
+      <div className="absolute  right-20 bottom-10 overflow-hidden z-10 rotate-180">
         <svg
           width="120"
           height="120"

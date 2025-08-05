@@ -8,14 +8,14 @@ import { HiMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import logo from "@/assets/visiotech.png";
 
 interface INavProps {
-  logo?: string;
   email?: string;
   phone?: string;
 }
 
-const Navbar: React.FC<INavProps> = ({ logo, email, phone }) => {
+const Navbar: React.FC<INavProps> = ({ email, phone }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const moreMenuRef = useRef<HTMLLIElement>(null);
@@ -141,22 +141,20 @@ const Navbar: React.FC<INavProps> = ({ logo, email, phone }) => {
        h-20 md:h-24 grid place-items-center border-b shadow-md transition-all duration-300 ${"bg-white"}`}
       >
         <div className="flex justify-between items-center px-6 xl:px-24 lg:px-12 w-full max-w-8xl mx-auto">
-          {logo !== "" ? (
-            <Link
-              href={"/"}
-              prefetch={false}
-              passHref
-              className="relative w-24 md:!w-[170px] md:h-[83px] min-w-[115px] min-h-[53px]"
-            >
-              <Image
-                src={logo || ""}
-                alt="logo"
-                fill
-                sizes={""}
-                className={`w-full h-full object-contain`}
-              />
-            </Link>
-          ) : null}
+          <Link
+            href={"/"}
+            prefetch={false}
+            passHref
+            className="relative w-24 md:!w-[200px] md:h-[120px] min-w-[115px] min-h-[53px]"
+          >
+            <Image
+              src={logo || ""}
+              alt="logo"
+              fill
+              sizes={""}
+              className={`w-full h-full object-contain`}
+            />
+          </Link>
 
           <div className="h-full hidden lg:block">
             <ul className="flex items-center text-xl text-black font-extrabold relative">

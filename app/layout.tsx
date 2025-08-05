@@ -1,17 +1,22 @@
-import { Nunito, Playfair_Display, Raleway } from "next/font/google";
+import {
+  Montserrat,
+  Nunito,
+  Playfair_Display,
+  Raleway,
+} from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-primary",
-  weight: ["400", "700", "600", "800", "900"],
-  subsets: ["latin"],
-});
+// const playfairDisplay = Playfair_Display({
+//   variable: "--font-primary",
+//   weight: ["400", "700", "600", "800", "900"],
+//   subsets: ["latin"],
+// });
 
-const nunito = Nunito({
-  variable: "--font-secondary",
+const nunito = Montserrat({
+  variable: "--font-primary",
   weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
@@ -27,10 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${playfairDisplay.variable} ${nunito.variable}`}
-    >
+    <html lang="en" className={` ${nunito.variable}`}>
       <body className={`antialiased `}>
         <Navbar />
         {children}

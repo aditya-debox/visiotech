@@ -14,7 +14,9 @@ const IntroSection: React.FC<IntroSectionProps> = ({
   className = "",
 }) => {
   return (
-    <div className={` max-w-7xl mx-auto px-6 lg:px-12 relative bg-gray-50 rounded-4xl py-30 ${className}`}>
+    <div
+      className={` max-w-7xl mx-auto px-6 lg:px-12 relative bg-gray-50 rounded-4xl py-30 ${className}`}
+    >
       {/* Opening Quote Mark */}
       <div className="absolute top-8 left-20 bottom-10 md:bottom-5 overflow-hidden z-10">
         <svg

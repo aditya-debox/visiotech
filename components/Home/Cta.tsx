@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { ArrowRight } from "lucide-react";
 
 interface CTAProps {
   title?: string;
@@ -10,62 +11,69 @@ interface CTAProps {
 
 const Cta: React.FC<CTAProps> = ({
   title = "Get started today",
-  description = "",
-  buttonText = "",
+  description = "Join thousands who trust our platform to safeguard their operations and streamline security management",
+  buttonText = "Get Started",
   onButtonClick,
-  className = ""
+  className = "",
 }) => {
   return (
-    <section className={`  relative pb-16 overflow-hidden ${className}`}>
-      {/* Main gradient background */}
-      <div className="bg-gradient-to-br from-[#2d5df5] via-[#0095d2] to-[#007aff] py-20 px-6 lg:px-8">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Animated gradient orbs */}
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-gradient-to-br from-white/10 to-white/5 blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-gradient-to-tr from-white/8 to-white/3 blur-3xl"></div>
-          
-          {/* Subtle pattern overlay */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute inset-0 bg-white/3" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-              backgroundSize: '20px 20px'
-            }}></div>
-          </div>
-        </div>
+    <section className={`relative py-24 overflow-hidden ${className}`}>
+      {/* Background with light blue gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700"></div>
 
-        {/* Content container */}
-        <div className="relative mx-auto max-w-4xl text-center">
-          {/* Title */}
-          <h2 className="text-4xl md:text-3xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            {title}
-          </h2>
-          
-          {/* Description */}
-          <p className="text-lg md:text-xl text-blue-100 mb-10 max-w-2xl mx-auto leading-relaxed">
-            {description}
-          </p>
-          
-          {/* CTA Button */}
-          <button
-            onClick={onButtonClick}
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-[#2d5df5] bg-white rounded-full shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 ease-out hover:bg-gray-50"
-          >
-            <span className="relative z-10">{buttonText}</span>
-            
-            {/* Button hover effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#ffffff] to-[#f8faff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
-            {/* Button glow effect */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-white/50 to-white/30 blur opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-          </button>
-        </div>
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* White accent circles */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-white/10 blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-white/8 blur-3xl"></div>
+
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)`,
+            backgroundSize: "50px 50px",
+          }}
+        ></div>
       </div>
+
+      {/* Content container */}
+      <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
+        {/* Title */}
+        <h2 className="text-4xl md:text-4xl font-primary font-bold text-white mb-6 leading-tight">
+          {title}
+        </h2>
+
+        {/* Description */}
+        <p className="text-lg md:text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+          {description}
+        </p>
+
+        {/* CTA Button */}
+        <button
+          onClick={onButtonClick}
+          className="group relative inline-flex items-center justify-center gap-3 px-6 py-3 text-lg font-semibold text-blue-600 bg-white rounded-full shadow-2xl hover:shadow-white/25 transform hover:-translate-y-1 transition-all duration-300 ease-out hover:bg-blue-50 cursor-pointer overflow-hidden"
+        >
+          {/* Button background */}
+          <div className="absolute inset-0 bg-white group-hover:bg-blue-50 transition-all duration-300"></div>
+
+          {/* Button content */}
+          <span className="relative z-10 font-medium text-base">
+            {buttonText}
+          </span>
+          <ArrowRight className="relative z-10 w-5 h-5 text-blue-600 transition-transform duration-300 group-hover:translate-x-1" />
+
+          {/* Button shine effect */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+          </div>
+        </button>
+      </div>
+
+      {/* Bottom accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
     </section>
   );
 };
 
-export default Cta
-
-// Color Palette Component for reference
-
+export default Cta;

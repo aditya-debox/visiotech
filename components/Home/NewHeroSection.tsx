@@ -35,7 +35,7 @@ const NewHeroSection: React.FC<NewHeroSectionProps> = ({ data }) => {
     <div className=" bg-white">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-50 pb-5 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold font-primary text-gray-900  leading-tight">
+        <h1 className="text-3xl md:text-6xl font-bold font-primary text-gray-900  leading-tight">
           {data.title.split(" ").map((word, index) => (
             <React.Fragment key={index}>
               {index === 1 || index === 2 ? (
@@ -61,7 +61,7 @@ const NewHeroSection: React.FC<NewHeroSectionProps> = ({ data }) => {
           ))}
         </h1>
 
-        <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base md:mt-0 mt-5 md:text-xl text-gray-600 mb-5 md:mb-10 max-w-2xl mx-auto leading-relaxed">
           {data.subTitle}
         </p>
 

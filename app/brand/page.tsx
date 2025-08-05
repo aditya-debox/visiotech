@@ -2,6 +2,7 @@ import React from "react";
 import { gql } from "graphql-request";
 import client from "@/utils/graphqlClient";
 import BrandCards from "@/components/brand/brandcards";
+import Cta from "@/components/Home/Cta";
 
 interface IBrandData {
   heading: string;
@@ -75,6 +76,11 @@ export default async function Brand() {
   return (
     <div>
       <BrandCards brands={brandsdata} />
+
+      <Cta
+        title="Schedule Your Free Security Consultation"
+        buttonText="Get Started"
+      />
     </div>
   );
 }

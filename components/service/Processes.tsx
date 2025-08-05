@@ -7,19 +7,25 @@ interface ProcessStep {
 
 interface ProcessesProps {
   process: ProcessStep[]; // Changed to array of process steps
+  title?: string;
+  desc?: string;
 }
 
-const Processes: React.FC<ProcessesProps> = ({ process }) => {
+const Processes: React.FC<ProcessesProps> = ({
+  process,
+  title = "Our Process",
+  desc = "From start to finish, we handle every detail professionally",
+}) => {
   return (
     <section className="pb-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="font-primary text-3xl font-bold text-gray-900 mb-4">
-            Our Process
+          <h2 className="font-primary text-xl md:text-3xl font-bold text-gray-900 mb-4">
+            {title}
           </h2>
-          <p className="font-secondary text-lg text-gray-600 max-w-3xl mx-auto">
-            From start to finish, we handle every detail professionally
+          <p className="font-secondary text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+            {desc}
           </p>
         </div>
 

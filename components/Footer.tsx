@@ -57,13 +57,13 @@ const Footer = () => {
     <footer className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-10">
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <Image
               src={logo}
               alt="log"
               className="w-[100px] object-cover h-[120px]"
             />
-          </div>
+          </div> */}
           <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
               <a

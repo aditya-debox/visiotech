@@ -1,5 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from "../ui/carousel";
+import { Card, CardContent } from "../ui/card";
+import { ArrowRight } from "lucide-react";
 
 interface IBrandData {
   heading: string;
@@ -47,7 +57,7 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index }) => {
 
   return (
     <Link href={`/brand/${brand.slug}`}>
-      <div className="group p-6 rounded-xl transition-all duration-300 hover:shadow-lg cursor-pointer h-full flex flex-col bg-white text-black hover:bg-[#2d5df5] hover:text-white border border-gray-200">
+      <div className="group p-6 rounded-xl transition-all duration-300 hover:shadow-lg cursor-pointer flex flex-col bg-white text-black hover:bg-[#2d5df5] hover:text-white h-full">
         {/* Title */}
         <h3 className="text-xl font-semibold mb-3 text-black group-hover:text-white">
           {brand.heading}
@@ -63,19 +73,7 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index }) => {
           <span className="text-sm font-medium text-[#6366f1] group-hover:text-white">
             Learn More
           </span>
-          <svg
-            className="ml-2 w-4 h-4 text-[#6366f1] group-hover:text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          <ArrowRight className="w-5 h-5 text-primary group-hover:text-white group-hover:rotate-0 transition-all duration-300 -rotate-45 pl-1 flex flex-shrink-0" />
         </div>
       </div>
     </Link>
@@ -93,62 +91,113 @@ const BrandCards: React.FC<BrandCardsProps> = ({
   title = "",
   subtitle = "",
 }) => {
-  // Fallback demo data
-  const demoData: IBrandData[] = [
-    {
-      heading: "Professional Resume Review",
-      slug: "resume-review",
-      shortDescription: {
-        text: "Get expert feedback and ATS-optimization to land more interviews.",
-        html: "",
-        raw: null,
-      },
-    },
-    {
-      heading: "Mock Interview",
-      slug: "mock-interview",
-      shortDescription: {
-        text: "Master your interview skills with personalized 1 on 1 sessions from seasoned professionals.",
-        html: "",
-        raw: null,
-      },
-    },
-    {
-      heading: "LinkedIn Profile Optimization",
-      slug: "linkedin-optimization",
-      shortDescription: {
-        text: "Showcase your professional credibility and enhance the conversation rate with potential employers.",
-        html: "",
-        raw: null,
-      },
-    },
-  ];
+  const [current, setCurrent] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Fallback demo data - empty array since no demo data provided
+  const demoData: IBrandData[] = [];
 
   const displayData = brands && brands.length > 0 ? brands : demoData;
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 1024);
+      };
+
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!carouselApi) {
+      return;
+    }
+
+    setCurrent(carouselApi.selectedScrollSnap());
+    carouselApi.on("select", () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    });
+  }, [carouselApi]);
+
+  const itemsPerSlide = isMobile ? 1 : 3;
+  const totalSlides = Math.ceil(displayData.length / itemsPerSlide);
+  const slides = Array.from({ length: totalSlides }, (_, i) =>
+    displayData.slice(i * itemsPerSlide, (i + 1) * itemsPerSlide)
+  );
+  const showNavDots = totalSlides > 1;
+
   return (
-    <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 pb-16">
+    <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 pb-6 md:pb-16">
       {/* Header */}
       {(title || subtitle) && (
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 md:mb-10">
           {title && (
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold font-primary text-black mb-2 md:mb-4">
               {title}
             </h2>
           )}
           {subtitle && (
-            <p className="text-lg text-black max-w-2xl mx-auto">{subtitle}</p>
+            <p className="text-sm md:text-lg text-gray-500 max-w-2xl font-secondary mx-auto">
+              {subtitle}
+            </p>
           )}
-          <div className="w-24 h-1 bg-blue-500 mx-auto mt-6 rounded-full"></div>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mt-3 md:mt-6 rounded-full"></div>
         </div>
       )}
 
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayData.map((brand, index) => (
-          <BrandCard key={brand.slug || index} brand={brand} index={index} />
-        ))}
-      </div>
+      {/* Carousel for all screen sizes */}
+      <Carousel
+        setApi={setCarouselApi}
+        opts={{
+          align: "start",
+          loop: false,
+          skipSnaps: false,
+          dragFree: false,
+        }}
+        className="w-full"
+      >
+        <CarouselContent>
+          {slides.map((slide, slideIndex) => (
+            <CarouselItem key={slideIndex} className="w-full">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+                {slide.map((brand, index) => (
+                  <div
+                    key={brand.slug || `${slideIndex}-${index}`}
+                    className="h-full bg-white hover:text-white border border-gray-200 shadown-sm rounded-lg hover:bg-blue-600 transition-all duration-300"
+                  >
+                    <BrandCard
+                      brand={brand}
+                      index={slideIndex * itemsPerSlide + index}
+                    />
+                  </div>
+                ))}
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+
+        {showNavDots && (
+          <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-5 justify-center">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setCurrent(index);
+                  carouselApi?.scrollTo(index);
+                }}
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  current === index ? "bg-blue-600" : "bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </Carousel>
     </div>
   );
 };

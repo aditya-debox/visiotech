@@ -12,6 +12,7 @@ import { gql } from "graphql-request";
 import Image from "next/image";
 import TestimonialCards from "@/components/Home/TestimonialCards";
 import Cta from "@/components/Home/Cta";
+import { Metadata } from "next";
 
 export interface IHomePage {
   title: string;
@@ -75,6 +76,29 @@ export interface Brand {
   brandImageBlurhash: string;
   title: string;
 }
+
+export const metadata: Metadata = {
+  title: "Security Camera Installation in Atlanta | Visiotech",
+  description:
+    "Visiotech specializes in professional commercial security camera installation, surveillance systems, access control, and structured cabling across Atlanta. Trusted by top businesses including Shell, Circle K, and Havana ATL.",
+  openGraph: {
+    title: "Security Camera Installation in Atlanta | Visiotech",
+    description:
+      "Visiotech specializes in professional commercial security camera installation, surveillance systems, access control, and structured cabling across Atlanta. Trusted by top businesses including Shell, Circle K, and Havana ATL.",
+    images: [{ url: "/visiotech.png" }],
+    type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Security Camera Installation in Atlanta | Visiotech",
+    description:
+      "Visiotech specializes in professional commercial security camera installation, surveillance systems, access control, and structured cabling across Atlanta. Trusted by top businesses including Shell, Circle K, and Havana ATL.",
+    images: ["/visiotech.png"],
+  },
+  // alternates: {
+  //   canonical: "https://lahoregrill.com/our-story",
+  // },
+};
 
 export default async function Home() {
   const query = gql`

@@ -10,6 +10,7 @@ import FAQSection from "@/components/service/FAQSection";
 import Cta from "@/components/Home/Cta";
 import BrandCards from "@/components/Home/brandcards";
 import ServiceGrid from "@/components/Home/servicecards";
+import { Metadata } from "next";
 
 interface IServiceDetails {
   serviceTitle: string;
@@ -45,6 +46,32 @@ interface IServiceDetails {
   serviceImageBlurHash: string;
   industries: string[];
 }
+
+export const metadata: Metadata = {
+  title:
+    "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
+  description:
+    "Discover Visiotech’s full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+  openGraph: {
+    title:
+      "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
+    description:
+      "Discover Visiotech’s full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+    images: [{ url: "/visiotech.png" }],
+    type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title:
+      "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
+    description:
+      "Discover Visiotech’s full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+    images: ["/visiotech.png"],
+  },
+  // alternates: {
+  //   canonical: "https://lahoregrill.com/our-story",
+  // },
+};
 
 export default async function ServiceDetails() {
   const query = gql`

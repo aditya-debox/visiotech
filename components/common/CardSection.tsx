@@ -51,7 +51,7 @@ const CardSection: React.FC<CardProps> = ({ data, title }) => {
   const showNavDots = totalSlides > 1;
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-16 py-6 md:py-10">
+    <div className="w-full px-4 sm:px-6 lg:px-12 py-10 md:py-20">
       <div className="max-w-7xl mx-auto">
         <h2 className="font-primary text-xl md:text-3xl font-bold text-gray-900 mb-5 md:mb-10 text-center">
           {title}

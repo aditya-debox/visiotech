@@ -83,15 +83,15 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
     <div className={`py-16 ${className}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-6 md:mb-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 font-primary">
+          <h2 className="text-2xl md:text-4xl font-bold font-primary text-black mb-2 md:mb-4">
             Our Services
           </h2>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-secondary">
+          <p className="text-sm md:text-lg text-gray-500 max-w-2xl font-secondary mx-auto">
             See what we offer
           </p>
 
-          <div className="w-24 h-1 bg-blue-500 mx-auto mt-6 rounded-full"></div>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mt-3 md:mt-6 rounded-full"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

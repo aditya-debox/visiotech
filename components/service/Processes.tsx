@@ -17,7 +17,7 @@ const Processes: React.FC<ProcessesProps> = ({
   desc = "From start to finish, we handle every detail professionally",
 }) => {
   return (
-    <section className="pb-16">
+    <section className="pb-8 md:pb-16 bg-gray-50 py-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-16">
@@ -31,7 +31,11 @@ const Processes: React.FC<ProcessesProps> = ({
 
         {/* Process Steps */}
         {process.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div
+            className={`grid grid-cols-1 place-items-center justify-items-center w-full sm:grid-cols-2 ${
+              process.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"
+            } gap-6 lg:gap-8`}
+          >
             {process.map((step, index) => (
               <div key={index} className="text-center flex-1 ">
                 {/* Step Number */}

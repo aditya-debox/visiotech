@@ -9,6 +9,7 @@ import { IoMdClose } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import logo from "@/assets/visiotech.png";
+import ModalStore from "@/store/modal";
 
 interface INavProps {
   email?: string;
@@ -44,6 +45,7 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
   ];
 
   const [isAtTop, setIsAtTop] = useState(true);
+  const { setTriggerModal } = ModalStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,87 +142,94 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
         className={`fixed ${"top-0"}  left-0 w-full px-2 !z-50  font-secondary 
        h-20 md:h-24 grid place-items-center border-b shadow-md transition-all duration-300 ${"bg-white"}`}
       >
-        <div className="flex justify-between items-center px-6 xl:px-24 lg:px-12 w-full max-w-8xl mx-auto">
-          <Link
-            href={"/"}
-            prefetch={false}
-            passHref
-            className="relative w-24 md:!w-[200px] h-[120px] min-w-[115px] min-h-[53px]"
-          >
-            <Image
-              src={logo || ""}
-              alt="logo"
-              fill
-              sizes={""}
-              className={`-mt-5 md:mt-0 object-contain`}
-            />
-          </Link>
+        <div className="flex justify-between items-center px-6 w-full mx-auto">
+          <div className="flex items-center">
+            <Link
+              href={"/"}
+              prefetch={false}
+              passHref
+              className="relative w-24 md:!w-[200px] h-[105px] min-w-[115px] flex flex-shrink-0"
+            >
+              <Image
+                src={logo || ""}
+                alt="logo"
+                fill
+                sizes={""}
+                className={`-mt-5 md:mt-0 object-contain flex flex-shrink-0`}
+              />
+            </Link>
 
-          <div className="h-full hidden lg:block">
-            <ul className="flex items-center text-xl text-black font-extrabold relative">
-              {navItems.slice(0, 5).map((item, index) => (
-                <li
-                  key={index}
-                  className="justify-between flex flex-col text-base items-center space-y-8 font-medium"
-                >
-                  <Link href={item.link}>
-                    <span className="block px-4 py-2 transition-all duration-300 cursor-pointer w-full">
-                      {item.name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-
-              {navItems.length > 4 && (
-                <li ref={moreMenuRef} className="relative">
-                  <button
-                    onClick={() => setShowMoreMenu(!showMoreMenu)}
-                    className="flex items-center gap-1 px-4 py-2 text-base text-gray-300 hover:text-white font-medium"
+            <div className="h-full hidden lg:block">
+              <ul className="flex items-center text-sm text-gray-500 gap-4 font-extrabold relative">
+                {navItems.slice(0, 5).map((item, index) => (
+                  <li
+                    key={index}
+                    className="justify-between flex flex-col text-sm items-center space-y-8 font-medium"
                   >
-                    More
-                    <ChevronDown
-                      className={`transition-transform duration-300 text-gray-300 hover:text-white ${
-                        showMoreMenu ? "rotate-180" : ""
-                      }`}
-                      size={18}
-                    />
-                  </button>
+                    <Link href={item.link}>
+                      <span className="block px-2 py-1 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-all duration-300 cursor-pointer w-full">
+                        {item.name}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
 
-                  <AnimatePresence>
-                    {showMoreMenu && (
-                      <motion.ul
-                        variants={staggerContainer}
-                        initial="hidden"
-                        animate="show"
-                        exit="hidden"
-                        className="absolute right-0 mt-2 bg-bg1 border border-gray-700 rounded-md shadow-md z-50 w-48 py-2"
-                      >
-                        {navItems.slice(5).map((item, index) => (
-                          <motion.li
-                            key={index}
-                            variants={staggerItem}
-                            className="w-full"
-                          >
-                            <Link href={item.link}>
-                              <span
-                                className="block px-4 py-2 text-sm text-gray-300 hover:text-white transition-all"
-                                onClick={() => setShowMoreMenu(false)}
-                              >
-                                {item.name}
-                              </span>
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
-                </li>
-              )}
-            </ul>
+                {navItems.length > 4 && (
+                  <li ref={moreMenuRef} className="relative">
+                    <button
+                      onClick={() => setShowMoreMenu(!showMoreMenu)}
+                      className="flex items-center gap-1 px-4 py-2 text-base text-gray-300 hover:text-white font-medium"
+                    >
+                      More
+                      <ChevronDown
+                        className={`transition-transform duration-300 text-gray-300 hover:text-white ${
+                          showMoreMenu ? "rotate-180" : ""
+                        }`}
+                        size={18}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {showMoreMenu && (
+                        <motion.ul
+                          variants={staggerContainer}
+                          initial="hidden"
+                          animate="show"
+                          exit="hidden"
+                          className="absolute right-0 mt-2 bg-bg1 border border-gray-700 rounded-md shadow-md z-50 w-48 py-2"
+                        >
+                          {navItems.slice(5).map((item, index) => (
+                            <motion.li
+                              key={index}
+                              variants={staggerItem}
+                              className="w-full"
+                            >
+                              <Link href={item.link}>
+                                <span
+                                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white transition-all"
+                                  onClick={() => setShowMoreMenu(false)}
+                                >
+                                  {item.name}
+                                </span>
+                              </Link>
+                            </motion.li>
+                          ))}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                )}
+              </ul>
+            </div>
           </div>
-
           <div
-            className="text-3xl lg:hidden cursor-pointer z-50 -mt-10"
+            className="hidden lg:block mr-20 bg-blue-600 text-white font-secondary text-sm py-2 px-4 rounded-full shadow-sm cursor-pointer font-medium"
+            onClick={() => setTriggerModal(true)}
+          >
+            <button> Get Started</button>
+          </div>
+          <div
+            className="text-3xl lg:hidden cursor-pointer z-50 -mt-8 md:mt-0"
             onClick={toggleMenu}
           >
             {!isOpen && <HiMenu color="black" />}

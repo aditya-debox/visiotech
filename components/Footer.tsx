@@ -6,110 +6,114 @@ import {
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaEnvelope,
 } from "react-icons/fa";
 
-const data = [
-  {
-    title: "Features",
-    items: [
-      { name: "Restaurant Loyalty Program", link: "/features/loyalty-program" },
-      { name: "Restaurant Online Ordering", link: "/features/online-ordering" },
-      { name: "Restaurant Website Builder", link: "/features/website-builder" },
-      {
-        name: "Restaurant Zero-Commission Delivery",
-        link: "/features/delivery-without-commissions",
-      },
-      {
-        name: "Restaurant Automated Marketing",
-        link: "/features/automated-marketing",
-      },
-    ],
-  },
-  {
-    title: "Actions",
-    items: [
-      { name: "About us", link: "/about-us" },
-      { name: "Why Choose", link: "/why-choose" },
-    ],
-  },
-  {
-    title: "Quick Links",
-    items: [
-      { name: "Get started", link: "/book-a-demo", blank: false },
-      {
-        name: "Login",
-        link: "https://restaurant.choosepos.com/login",
-        blank: true,
-      },
-      { name: "Blogs", link: "/blogs", blank: false },
-      { name: "Pricing", link: "/pricing", blank: false },
-      { name: "Terms & Conditions", link: "/terms-conditions", blank: false },
-      { name: "Privacy Policy", link: "/privacy-policy", blank: false },
-    ],
-  },
-];
-
-import logo from "@/assets/visiotech.png";
 import React from "react";
 
 const Footer = () => {
   return (
     <footer className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Navigation Links */}
         <div className="py-10">
-          {/* <div className="flex justify-center">
-            <Image
-              src={logo}
-              alt="log"
-              className="w-[100px] object-cover h-[120px]"
-            />
-          </div> */}
           <nav className="mt-10 text-sm" aria-label="quick links">
-            <div className="-my-1 flex justify-center gap-x-6">
-              <a
-                className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+            <div className="-my-1 flex flex-wrap justify-center gap-x-6 gap-y-2">
+              <Link
+                className="inline-block rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200"
                 href="/service"
               >
                 Services
-              </a>
-              <a
-                className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+              </Link>
+              <Link
+                className="inline-block rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200"
                 href="/brand"
               >
                 Our partners
-              </a>
-              <a
-                className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+              </Link>
+              <Link
+                className="inline-block rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors duration-200"
                 href="/aboutus"
               >
                 About us
-              </a>
+              </Link>
             </div>
           </nav>
         </div>
-        <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
-          <div className="flex gap-x-6">
-            <a className="group" aria-label="TaxPal on X" href="#">
-              <svg
-                className="h-6 w-6 fill-slate-500 group-hover:fill-slate-700"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-              >
-                <path d="M13.3174 10.7749L19.1457 4H17.7646L12.7039 9.88256L8.66193 4H4L10.1122 12.8955L4 20H5.38119L10.7254 13.7878L14.994 20H19.656L13.3171 10.7749H13.3174ZM11.4257 12.9738L10.8064 12.0881L5.87886 5.03974H8.00029L11.9769 10.728L12.5962 11.6137L17.7652 19.0075H15.6438L11.4257 12.9742V12.9738Z"></path>
-              </svg>
-            </a>
-            <a className="group" aria-label="TaxPal on GitHub" href="#">
-              <svg
-                className="h-6 w-6 fill-slate-500 group-hover:fill-slate-700"
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"></path>
-              </svg>
-            </a>
+        {/* Contact Information Section */}
+        <div className="py-8 border-b border-slate-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 place-items-start md:place-items-center text-center md:text-left">
+            <Link
+              href="tel:+15551234567"
+              className="flex items-center justify-center md:justify-start hover:opacity-80 transition-opacity duration-200"
+            >
+              <FaPhone className="h-5 w-5 text-slate-600 mr-3" />
+              <div className="text-start">
+                <p className="text-sm font-medium text-slate-900">Call us</p>
+                <p className="text-sm text-slate-600">+1 (555) 123-4567</p>
+              </div>
+            </Link>
+            <Link
+              href="mailto:info@visiotech.com"
+              className="flex items-center justify-center md:justify-start hover:opacity-80 transition-opacity duration-200"
+            >
+              <FaEnvelope className="h-5 w-5 text-slate-600 mr-3" />
+              <div className="text-start">
+                <p className="text-sm font-medium text-slate-900">Email us</p>
+                <p className="text-sm text-slate-600">info@visiotech.com</p>
+              </div>
+            </Link>
+            <div className="flex items-center justify-center md:justify-start">
+              <FaMapMarkerAlt className="h-5 w-5 text-slate-600 mr-3 flex-shrink-0" />
+              <div className="text-start">
+                <p className="text-sm font-medium text-slate-900">Visit us</p>
+                <p className="text-sm text-slate-600">
+                  123 Tech Street, San Francisco, CA 94105
+                </p>
+              </div>
+            </div>
           </div>
-          <p className="mt-6 text-sm text-slate-500 sm:mt-0">
-            Copyright Visiotech. All rights reserved.
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
+          {/* Social Media Icons */}
+          <div className="flex gap-x-6 mb-6 sm:mb-0">
+            <Link
+              className="group"
+              aria-label="Visiotech on LinkedIn"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedinIn className="h-5 w-5 fill-slate-500 group-hover:fill-slate-700 transition-colors duration-200" />
+            </Link>
+
+            <Link
+              className="group"
+              aria-label="Visiotech on Facebook"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF className="h-5 w-5 fill-slate-500 group-hover:fill-slate-700 transition-colors duration-200" />
+            </Link>
+
+            <Link
+              className="group"
+              aria-label="Visiotech on Instagram"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="h-5 w-5 fill-slate-500 group-hover:fill-slate-700 transition-colors duration-200" />
+            </Link>
+          </div>
+
+          <p className="mt-6 text-sm text-slate-500 sm:mt-0 text-center sm:text-left">
+            Copyright © 2024 Visiotech. All rights reserved.
           </p>
         </div>
       </div>

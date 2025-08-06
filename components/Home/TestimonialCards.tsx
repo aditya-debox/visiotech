@@ -1,4 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from "../ui/carousel";
 
 interface ITestimonial {
   name: string;
@@ -15,7 +23,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   index,
 }) => {
   return (
-    <div className="group text-black hover:text-white p-8 rounded-2xl hover:bg-[#2d5df5] border border-gray-200 h-full flex flex-col justify-between min-h-[300px] relative overflow-hidden transition-all duration-300">
+    <div className="group text-black hover:text-white p-8 rounded-2xl hover:bg-[#2d5df5] h-full flex flex-col justify-between min-h-[300px] relative overflow-hidden transition-all duration-300">
       {/* Background gradient overlay */}
       <div className="relative z-10 flex flex-col h-full">
         {/* Quote */}
@@ -32,12 +40,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           </p>
         </div>
 
-        {/* Divider */}
-        <div className="w-full h-px bg-black group-hover:bg-white mb-6 transition-colors duration-300"></div>
-
         {/* Author */}
         <div>
-          <h4 className="font-semibold text-lg mb-1">{testimonial.name}</h4>
+          <h4 className="font-secondary italic text-gray-500 transition-all duration-300 group-hover:text-white text-lg mb-1">
+            - {testimonial.name}
+          </h4>
         </div>
       </div>
 
@@ -59,57 +66,116 @@ const TestimonialCards: React.FC<TestimonialCardsProps> = ({
   subtitle = "Don't just take our word for it - hear from our satisfied customers",
 }) => {
   // Fallback demo data
-  const demoData: ITestimonial[] = [
-    {
-      name: "Tina Yards",
-      description:
-        "Thanks to Radiant, we're finding new leads that we never would have found with legal methods.",
-    },
-    {
-      name: "Conor Neville",
-      description:
-        "Radiant made undercutting all of our competitors an absolute breeze.",
-    },
-    {
-      name: "Amy Chase",
-      description:
-        "We closed a deal in literally a few minutes because we knew their exact budget.",
-    },
-  ];
+  const demoData: ITestimonial[] = [];
 
   const displayData =
     testimonials && testimonials.length > 0 ? testimonials : demoData;
+
+  const [current, setCurrent] = useState(0);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Fallback demo data - empty array since no demo data provided
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 1024);
+      };
+
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!carouselApi) {
+      return;
+    }
+
+    setCurrent(carouselApi.selectedScrollSnap());
+    carouselApi.on("select", () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    });
+  }, [carouselApi]);
+
+  const itemsPerSlide = isMobile ? 1 : 3;
+  const totalSlides = Math.ceil(displayData.length / itemsPerSlide);
+  const slides = Array.from({ length: totalSlides }, (_, i) =>
+    displayData.slice(i * itemsPerSlide, (i + 1) * itemsPerSlide)
+  );
+  const showNavDots = totalSlides > 1;
 
   return (
     <div className="bg-white py-10">
       <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6">
         {/* Header */}
         {(title || subtitle) && (
-          <div className="text-center mb-16">
+          <div className="text-center mb-6 md:mb-10">
             {title && (
-              <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 font-primary">
+              <h2 className="text-2xl md:text-4xl font-bold font-primary text-black mb-2 md:mb-4">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto font-secondary">
+              <p className="text-sm md:text-lg text-gray-500 max-w-2xl font-secondary mx-auto">
                 {subtitle}
               </p>
             )}
-            <div className="w-24 h-1 bg-blue-500 mx-auto mt-8 rounded-full"></div>
+            <div className="w-24 h-1 bg-blue-500 mx-auto mt-3 md:mt-6 rounded-full"></div>
           </div>
         )}
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayData.map((testimonial, index) => (
-            <TestimonialCard
-              key={index}
-              testimonial={testimonial}
-              index={index}
-            />
-          ))}
-        </div>
+        <Carousel
+          setApi={setCarouselApi}
+          opts={{
+            align: "start",
+            loop: false,
+            skipSnaps: false,
+            dragFree: false,
+          }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {slides.map((slide, slideIndex) => (
+              <CarouselItem key={slideIndex} className="w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+                  {slide.map((brand, index) => (
+                    <div
+                      key={`${slideIndex}-${index}`}
+                      className="h-full bg-white hover:text-white border border-gray-200 shadown-sm rounded-lg hover:bg-blue-600 transition-all duration-300"
+                    >
+                      <TestimonialCard
+                        key={index}
+                        testimonial={brand}
+                        index={index}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          {showNavDots && (
+            <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-5 justify-center">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setCurrent(index);
+                    carouselApi?.scrollTo(index);
+                  }}
+                  className={`w-2 h-2 cursor-pointer sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                    current === index ? "bg-blue-600" : "bg-gray-400"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </Carousel>
 
         {/* Bottom CTA */}
         {/* <div className="text-center mt-16">

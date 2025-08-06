@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import ModalStore from "@/store/modal";
 
 interface CTAProps {
   title?: string;
@@ -16,8 +19,9 @@ const Cta: React.FC<CTAProps> = ({
   onButtonClick,
   className = "",
 }) => {
+  const { triggerModal, setTriggerModal } = ModalStore();
   return (
-    <section className={`relative py-24 overflow-hidden ${className}`}>
+    <section className={`relative py-12 overflow-hidden ${className}`}>
       {/* Background with light blue gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700"></div>
 
@@ -29,7 +33,7 @@ const Cta: React.FC<CTAProps> = ({
 
         {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage: `linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
@@ -40,18 +44,18 @@ const Cta: React.FC<CTAProps> = ({
       {/* Content container */}
       <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center">
         {/* Title */}
-        <h2 className="text-4xl md:text-4xl font-primary font-bold text-white mb-6 leading-tight">
+        <h2 className="text-3xl md:text-4xl font-primary font-bold text-white mb-6 leading-tight">
           {title}
         </h2>
 
         {/* Description */}
-        <p className="text-lg md:text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base md:text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
           {description}
         </p>
 
         {/* CTA Button */}
         <button
-          onClick={onButtonClick}
+          onClick={() => setTriggerModal(true)}
           className="group relative inline-flex items-center justify-center gap-3 px-6 py-3 text-lg font-semibold text-blue-600 bg-white rounded-full shadow-2xl hover:shadow-white/25 transform hover:-translate-y-1 transition-all duration-300 ease-out hover:bg-blue-50 cursor-pointer overflow-hidden"
         >
           {/* Button background */}

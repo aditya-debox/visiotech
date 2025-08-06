@@ -51,49 +51,13 @@ const BrandCard: React.FC<BrandCardProps> = ({
   return (
     <Link href={`/brand/${brand.slug}`} className="">
       <div
-        className={`group relative overflow-hidden transition-all duration-500 transform cursor-pointer flex flex-col h-full`}
+        className={`group relative border border-gray-200 shadow-sm p-6 rounded-lg overflow-hidden transition-all duration-500 transform cursor-pointer flex flex-col h-full`}
       >
-        {/* Background Image with Overlay */}
-        {/* {brand.brandImage?.url && (
-          <div className="mb-5 transition-opacity duration-500 flex-shrink-0">
-            <div className="md:hidden block">
-              <Image
-                src={brand.brandImage.url}
-                alt={brand.heading}
-                layout="responsive"
-                width="400"
-                height="200"
-                objectFit="cover"
-                className="overflow-hidden transition duration-500 hover:scale-110 rounded-lg hover:rounded-lg"
-                // placeholder="blur"
-                // blurDataURL={blurHashToDataURL(post?.blurHash)}
-                loading="lazy"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 40vw, 30vw"
-              />
-            </div>
-            <div className="hidden md:block">
-              <Image
-                src={brand.brandImage.url}
-                alt={brand.heading}
-                layout="responsive"
-                width="450"
-                height="320"
-                className="overflow-hidden transition duration-500 hover:scale-110 rounded-lg hover:rounded-lg"
-                // placeholder="blur"
-                objectFit="cover"
-                // blurDataURL={blurHashToDataURL(post?.blurHash)}
-                loading="lazy"
-                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 40vw, 30vw"
-              />
-            </div>
-          </div>
-        )} */}
-
         {/* Content Container */}
         <div className="relative z-10 flex flex-col flex-grow">
           {/* Brand Name and Arrow - Always Visible */}
-          <div className="flex items-start w-full justify-between">
-            <div className="w-24 h-16 pr-4 mb-4">
+          <div className="flex items-center w-full justify-between">
+            <div className="w-24 h-16 flex items-center justify-center pr-4 mb-4">
               <Image
                 src={brand.brandImage.url}
                 alt={brand.heading}
@@ -157,19 +121,21 @@ const BrandCards: React.FC<BrandCardsProps> = ({
     <div className="max-w-7xl mx-auto xl:px-12 lg:px-12 px-6 py-30">
       {/* Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-6xl text-black font-primary font-medium mb-4">
-          {title}
-        </h1>
+        {title && (
+          <h1 className="text-2xl md:text-4xl font-bold font-primary text-black mb-2 md:mb-4">
+            {title}
+          </h1>
+        )}
         {subtitle && (
-          <p className="text-xl mb-6 max-w-3xl font-secondary text-gray-500 mx-auto">
+          <p className="text-sm md:text-lg text-gray-500 max-w-2xl font-secondary mx-auto">
             {subtitle}
           </p>
         )}
-        <div className="w-24 h-1 bg-[#0e8de8] mx-auto rounded-full"></div>
+        <div className="w-24 h-1 bg-blue-500 mx-auto mt-3 md:mt-6 rounded-full"></div>
       </div>
 
       {/* Brand Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-18 md:gap-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {displayData.map((brand, index) => (
           <BrandCard
             key={brand.slug || index}

@@ -35,11 +35,8 @@ interface IBrandData {
     processDescription: string;
   }[];
   useCase: string[];
-  project: {
-    title: string;
-    description: string;
-  }[];
   projects: string[];
+  highlightTitle: string;
 }
 
 interface BrandDetailProps {
@@ -57,7 +54,7 @@ const BrandDetailPage: React.FC<BrandDetailProps> = ({
     tagline: brand.title,
     overview: brand.shortDescription,
     image: brand.brandImage,
-    projects: brand.project || [],
+    projects: brand.projects || [],
   };
 
   return (
@@ -72,19 +69,19 @@ const BrandDetailPage: React.FC<BrandDetailProps> = ({
             serviceImage: brandData.image, // Add this line
           }}
         />
-
-        <Processes process={brand.highlights} title="Why We Use LTS" />
-
+      </div>
+      <Processes process={brand.highlights} title={brand.highlightTitle} />
+      <div className="mx-auto max-w-7xl">
         {/* What makes us different Section - Using Rich Text */}
         <CardSection data={brand.useCase} title="Ideal Use Cases" />
         {/* Use Cases - Using Rich Text */}
 
         {/* Project Cards Section */}
-        <FeaturesSection
+        {/* <FeaturesSection
           title="Visiotech Projects"
           features={brand.projects}
           pb
-        />
+        /> */}
         {/* CTA Section */}
       </div>
       <Cta />

@@ -3,6 +3,7 @@ import { gql } from "graphql-request";
 import client from "@/utils/graphqlClient";
 import BrandCards from "@/components/brand/brandcards";
 import Cta from "@/components/Home/Cta";
+import { Metadata } from "next";
 
 interface IBrandData {
   heading: string;
@@ -29,6 +30,29 @@ interface IBrandData {
   projets: string[];
 }
 
+export const metadata: Metadata = {
+  title: "Security Camera Installation in Atlanta | Visiotech",
+  description:
+    "Explore the trusted brands we install—LTS, Hikvision, Honeywell, Axis, Bosch, and Dahua. Visiotech is a certified dealer offering NDAA-compliant, enterprise-grade security and surveillance technology in Atlanta.",
+  openGraph: {
+    title: "Security Camera Installation in Atlanta | Visiotech",
+    description:
+      "Explore the trusted brands we install—LTS, Hikvision, Honeywell, Axis, Bosch, and Dahua. Visiotech is a certified dealer offering NDAA-compliant, enterprise-grade security and surveillance technology in Atlanta.",
+    images: [{ url: "/visiotech.png" }],
+    type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Security Camera Installation in Atlanta | Visiotech",
+    description:
+      "Explore the trusted brands we install—LTS, Hikvision, Honeywell, Axis, Bosch, and Dahua. Visiotech is a certified dealer offering NDAA-compliant, enterprise-grade security and surveillance technology in Atlanta.",
+    images: ["/visiotech.png"],
+  },
+  // alternates: {
+  //   canonical: "https://lahoregrill.com/our-story",
+  // },
+};
+
 export default async function Brand() {
   const query = gql`
     query GetBrands {
@@ -50,10 +74,7 @@ export default async function Brand() {
           processDescription
         }
         useCase
-        project {
-          title
-          description
-        }
+
         projects
       }
     }
@@ -61,9 +82,6 @@ export default async function Brand() {
 
   const response = await client.request<{ brands: IBrandData[] }>(query);
   const brandsdata = response.brands;
-  if (!brandsdata) {
-    console.log("No data found");
-  }
 
   return (
     <div>

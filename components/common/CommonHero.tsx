@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { Play } from "lucide-react";
 import { RichText } from "@graphcms/rich-text-react-renderer";
+import ModalStore from "@/store/modal";
 
 export interface ICommonHero {
   srTitle: string;
@@ -25,9 +28,11 @@ interface CommonHeroProps {
 }
 
 const CommonHero: React.FC<CommonHeroProps> = ({ data, imageUrl }) => {
+  const { setTriggerModal } = ModalStore();
+
   return (
     <div className="flex items-center">
-      <h1 className="sr-only">{data.srTitle}</h1>
+      {/* <h1 className="sr-only">{data.srTitle}</h1> */}
       <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-24 md:pt-40 pb-20">
         <div
           className={`grid gap-12 lg:gap-16 items-center ${
@@ -39,7 +44,6 @@ const CommonHero: React.FC<CommonHeroProps> = ({ data, imageUrl }) => {
           {/* Right Image - Shows first on mobile, second on desktop */}
           {(imageUrl || data.heroImage?.url || data.serviceImage?.url) && (
             <div className="relative order-1 lg:order-2">
-              {/* Main image container */}
               <div className="relative bg-white rounded-2xl overflow-hidden transform">
                 <img
                   src={
@@ -87,7 +91,10 @@ const CommonHero: React.FC<CommonHeroProps> = ({ data, imageUrl }) => {
 
             {/* CTA Button */}
             <div className="pt-4">
-              <button className="bg-[#2d5df5] text-sm md:text-base text-white px-4 py-2 rounded-xl font-semibold  hover:bg-[#1e3a8a] ">
+              <button
+                onClick={() => setTriggerModal(true)}
+                className="bg-[#2d5df5] text-base text-white px-4 py-2 rounded-full shadow-sm cursor-pointer font-secondary"
+              >
                 Book A Session
               </button>
             </div>

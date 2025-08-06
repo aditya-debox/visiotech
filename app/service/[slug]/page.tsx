@@ -50,7 +50,6 @@ interface PageProps {
 export default async function ServiceDetails({ params }: PageProps) {
   // Await the params promise
   const { slug } = await params;
-  console.log("Requested slug:", slug);
 
   const query = gql`
     query Servicedetial {
@@ -95,10 +94,6 @@ export default async function ServiceDetails({ params }: PageProps) {
     const response = await client.request<{
       serviceDetails: IServiceDetails[];
     }>(query);
-    console.log(
-      "Available services:",
-      response.serviceDetails.map((s) => s.slug)
-    ); // Debug log
 
     const serviceData = response.serviceDetails.find(
       (service) => service.slug === slug
@@ -110,15 +105,14 @@ export default async function ServiceDetails({ params }: PageProps) {
           <div className="text-center max-w-md mx-auto px-6">
             <div className="text-6xl mb-8">🔍</div>
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
-              Service Not Found
+              Page Not Found
             </h1>
             <p className="text-gray-600 mb-8">
-              The service you're looking for doesn't exist or may have been
-              moved.
+              The page you're looking for doesn't exist or may have been moved.
             </p>
-            <Link href="/services">
-              <button className="bg-[#0e8de8] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0c7bd1] transition-colors">
-                Back to Services
+            <Link href="/service">
+              <button className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold cursor-pointer transition-colors">
+                Back to Home
               </button>
             </Link>
           </div>

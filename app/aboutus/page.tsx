@@ -1,6 +1,6 @@
 import React from "react";
 import { gql } from "graphql-request";
-import client from '@/utils/graphqlClient';
+import client from "@/utils/graphqlClient";
 import WhatMakesUsDifferentSection from "@/components/aboutus/AboutusCommitment";
 import TeamSection from "@/components/aboutus/AboutusOurTeam";
 import CommitmentSection from "@/components/aboutus/AboutusComittmentsection";
@@ -15,6 +15,7 @@ import AboutusOurTeam from "@/components/aboutus/AboutusOurTeam";
 import CardSection from "@/components/common/CardSection";
 import ServiceBlock from "@/components/service/ServiceBlock";
 import Cta from "@/components/Home/Cta";
+import { Metadata } from "next";
 
 export interface IAboutUsData {
   title: string;
@@ -32,8 +33,8 @@ export interface IAboutUsData {
     raw: any; // Rich text raw content
   };
   highlights: {
-  processTitle:string
-  processDescription: string
+    processTitle: string;
+    processDescription: string;
   }[];
   teamSection: {
     teamImage: {
@@ -50,6 +51,29 @@ export interface IAboutUsData {
   commitment: string;
   serviceArea: string[];
 }
+
+export const metadata: Metadata = {
+  title: "About Visiotech | Atlanta’s Security Experts",
+  description:
+    "Learn about Visiotech’s mission to build safer, smarter commercial spaces in Atlanta. Since 2016, we’ve delivered end-to-end security, surveillance, AV, and cabling solutions with certified expertise and rapid execution.",
+  openGraph: {
+    title: "About Visiotech | Atlanta’s Security Experts",
+    description:
+      "Learn about Visiotech’s mission to build safer, smarter commercial spaces in Atlanta. Since 2016, we’ve delivered end-to-end security, surveillance, AV, and cabling solutions with certified expertise and rapid execution.",
+    images: [{ url: "/visiotech.png" }],
+    type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "About Visiotech | Atlanta’s Security Experts",
+    description:
+      "Learn about Visiotech’s mission to build safer, smarter commercial spaces in Atlanta. Since 2016, we’ve delivered end-to-end security, surveillance, AV, and cabling solutions with certified expertise and rapid execution.",
+    images: ["/visiotech.png"],
+  },
+  // alternates: {
+  //   canonical: "https://lahoregrill.com/our-story",
+  // },
+};
 
 export default async function AboutUs() {
   const query = gql`
@@ -70,7 +94,7 @@ export default async function AboutUs() {
           text
           raw
         }
-        highlights{
+        highlights {
           processTitle
           processDescription
         }
@@ -90,14 +114,14 @@ export default async function AboutUs() {
       }
     }
   `;
- 
+
   const response = await client.request<{ aboutuses: IAboutUsData[] }>(query);
   const aboutusdata = response.aboutuses[0];
-  
+
   if (!aboutusdata) {
     return <div>No data found</div>;
   }
-  
+
   return (
     <div className="relative min-h-screen">
       <div className=" mx-auto pt-6 md:pt-6 lg:pt-12">
@@ -122,10 +146,10 @@ export default async function AboutUs() {
         </div>
         <AboutusOurTeam 
         title="Meet Our Team"
-        members={aboutusdata.teamSection.map(member => ({
+        members={aboutusdata.teamSection.map((member) => ({
           name: member.teamTitle,
           title: member.teamTitle, // You might want to add a separate field for job title
-          descriptionRichText: member.teamDescription.raw
+          descriptionRichText: member.teamDescription.raw,
         }))}
       />
 

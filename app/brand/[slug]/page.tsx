@@ -34,8 +34,8 @@ interface IBrandData {
 
 async function getBrandData(slug: string): Promise<IBrandData | null> {
   const query = gql`
-    query GetBrands {
-      brands {
+    query GetBrands($slug: String) {
+      brands(where: { slug: $slug }) {
         heading
         slug
         shortDescription {
@@ -59,7 +59,10 @@ async function getBrandData(slug: string): Promise<IBrandData | null> {
     }
   `;
 
-  const response = await client.request<{ brands: IBrandData[] }>(query);
+  const response = await client.request<{ brands: IBrandData[] }>(query, {
+    slug,
+  });
+
   return response.brands.find((brand) => brand.slug === slug) || null;
 }
 

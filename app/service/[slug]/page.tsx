@@ -52,8 +52,8 @@ export default async function ServiceDetails({ params }: PageProps) {
   const { slug } = await params;
 
   const query = gql`
-    query Servicedetial {
-      serviceDetails {
+    query Servicedetial($slug: String) {
+      serviceDetails(where: { slug: $slug }) {
         serviceTitle
         slug
         headline
@@ -93,11 +93,9 @@ export default async function ServiceDetails({ params }: PageProps) {
   try {
     const response = await client.request<{
       serviceDetails: IServiceDetails[];
-    }>(query);
+    }>(query, { slug });
 
-    const serviceData = response.serviceDetails.find(
-      (service) => service.slug === slug
-    );
+    const serviceData = response.serviceDetails[0];
 
     if (!serviceData) {
       return (

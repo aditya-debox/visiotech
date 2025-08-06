@@ -180,9 +180,6 @@ export default async function Home() {
     return null;
   }
 
-  console.log(homePageData.serviceDetail);
-  console.log(serviceDetails);
-
   const companies = homePageData.client.map((c) => ({
     name: c.clientName,
     logo: c.clientLogo.url,

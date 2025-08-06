@@ -7,6 +7,8 @@ import Link from "next/link";
 import ServiceBlock from "@/components/service/ServiceBlock";
 import Processes from "@/components/service/Processes";
 import FAQSection from "@/components/service/FAQSection";
+import Industries from "@/components/service/Industries";
+import IntroSection from "@/components/Home/IntroSection";
 
 interface IServiceDetails {
   serviceTitle: string;
@@ -131,6 +133,16 @@ export default async function ServiceDetails({ params }: PageProps) {
           }}
         />
 
+        {serviceData.serviceImpact && (
+          <ServiceBlock
+            className="mb-10"
+            introText={serviceData.serviceImpact}
+            authorName=""
+            authorTitle=""
+            title="Why This Service Matters"
+          />
+        )}
+
         {serviceData.features && serviceData.features.length > 0 && (
           <FeaturesSection
             title="Key Features:"
@@ -138,45 +150,30 @@ export default async function ServiceDetails({ params }: PageProps) {
           />
         )}
 
-        {serviceData.serviceImpact && (
-          <ServiceBlock
-          className="my-20"
-            introText={serviceData.serviceImpact}
-            authorName=""
-            authorTitle=""
-            title = "Why This Service Matters"
-          />
-        )}
+        <Industries title="Industries We Serve" items={serviceData.industries} />
 
-        {serviceData.process && serviceData.process.length > 0 && (
-          <Processes process={serviceData.process} />
-        )}
-
-        {serviceData.industries && serviceData.industries.length > 0 && (
-          <FeaturesSection
-            title="Industries We Serve:"
-            features={serviceData.industries}
-          />
-        )}
+        <div className="my-10 md:my-10">
+          {serviceData.process && serviceData.process.length > 0 && (
+            <Processes bgcolor={false} process={serviceData.process} />
+          )}
+        </div>
 
         {serviceData.successStory && (
-          <ServiceBlock
-            className="my-20"
-            introText={{ raw: serviceData.successStory.raw }}
+          <IntroSection
+            introText={serviceData.successStory}
             authorName=""
             authorTitle=""
+            className=" max-w-7xl mx-auto  lg:px-12 relative bg-blue-600 rounded-4xl py-20 "
           />
         )}
 
-        
-
-         {serviceData.serviceImpact && (
+        {serviceData.serviceImpact && (
           <ServiceBlock
-          className="my-20 "
+            className="my-20 "
             introText={serviceData.highlights}
             authorName=""
             authorTitle=""
-            title = "Why Visiotech"
+            title="Why Visiotech"
           />
         )}
 

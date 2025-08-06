@@ -3,21 +3,28 @@ import React from "react";
 interface ProcessStep {
   processTitle: string;
   processDescription: string;
+
 }
 
 interface ProcessesProps {
   process: ProcessStep[]; // Changed to array of process steps
   title?: string;
   desc?: string;
+  bgcolor?: boolean
 }
+
+
+
 
 const Processes: React.FC<ProcessesProps> = ({
   process,
   title = "Our Process",
   desc = "From start to finish, we handle every detail professionally",
+  bgcolor = true
 }) => {
   return (
-    <section className="pb-8 md:pb-16 bg-gray-50 py-10">
+    <section
+      className={`pb-8 md:pb-16 py-10 ${bgcolor ? 'bg-gray-50' : ''}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-16">

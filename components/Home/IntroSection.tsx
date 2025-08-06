@@ -1,21 +1,68 @@
 import React from "react";
+import { RichText } from "@graphcms/rich-text-react-renderer";
 
 interface IntroSectionProps {
-  introText: string;
+  introText: string | any; // Can be string or rich text object
   authorName: string;
   authorTitle: string;
   className?: string;
+ 
 }
 
 const IntroSection: React.FC<IntroSectionProps> = ({
   introText,
   authorName,
   authorTitle,
-  className = "",
+  className = " max-w-7xl mx-auto  lg:px-12 relative bg-blue-600 rounded-4xl py-20 md:py-30",
+
 }) => {
+  const renderContent = () => {
+    // Check if introText is a string (normal text) - keep original behavior
+    if (typeof introText === "string") {
+      return (
+        <p className="text-xl md:text-3xl text-white font-medium leading-relaxed px-4">
+          {introText.split(" ").map((word, index) => (
+            <React.Fragment key={index}>
+              {index === 0 ? (
+                <span className="text-white font-semibold">{word}</span>
+              ) : (
+                word
+              )}
+              {/* Add space between words */}
+              {index < introText.split(" ").length - 1 && " "}
+            </React.Fragment>
+          ))}
+        </p>
+      );
+    }
+
+    // Check if it's a Hygraph rich text object
+    if (introText && (introText.raw || introText.html)) {
+      return (
+        <RichText
+          content={introText.raw || introText}
+          renderers={{
+            p: ({ children }) => (
+              <p className="text-xl md:text-2xl text-white font-medium leading-relaxed px-2 mb-2">
+                {children}
+              </p>
+            ),
+          }}
+        />
+      );
+    }
+
+    // Fallback for other types
+    return (
+      <p className="text-xl md:text-3xl text-white font-medium leading-relaxed px-4">
+        {String(introText)}
+      </p>
+    );
+  };
+
   return (
     <div
-      className={` max-w-7xl mx-auto  lg:px-12 relative bg-blue-600 rounded-4xl py-20 md:py-30 ${className}`}
+      className={` ${className}`}
     >
       {/* Opening Quote Mark */}
       <div className="absolute -top-4 md:top-8 left-0 md:left-20 overflow-hidden z-10">
@@ -42,19 +89,7 @@ const IntroSection: React.FC<IntroSectionProps> = ({
 
       <div className="max-w-6xl mx-auto text-center">
         {/* Main Quote Text */}
-        <p className="text-xl md:text-3xl text-white font-medium leading-relaxed px-4">
-          {introText.split(" ").map((word, index) => (
-            <React.Fragment key={index}>
-              {index === 0 ? (
-                <span className="text-white font-semibold">{word}</span>
-              ) : (
-                word
-              )}
-              {/* Add space between words */}
-              {index < introText.split(" ").length - 1 && " "}
-            </React.Fragment>
-          ))}
-        </p>
+        {renderContent()}
       </div>
 
       {/* Closing Quote Mark */}

@@ -36,7 +36,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       >
         {/* Service Icon */}
         <div className="mb-6">
-          <div className="w-fit p-3.5 bg-blue-100 group-hover:bg-blue-400 transition-all duration-300 rounded-2xl flex items-center justify-center">
+          <div className="w-fit p-3.5 bg-blue-100  transition-all duration-300 rounded-2xl flex items-center justify-center">
             <Image
               src={service.serviceIcon.url}
               alt={`${service.serviceTitle} icon`}
@@ -48,7 +48,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
 
         {/* Service Title */}
-        <h3 className="text-lg font-medium text-black/60 group-hover:text-black mb-2">
+        <h3 className="text-lg font-medium text-black/60 group-hover:text-black line-clamp-1">
           {service.serviceTitle}
         </h3>
 

@@ -87,7 +87,7 @@ const CommonHero: React.FC<CommonHeroProps> = ({ data, imageUrl }) => {
 
             {/* CTA Button */}
             <div className="pt-4">
-              <button className="bg-[#2d5df5] text-sm md:text-base text-white px-4 py-2 rounded-xl font-semibold  hover:bg-[#1e3a8a] ">
+              <button className="bg-[#2d5df5] cursor-pointer text-sm md:text-base text-white px-4 py-2 rounded-xl font-semibold  hover:bg-[#1e3a8a] ">
                 Book A Session
               </button>
             </div>

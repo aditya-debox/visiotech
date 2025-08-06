@@ -6,17 +6,19 @@ interface ServiceBlockProps {
   authorName: string;
   authorTitle: string;
   className?: string;
+  title?: string;
 }
 
 const ServiceBlock: React.FC<ServiceBlockProps> = ({
   introText,
-  className = "my-20",
+  className = "",
+  title,
 }) => {
   const renderContent = () => {
     // Check if introText is a string (normal text)
-    if (typeof introText === 'string') {
+    if (typeof introText === "string") {
       return (
-        <p className="text-xl font-semibold font-primary text-white leading-relaxed px-4">
+        <p className="text-base text-justify font-semibold font-primary text-black/90 leading-relaxed md:px-4 ">
           {introText}
         </p>
       );
@@ -29,37 +31,50 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({
           content={introText.raw || introText}
           renderers={{
             p: ({ children }) => (
-              <p className="text-xl font-semibold font-primary text-white leading-relaxed px-4 mb-4">
+              <p className="text-xl  font-primary text-black leading-relaxed px-4 mb-4">
                 {children}
               </p>
             ),
-            bold: ({ children }) => <strong className="font-bold">{children}</strong>,
+            bold: ({ children }) => (
+              <strong className="font-bold">{children}</strong>
+            ),
             h1: ({ children }) => (
-              <h1 className="text-3xl font-bold text-white mb-6">{children}</h1>
+              <h1 className="text-3xl font-bold text-black mb-6">{children}</h1>
             ),
             h2: ({ children }) => (
-              <h2 className="text-2xl font-bold text-white mb-5">{children}</h2>
+              <h2 className="text-2xl font-bold text-black mb-5">{children}</h2>
             ),
             h3: ({ children }) => (
-              <h3 className="text-xl font-semibold text-white mb-4">{children}</h3>
+              <h3 className="text-xl font-semibold text-black mb-4">
+                {children}
+              </h3>
             ),
             h4: ({ children }) => (
-              <h4 className="text-lg font-semibold text-white mb-3">{children}</h4>
+              <h4 className="text-lg font-semibold text-black mb-3">
+                {children}
+              </h4>
             ),
             ul: ({ children }) => (
-              <ul className="list-disc list-inside text-white mb-4 space-y-2">{children}</ul>
+              <ul className="list-disc list-inside text-black mb-4 space-y-2">
+                {children}
+              </ul>
             ),
             ol: ({ children }) => (
-              <ol className="list-decimal list-inside text-white mb-4 space-y-2">{children}</ol>
+              <ol className="list-decimal list-inside text-black mb-4 space-y-2">
+                {children}
+              </ol>
             ),
-            li: ({ children }) => <li className="text-white">{children}</li>,
+            li: ({ children }) => <li className="text-black">{children}</li>,
             a: ({ children, href }) => (
-              <a href={href} className="text-blue-200 hover:text-white underline">
+              <a
+                href={href}
+                className="text-blue-200 hover:text-black underline"
+              >
                 {children}
               </a>
             ),
             blockquote: ({ children }) => (
-              <blockquote className="border-l-4 border-blue-300 pl-4 italic text-white mb-4">
+              <blockquote className="border-l-4 border-blue-300 pl-4 italic text-black mb-4">
                 {children}
               </blockquote>
             ),
@@ -70,7 +85,7 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({
 
     // Fallback for other types
     return (
-      <p className="text-xl font-semibold font-primary text-white leading-relaxed px-4">
+      <p className="text-base text-justify   font-semibold font-primary text-black leading-relaxed px-4">
         {String(introText)}
       </p>
     );
@@ -78,10 +93,13 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({
 
   return (
     <div
-      className={`max-w-7xl mx-auto px-6 lg:px-12 relative bg-blue-600 rounded-4xl py-20 ${className}`}
+      className={` bg-gray-50  relative  rounded-2xl md:rounded-4xl py-10 ${className}`}
     >
-      <div className="max-w-6xl mx-auto text-center">
-        {renderContent()}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid gap-12 lg:gap-16 items-center lg:grid-cols-2 ">
+        <h2 className="  text-start  font-primary text-xl md:text-3xl font-bold text-blue-600 mb-6">
+          {title}
+        </h2>
+        <div className=" max-w-7xl mx-auto text-center">{renderContent()}</div>
       </div>
     </div>
   );

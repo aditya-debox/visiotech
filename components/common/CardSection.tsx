@@ -101,7 +101,7 @@ const CardSection: React.FC<CardProps> = ({ data, title }) => {
           </CarouselContent>
 
           {showNavDots && (
-            <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-5 justify-center">
+            <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-5 justify-center ">
               {slides.map((_, index) => (
                 <button
                   key={index}
@@ -109,7 +109,7 @@ const CardSection: React.FC<CardProps> = ({ data, title }) => {
                     setCurrent(index);
                     carouselApi?.scrollTo(index);
                   }}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 cursor-pointer ${
                     current === index ? "bg-blue-600" : "bg-gray-400"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}

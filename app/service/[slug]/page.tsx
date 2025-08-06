@@ -105,25 +105,7 @@ export default async function ServiceDetails({ params }: PageProps) {
     );
 
     if (!serviceData) {
-      return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="text-center max-w-md mx-auto px-6">
-            <div className="text-6xl mb-8">🔍</div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">
-              Service Not Found
-            </h1>
-            <p className="text-gray-600 mb-8">
-              The service you're looking for doesn't exist or may have been
-              moved.
-            </p>
-            <Link href="/services">
-              <button className="bg-[#0e8de8] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0c7bd1] transition-colors">
-                Back to Services
-              </button>
-            </Link>
-          </div>
-        </div>
-      );
+      return null;
     }
 
     return (
@@ -132,40 +114,67 @@ export default async function ServiceDetails({ params }: PageProps) {
           data={{
             srTitle: serviceData.serviceTitle,
             title: serviceData.headline,
-            subTitle: serviceData.serviceDescription, // Full rich text object with raw, text, html
-            serviceImage: serviceData.serviceImage, // Add this line
+            subTitle: serviceData.serviceDescription,
+            serviceImage: serviceData.serviceImage,
           }}
         />
 
-        <FeaturesSection
-          title="Key Features:"
-          features={serviceData.features}
-        />
+        {serviceData.features && serviceData.features.length > 0 && (
+          <FeaturesSection
+            title="Key Features:"
+            features={serviceData.features}
+          />
+        )}
 
-        <ServiceBlock
-          introText={serviceData.serviceImpact}
-          authorName=""
-          authorTitle=""
-        />
-        <Processes process={serviceData.process} />
+        {serviceData.serviceImpact && (
+          <ServiceBlock
+          className="my-20"
+            introText={serviceData.serviceImpact}
+            authorName=""
+            authorTitle=""
+            title = "Why This Service Matters"
+          />
+        )}
 
-        <FeaturesSection
-          title="Industries We Serve:"
-          features={serviceData.industries}
-        />
-        <ServiceBlock
-          introText={{ raw: serviceData.successStory.raw }}
-          authorName=""
-          authorTitle=""
-        />
-        <FeaturesSection
-          title="Why Visiotech:"
-          features={serviceData.highlights}
-        />
-        <FAQSection faq={serviceData.faq} />
+        {serviceData.process && serviceData.process.length > 0 && (
+          <Processes process={serviceData.process} />
+        )}
+
+        {serviceData.industries && serviceData.industries.length > 0 && (
+          <FeaturesSection
+            title="Industries We Serve:"
+            features={serviceData.industries}
+          />
+        )}
+
+        {serviceData.successStory && (
+          <ServiceBlock
+            className="my-20"
+            introText={{ raw: serviceData.successStory.raw }}
+            authorName=""
+            authorTitle=""
+          />
+        )}
+
+        
+
+         {serviceData.serviceImpact && (
+          <ServiceBlock
+          className="my-20 "
+            introText={serviceData.highlights}
+            authorName=""
+            authorTitle=""
+            title = "Why Visiotech"
+          />
+        )}
+
+        {serviceData.faq && serviceData.faq.length > 0 && (
+          <FAQSection faq={serviceData.faq} />
+        )}
       </div>
     );
   } catch (error) {
     console.error("GraphQL Error:", error);
+    return null;
   }
 }

@@ -14,7 +14,7 @@ interface OurStoryProps {
 
 const OurStory: React.FC<OurStoryProps> = ({ description, serviceImage }) => {
   return (
-    <section className="py-12 bg-white">
+    <section className="pb-5 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 font-primary">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}

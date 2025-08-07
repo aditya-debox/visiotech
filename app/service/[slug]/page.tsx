@@ -9,40 +9,48 @@ import Processes from "@/components/service/Processes";
 import FAQSection from "@/components/service/FAQSection";
 import Industries from "@/components/service/Industries";
 import IntroSection from "@/components/Home/IntroSection";
+import Testimonial from "@/components/service/Testomonial";
+import Cta from "@/components/Home/Cta";
 
 interface IServiceDetails {
   serviceTitle: string;
-  slug: string;
   headline: string;
-  serviceIcon: {
-    url: string;
-  };
   serviceDescription: {
-    text: string;
     html: string;
+    text: string;
     raw: any;
   };
-  features: string[];
-  process: {
+  slug: string;
+  features: {
     processTitle: string;
     processDescription: string;
   }[];
-  serviceImpact: string;
-  successStory: {
-    html: string;
-    text: string;
-    raw: any;
-  };
-  highlights: string[];
-  faq: {
-    faqQuestion: string;
-    faqAnswer: string;
+  highlights: {
+    processTitle: string;
+    processDescription: string;
+  }[];
+  industries: string[];
+  testimonial: string;
+  tagline: string;
+  values: {
+    processTitle: string;
+    processDescription: string;
   }[];
   serviceImage: {
     url: string;
   };
   serviceImageBlurHash: string;
-  industries: string[];
+  faq: {
+    faqQuestion: string;
+    faqAnswer: string;
+  }[];
+  serviceIcon: {
+    url: string;
+  };
+  cta: {
+    processTitle: string;
+    processDescription: string;
+  };
 }
 
 interface PageProps {
@@ -50,44 +58,48 @@ interface PageProps {
 }
 
 export default async function ServiceDetails({ params }: PageProps) {
-  // Await the params promise
   const { slug } = await params;
-
   const query = gql`
-    query Servicedetial($slug: String) {
-      serviceDetails(where: { slug: $slug }) {
+    query Servicedetial {
+      serviceDetails {
         serviceTitle
-        slug
         headline
-        serviceIcon {
-          url
-        }
         serviceDescription {
-          text
           html
+          text
           raw
         }
-        features
-        process {
+        slug
+        features {
           processTitle
           processDescription
         }
-        serviceImpact
-        successStory {
-          html
-          text
-          raw
+        highlights {
+          processTitle
+          processDescription
         }
-        highlights
-        faq {
-          faqQuestion
-          faqAnswer
+        industries
+        testimonial
+        tagline
+        values {
+          processTitle
+          processDescription
         }
         serviceImage {
           url
         }
         serviceImageBlurHash
-        industries
+        faq {
+          faqQuestion
+          faqAnswer
+        }
+        serviceIcon {
+          url
+        }
+        cta {
+          processTitle
+          processDescription
+        }
       }
     }
   `;
@@ -131,53 +143,51 @@ export default async function ServiceDetails({ params }: PageProps) {
           }}
         />
 
-        {serviceData.serviceImpact && (
-          <ServiceBlock
-            className="mb-10"
-            introText={serviceData.serviceImpact}
-            authorName=""
-            authorTitle=""
-            title="Why This Service Matters"
-          />
-        )}
-
-        {serviceData.features && serviceData.features.length > 0 && (
+        {serviceData.features.length > 0 && (
           <FeaturesSection
-            title="Key Features:"
+          
+            title="Key Features"
             features={serviceData.features}
           />
         )}
 
-        <Industries title="Industries We Serve" items={serviceData.industries} />
-
-        <div className="my-10 md:my-10">
-          {serviceData.process && serviceData.process.length > 0 && (
-            <Processes bgcolor={false} process={serviceData.process} />
-          )}
-        </div>
-
-        {serviceData.successStory && (
-          <IntroSection
-            introText={serviceData.successStory}
-            authorName=""
-            authorTitle=""
-            className=" max-w-7xl mx-auto  lg:px-12 relative bg-blue-600 rounded-4xl py-20 "
+        {serviceData.tagline && (
+         <ServiceBlock
+          title="Why This Service Matters"
+          highlights={serviceData.highlights}
           />
         )}
 
-        {serviceData.serviceImpact && (
-          <ServiceBlock
-            className="my-20 "
-            introText={serviceData.highlights}
+        <Industries
+          title="Industries We Serve"
+          items={serviceData.industries}
+        />
+
+        <div className="my-10 md:my-10 bg-gray-50">
+          {serviceData.features && serviceData.features.length > 0 && (
+            <Processes
+              bgcolor={false}
+              process={serviceData.values}
+              title="Why Choose Us"
+              desc="Your trusted partner for reliable, cutting-edge security camera solutions with unmatched service and support"
+            />
+          )}
+        </div>
+
+        {serviceData.testimonial && (
+          <Testimonial
+            introText={serviceData.testimonial}
             authorName=""
             authorTitle=""
-            title="Why Visiotech"
+            className=""
           />
         )}
 
         {serviceData.faq && serviceData.faq.length > 0 && (
           <FAQSection faq={serviceData.faq} />
         )}
+
+        <Cta className="my-10 md:my-15 " title={serviceData.cta.processTitle} description={serviceData.cta.processDescription} />
       </div>
     );
   } catch (error) {

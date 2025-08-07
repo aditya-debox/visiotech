@@ -19,13 +19,13 @@ const OurStory: React.FC<OurStoryProps> = ({ description, serviceImage }) => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
           <div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-xl md:text-3xl font-bold text-black mb-6">
               Our Story
             </h2>
             
             {/* Use the HTML content from aboutdata.description */}
             <div 
-              className="text-gray-600 text-lg leading-relaxed space-y-4"
+              className="text-gray-600 text-base md:text-lg leading-relaxed space-y-4"
               dangerouslySetInnerHTML={{ __html: description.html }}
             />
           </div>

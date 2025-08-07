@@ -19,7 +19,7 @@ const AboutusHighlights: React.FC<AboutusHighlightsProps> = ({ highlights }) => 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 font-primary">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold font-primary text-gray-900 mb-6">
+          <h2 className="text-xl md:text-3xl font-bold font-primary text-gray-900 mb-6">
             What Makes Us Different
           </h2>
           <p className="text-lg text-gray-600 font-secondary max-w-3xl mx-auto">

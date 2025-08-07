@@ -19,11 +19,11 @@ const FAQSection: React.FC<FAQProps> = ({ faq }) => {
   };
 
   return (
-    <section className="py-16 ">
+    <section className="">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 cursor-pointer">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="font-primary text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="font-primary text-xl md:text-3xl font-bold text-black mb-5  text-center">
             Frequently Asked Questions
           </h2>
         </div>
@@ -79,7 +79,7 @@ const FAQSection: React.FC<FAQProps> = ({ faq }) => {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 pb-6 pt-0">
+                    <div className=" pb-6 pt-0">
                       <div className="border-t border-gray-100 pt-6">
                         <p className="font-secondary text-gray-600 leading-relaxed">
                           {item.faqAnswer}

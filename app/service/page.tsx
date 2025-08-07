@@ -14,37 +14,42 @@ import { Metadata } from "next";
 
 interface IServiceDetails {
   serviceTitle: string;
-  slug: string;
-  headline: string;
-  serviceIcon: {
-    url: string;
-  };
-  serviceDescription: {
-    text: string;
-    html: string;
-    raw: any;
-  };
-  features: string[];
-  process: {
-    processTitle: string;
-    processDescription: string;
-  }[];
-  serviceImpact: string;
-  successStory: {
-    html: string;
-    text: string;
-    raw: any;
-  };
-  highlights: string[];
-  faq: {
-    faqQuestion: string;
-    faqAnswer: string;
-  }[];
-  serviceImage: {
-    url: string;
-  };
-  serviceImageBlurHash: string;
-  industries: string[];
+    headline: string;
+    serviceDescription: {
+      html: string;
+      text: string;
+      raw: any;
+    };
+    slug: string;
+    features: {
+      processTitle: string;
+      processDescription: string;
+    }[];
+    highlights: {
+      processTitle: string;
+      processDescription: string;
+    }[];
+    industries: string[];
+    testimonial: string;
+    values: {
+      processTitle: string;
+      processDescription: string;
+    }[];
+    serviceImage: {
+      url: string;
+    };
+    serviceImageBlurHash: string;
+    faq: {
+      faqQuestion: string;
+      faqAnswer: string;
+    }[];
+    serviceIcon: {
+      url: string;
+    };
+    cta: {
+      processTitle: string;
+      processDescription: string;
+    }[];
 }
 
 export const metadata: Metadata = {
@@ -75,41 +80,47 @@ export const metadata: Metadata = {
 
 export default async function ServiceDetails() {
   const query = gql`
-    query Servicedetial {
-      serviceDetails {
-        serviceTitle
-        slug
-        headline
-        serviceIcon {
-          url
-        }
-        serviceDescription {
-          text
-          html
-          raw
-        }
-        features
-        process {
-          processTitle
-          processDescription
-        }
-        serviceImpact
-        successStory {
-          html
-          text
-          raw
-        }
-        highlights
-        faq {
-          faqQuestion
-          faqAnswer
-        }
-        serviceImage {
-          url
-        }
-        serviceImageBlurHash
-        industries
+ query Servicedetial {
+		serviceDetails{
+      serviceTitle
+      headline
+      serviceDescription{
+        html
+        text
+        raw
       }
+      slug
+      features{
+        processTitle
+        processDescription
+      }
+      highlights{
+        processTitle
+        processDescription
+      }
+      industries
+      testimonial
+      tagline
+      values{
+        processTitle
+        processDescription
+      }
+      serviceImage{
+        url
+      }
+      serviceImageBlurHash
+      faq{
+        faqQuestion
+        faqAnswer
+      }
+      serviceIcon{
+        url
+      }
+      cta{
+        processTitle
+        processDescription
+      }
+    }
     }
   `;
 

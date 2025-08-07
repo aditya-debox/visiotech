@@ -24,11 +24,11 @@ const Processes: React.FC<ProcessesProps> = ({
 }) => {
   return (
     <section
-      className={`pb-8 md:pb-16 py-10 ${bgcolor ? 'bg-gray-50' : ''}`}>
+      className={`py-5 md:py-10 ${bgcolor ? 'bg-gray-50' : ''}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="font-primary text-xl md:text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="font-primary text-xl md:text-3xl font-bold text-black mb-5  text-center">
             {title}
           </h2>
           <p className="font-secondary text-base md:text-lg text-gray-600 max-w-3xl mx-auto">

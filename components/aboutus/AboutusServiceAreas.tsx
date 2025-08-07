@@ -26,7 +26,7 @@ const ServiceAreasSection: React.FC<ServiceAreasSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-30 items-center ">
           {/* Left Content */}
           <div>
-            <h2 className="font-primary text-3xl font-bold text-black mb-6">
+            <h2 className="text-xl md:text-3xl font-bold text-black mb-6">
               {title}
             </h2>
             <p className="font-primary text-lg text-gray-600 mb-8">

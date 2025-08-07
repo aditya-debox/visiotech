@@ -35,7 +35,7 @@ const TrustedCompanies: React.FC<TrustedCompaniesProps> = ({
                   className="object-contain"
                 />
               </div>
-              <span className="font-medium text-sm">{company.name}</span>
+              <span className="font-medium text-sm">{company?.name}</span>
             </div>
           ))}
         </div>

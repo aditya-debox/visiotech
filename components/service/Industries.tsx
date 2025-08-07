@@ -50,7 +50,7 @@ const Industries: React.FC<IndustriesProps> = ({
         {title && (
           <div className="text-center">
             <h2
-              className={`font-primary text-xl md:text-3xl font-bold text-black mb-5 mb-10 text-center ${titleClassName}`}
+              className={`font-primary text-xl md:text-3xl font-bold text-black mb-5 md:mb-10 text-center ${titleClassName}`}
             >
               {title}
             </h2>

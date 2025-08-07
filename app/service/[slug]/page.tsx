@@ -59,9 +59,11 @@ interface PageProps {
 
 export default async function ServiceDetails({ params }: PageProps) {
   const { slug } = await params;
+  
+  // Updated query to use slug as a filter
   const query = gql`
-    query Servicedetial {
-      serviceDetails {
+    query ServiceDetail($slug: String!) {
+      serviceDetails(where: { slug: $slug }) {
         serviceTitle
         headline
         serviceDescription {
@@ -105,6 +107,7 @@ export default async function ServiceDetails({ params }: PageProps) {
   `;
 
   try {
+    // Pass the slug as a variable to the GraphQL query
     const response = await client.request<{
       serviceDetails: IServiceDetails[];
     }>(query, { slug });
@@ -145,7 +148,6 @@ export default async function ServiceDetails({ params }: PageProps) {
 
         {serviceData.features.length > 0 && (
           <FeaturesSection
-          
             title="Key Features"
             features={serviceData.features}
           />

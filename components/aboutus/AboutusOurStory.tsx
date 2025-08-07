@@ -25,7 +25,7 @@ const OurStory: React.FC<OurStoryProps> = ({ description, serviceImage }) => {
             
             {/* Use the HTML content from aboutdata.description */}
             <div 
-              className="text-gray-600 text-lg leading-relaxed space-y-4"
+              className="text-gray-600 text-base md:text-lg leading-relaxed space-y-4"
               dangerouslySetInnerHTML={{ __html: description.html }}
             />
           </div>

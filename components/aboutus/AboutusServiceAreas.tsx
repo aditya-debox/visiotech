@@ -29,7 +29,7 @@ const ServiceAreasSection: React.FC<ServiceAreasSectionProps> = ({
             <h2 className="text-xl md:text-3xl font-bold text-black mb-6">
               {title}
             </h2>
-            <p className="font-primary text-lg text-gray-600 mb-8">
+            <p className="font-primary text-base md:text-lg text-gray-600 mb-8">
               {description}
             </p>
             

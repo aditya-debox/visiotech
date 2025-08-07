@@ -69,9 +69,11 @@ async function getBrandData(slug: string): Promise<IBrandData | null> {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const brandData = await getBrandData(params.slug);
+  // Await the params Promise
+  const { slug } = await params;
+  const brandData = await getBrandData(slug);
 
   if (!brandData) {
     return {
@@ -105,8 +107,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const brandData = await getBrandData(params.slug);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  // Await the params Promise
+  const { slug } = await params;
+  const brandData = await getBrandData(slug);
 
   if (!brandData) {
     return (

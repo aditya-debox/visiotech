@@ -6,6 +6,7 @@ import OurStory from "@/components/aboutus/AboutusOurStory";
 import AboutusHighlights from "@/components/aboutus/Aboutushighlights";
 import AboutusOurTeam from "@/components/aboutus/AboutusOurTeam";
 import { Metadata } from "next";
+import Cta from "@/components/Home/Cta";
 
 export interface IAboutUsData {
   title: string;
@@ -128,6 +129,7 @@ export default async function AboutUs() {
           descriptionRichText: member.teamDescription.raw,
         }))}
       />
+      <Cta/>
     </div>
   );
 }

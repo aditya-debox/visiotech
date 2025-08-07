@@ -141,7 +141,7 @@ export default async function ServiceDetails() {
     }
 
     return (
-      <div className="py-20">
+      <div className="pt-20">
         <ServiceGrid services={serviceData} />
         <Cta />
       </div>

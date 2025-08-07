@@ -169,11 +169,18 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
     exit: { opacity: 0 },
   };
 
+  // Hamburger animation variants
+  const hamburgerVariants = {
+    closed: { rotate: 0 },
+    open: { rotate: 180 },
+  };
+
   return (
     <>
       <div
-        className={`fixed ${"top-0"}  left-0 w-full px-2 !z-40  font-secondary 
-       h-20 grid place-items-center border-b shadow-md transition-all duration-300 ${"bg-white"}`}
+        className={`fixed ${"top-0"}  left-0 w-full px-2 font-secondary 
+       h-20 grid place-items-center border-b transition-all duration-300 ${"bg-white"}`}
+        style={{ zIndex: 40 }}
       >
         <div className="flex justify-between items-center px-6 lg:px-12 w-full max-w-7xl mx-auto">
           <div className="flex items-center">
@@ -192,9 +199,9 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
               />
             </Link>
 
-            <div className="h-full hidden lg:block">
+            <div className="h-full hidden md:block">
               <ul className="flex items-center text-sm text-gray-500 gap-4 font-extrabold relative">
-                {navItems.slice(0, 5).map((item, index) => (
+                {navItems.map((item, index) => (
                   <li
                     key={index}
                     className="justify-between flex flex-col text-sm items-center space-y-8 font-medium"
@@ -206,67 +213,31 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
                     </Link>
                   </li>
                 ))}
-
-                {navItems.length > 4 && (
-                  <li ref={moreMenuRef} className="relative">
-                    <button
-                      onClick={() => setShowMoreMenu(!showMoreMenu)}
-                      className="flex items-center gap-1 px-4 py-2 text-base text-gray-300 hover:text-white font-medium"
-                    >
-                      More
-                      <ChevronDown
-                        className={`transition-transform duration-300 text-gray-300 hover:text-white ${
-                          showMoreMenu ? "rotate-180" : ""
-                        }`}
-                        size={18}
-                      />
-                    </button>
-
-                    <AnimatePresence>
-                      {showMoreMenu && (
-                        <motion.ul
-                          variants={staggerContainer}
-                          initial="hidden"
-                          animate="show"
-                          exit="hidden"
-                          className="absolute right-0 mt-2 bg-bg1 border border-gray-700 rounded-md shadow-md z-50 w-48 py-2"
-                        >
-                          {navItems.slice(5).map((item, index) => (
-                            <motion.li
-                              key={index}
-                              variants={staggerItem}
-                              className="w-full"
-                            >
-                              <Link href={item.link}>
-                                <span
-                                  className="block px-4 py-2 text-sm text-gray-300 hover:text-white transition-all"
-                                  onClick={() => setShowMoreMenu(false)}
-                                >
-                                  {item.name}
-                                </span>
-                              </Link>
-                            </motion.li>
-                          ))}
-                        </motion.ul>
-                      )}
-                    </AnimatePresence>
-                  </li>
-                )}
               </ul>
             </div>
           </div>
           <div
-            className="hidden lg:block bg-blue-600 text-white font-secondary text-sm py-2 px-4 rounded-full shadow-sm cursor-pointer font-medium"
+            className="hidden md:block bg-blue-600 text-white font-secondary text-sm py-2 px-4 rounded-full shadow-sm cursor-pointer font-medium"
             onClick={() => setTriggerModal(true)}
           >
             <button className="cursor-pointer"> Get Started</button>
           </div>
-          <div
-            className="text-3xl lg:hidden cursor-pointer z-50"
+
+          {/* Mobile Menu Button - Updated */}
+          <motion.div
+            className="md:hidden cursor-pointer relative p-2"
+            style={{ zIndex: 500 }}
             onClick={toggleMenu}
+            variants={hamburgerVariants}
+            animate={isOpen ? "open" : "closed"}
+            transition={{ duration: 0.3 }}
           >
-            <HiMenu color="black" />
-          </div>
+            {isOpen ? (
+              <IoMdClose size={24} color="black" />
+            ) : (
+              <HiMenu size={24} color="black" />
+            )}
+          </motion.div>
         </div>
       </div>
 
@@ -280,7 +251,8 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="fixed inset-0 bg-black/50 bg-opacity-50 z-40 lg:hidden"
+              className="fixed inset-0 bg-opacity-50 lg:hidden"
+              style={{ zIndex: 40 }}
               onClick={toggleMenu}
             />
 
@@ -290,17 +262,9 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="fixed top-5 left-1/2 transform -translate-x-1/2  w-11/12 max-w-md bg-white rounded-2xl shadow-2xl z-50 lg:hidden"
+              className="fixed top-14  transform right-5  w-11/12 max-w-md bg-white rounded-2xl shadow-2xl lg:hidden"
+              style={{ zIndex: 45 }}
             >
-              {/* Close button */}
-              <div className="absolute top-4 right-4 text-2xl cursor-pointer">
-                <IoMdClose
-                  color="gray"
-                  onClick={toggleMenu}
-                  className="hover:text-gray-700 transition-colors"
-                />
-              </div>
-
               {/* Popup content */}
               <div className="p-8 pt-12">
                 {/* Navigation items */}

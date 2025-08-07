@@ -48,7 +48,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
 
         {/* Service Title */}
-        <h3 className="text-lg font-bold text-black/60 group-hover:text-black line-clamp-1">
+        <h3 className="text-lg font-bold text-black/80 group-hover:text-black line-clamp-1">
           {service.serviceTitle}
         </h3>
 

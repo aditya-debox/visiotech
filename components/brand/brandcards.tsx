@@ -105,7 +105,6 @@ const BrandCards: React.FC<BrandCardsProps> = ({
   subtitle = "We partner with the best to bring you the best",
   showCTA = true,
 }) => {
-  // Fallback to demo data only if no brands provided
   const demoData: IBrandData[] = [];
 
   // Use provided brands or fallback to demo data

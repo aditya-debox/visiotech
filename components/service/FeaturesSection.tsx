@@ -118,7 +118,7 @@ const FeaturesSeciton: React.FC<FeaturesSecitonProps> = ({ features, title }) =>
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                   currentPage === index ? "bg-blue-600" : "bg-gray-400"
                 }`}
                 aria-label={`Go to page ${index + 1}`}

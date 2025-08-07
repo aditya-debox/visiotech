@@ -161,7 +161,6 @@ export default async function Home() {
           url
         }
         brandImageBlurhash
-        title
       }
     }
   `;

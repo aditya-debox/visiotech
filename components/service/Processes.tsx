@@ -53,7 +53,7 @@ const Processes: React.FC<ProcessesProps> = ({
                 </div>
 
                 {/* Step Title */}
-                <h3 className="font-primary text-lg font-semibold text-gray-900 mb-3">
+                <h3 className="font-primary text-lg  font-semibold text-gray-900 mb-3">
                   {step.processTitle}
                 </h3>
 

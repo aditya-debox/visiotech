@@ -187,7 +187,7 @@ export default async function ServiceDetails({ params }: PageProps) {
           <FAQSection faq={serviceData.faq} />
         )}
 
-        <Cta className="my-10 md:my-15 " title={serviceData.cta.processTitle} description={serviceData.cta.processDescription} />
+        <Cta className="mt-10 md:mt-15 " title={serviceData.cta.processTitle} description={serviceData.cta.processDescription} />
       </div>
     );
   } catch (error) {

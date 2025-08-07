@@ -131,19 +131,28 @@ const Footer = () => {
                   </div>
                 </Link>
 
-                <div className="flex items-start">
-                  <FaMapMarkerAlt className="h-4 w-4 text-slate-600 mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-medium text-slate-900">
-                      Visit us
-                    </p>
-                    <p className="text-sm text-slate-600">
-                      123 Tech Street,
-                      <br />
-                      San Francisco, CA 94105
-                    </p>
+                <Link
+                  href={
+                    "https://www.google.com/maps/place/InRadius+Technologies/@19.2359533,72.9850804,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7b9dbde2d1eb3:0xd45101619a7619f!8m2!3d19.2359483!4d72.9876553!16s%2Fg%2F11t3hwb9jq?hl=en&entry=ttu&g_ep=EgoyMDI1MDIwMi4wIKXMDSoASAFQAw%3D%3D"
+                  }
+                  target="_blank"
+                  className="flex items-start hover:opacity-80 transition-opacity duration-200"
+                >
+                  <div className="flex items-start">
+                    <FaMapMarkerAlt className="h-4 w-4 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-slate-900">
+                        Visit us
+                      </p>
+
+                      <p className="text-sm text-slate-600">
+                        123 Tech Street,
+                        <br />
+                        San Francisco, CA 94105
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
 

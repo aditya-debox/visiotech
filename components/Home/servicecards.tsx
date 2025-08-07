@@ -32,7 +32,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   return (
     <Link href={`service/${service.slug}`}>
       <div
-        className={`bg-white group cursor-pointer rounded-2xl p-0 md:p-8 duration-300 flex flex-col h-full ${className}`}
+        className={`bg-white group cursor-pointer rounded-2xl p-0 md:p-4 duration-300 flex flex-col h-full ${className}`}
       >
         {/* Service Icon */}
         <div className="mb-6">
@@ -94,7 +94,7 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
           <div className="w-24 h-1 bg-blue-500 mx-auto mt-3 md:mt-6 rounded-full"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} />
           ))}

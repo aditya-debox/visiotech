@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { ArrowRight, Play } from "lucide-react";
+import ModalStore from "@/store/modal";
 
 export interface INewHeroSection {
   title: string;
@@ -30,7 +33,7 @@ interface NewHeroSectionProps {
 
 const NewHeroSection: React.FC<NewHeroSectionProps> = ({ data }) => {
   // Mock company logos for the trusted by section
-
+  const { setTriggerModal } = ModalStore();
   return (
     <div className=" bg-white">
       {/* Hero Section */}
@@ -67,7 +70,10 @@ const NewHeroSection: React.FC<NewHeroSectionProps> = ({ data }) => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
-          <button className="bg-black cursor-pointer text-white px-8 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => setTriggerModal(true)}
+            className="bg-black cursor-pointer text-white px-8 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors flex items-center gap-2"
+          >
             Get a Free Site Assessment
             <ArrowRight size={18} />
           </button>

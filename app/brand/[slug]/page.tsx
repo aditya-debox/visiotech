@@ -18,18 +18,17 @@ interface IBrandData {
     url: string;
   };
   brandImageBlurhash: string;
-  title: string;
   highlights: {
     processTitle: string;
     processDescription: string;
   }[];
-  useCase: string[];
-  project: {
-    title: string;
-    description: string;
-  }[];
-  projects: string[];
   highlightTitle: string;
+  useCases: {
+    title: string;
+    image: { url: string };
+    hash: string;
+  }[];
+  cta: string;
 }
 
 async function getBrandData(slug: string): Promise<IBrandData | null> {
@@ -47,14 +46,19 @@ async function getBrandData(slug: string): Promise<IBrandData | null> {
           url
         }
         brandImageBlurhash
-        title
         highlights {
           processTitle
           processDescription
         }
-        useCase
         highlightTitle
-        projects
+        useCases {
+          title
+          image {
+            url
+          }
+          hash
+        }
+        cta
       }
     }
   `;
@@ -63,7 +67,7 @@ async function getBrandData(slug: string): Promise<IBrandData | null> {
     slug,
   });
 
-  return response.brands.find((brand) => brand.slug === slug) || null;
+  return response.brands[0];
 }
 
 export async function generateMetadata({
@@ -82,7 +86,7 @@ export async function generateMetadata({
     };
   }
 
-  const brandName = brandData.heading || brandData.title || "Security Brand";
+  const brandName = brandData.heading || "Security Brand";
   const description =
     brandData.shortDescription?.text ||
     "Explore trusted security solutions from leading brands installed by Visiotech in Atlanta.";

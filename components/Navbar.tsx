@@ -8,7 +8,7 @@ import { HiMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import logo from "@/assets/visiotech.png";
+import logo from "@/assets/visiotech-crop.png";
 import ModalStore from "@/store/modal";
 
 interface INavProps {
@@ -86,7 +86,7 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
     };
   }, [pathname]);
 
-  // Prevent scrolling when sidebar is open
+  // Prevent scrolling when popup is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -136,26 +136,59 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
     show: { opacity: 1, y: 0 },
   };
 
+  // Popup animation variants
+  const popupVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      y: -50,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      y: -50,
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
+  const overlayVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
   return (
     <>
       <div
-        className={`fixed ${"top-0"}  left-0 w-full px-2 !z-50  font-secondary 
-       h-20 md:h-24 grid place-items-center border-b shadow-md transition-all duration-300 ${"bg-white"}`}
+        className={`fixed ${"top-0"}  left-0 w-full px-2 !z-40  font-secondary 
+       h-20 grid place-items-center border-b shadow-md transition-all duration-300 ${"bg-white"}`}
       >
-        <div className="flex justify-between items-center px-6 w-full mx-auto">
+        <div className="flex justify-between items-center px-6 lg:px-12 w-full max-w-7xl mx-auto">
           <div className="flex items-center">
             <Link
               href={"/"}
               prefetch={false}
               passHref
-              className="relative w-24 md:!w-[200px] h-[105px] min-w-[115px] flex flex-shrink-0"
+              className="relative w-[100px] h-[80px] mr-10 flex flex-shrink-0"
             >
               <Image
                 src={logo || ""}
                 alt="logo"
                 fill
                 sizes={""}
-                className={`-mt-5 md:mt-0 object-contain flex flex-shrink-0`}
+                className={` object-contain flex flex-shrink-0`}
               />
             </Link>
 
@@ -223,68 +256,93 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
             </div>
           </div>
           <div
-            className="hidden lg:block mr-20 bg-blue-600 text-white font-secondary text-sm py-2 px-4 rounded-full shadow-sm cursor-pointer font-medium"
+            className="hidden lg:block bg-blue-600 text-white font-secondary text-sm py-2 px-4 rounded-full shadow-sm cursor-pointer font-medium"
             onClick={() => setTriggerModal(true)}
           >
-            <button> Get Started</button>
+            <button className="cursor-pointer"> Get Started</button>
           </div>
           <div
-            className="text-3xl lg:hidden cursor-pointer z-50 -mt-8 md:mt-0"
+            className="text-3xl lg:hidden cursor-pointer z-50"
             onClick={toggleMenu}
           >
-            {!isOpen && <HiMenu color="black" />}
+            <HiMenu color="black" />
           </div>
-
-          {/* Menu Button and Order Now grouped together */}
         </div>
       </div>
 
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-white bg-opacity-50 z-40"
-          onClick={toggleMenu}
-        />
-      )}
+      {/* Mobile Popup Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              variants={overlayVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="fixed inset-0 bg-black/50 bg-opacity-50 z-40 lg:hidden"
+              onClick={toggleMenu}
+            />
 
-      {/* Sidebar Menu */}
-      <div
-        className={`fixed top-0 right-0 h-full w-full bg-white sm:w-[400px] bg-primaryColor font-primary shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* Close button positioned in top right corner */}
-        <div className="absolute top-6 right-6 text-3xl cursor-pointer">
-          <IoMdClose color="black" onClick={toggleMenu} />
-        </div>
+            {/* Popup Box */}
+            <motion.div
+              variants={popupVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="fixed top-5 left-1/2 transform -translate-x-1/2  w-11/12 max-w-md bg-white rounded-2xl shadow-2xl z-50 lg:hidden"
+            >
+              {/* Close button */}
+              <div className="absolute top-4 right-4 text-2xl cursor-pointer">
+                <IoMdClose
+                  color="gray"
+                  onClick={toggleMenu}
+                  className="hover:text-gray-700 transition-colors"
+                />
+              </div>
 
-        <div className="flex flex-col h-full pt-24">
-          <ul className="flex flex-col text-xl text-gray-900">
-            {navItems.map((item, index) => (
-              <li
-                key={index}
-                className="justify-between flex flex-col text-lg items-center space-y-8 font-medium"
-              >
-                <Link
-                  href={
-                    item.name === "Our Specialities"
-                      ? "/#our-specialities-mobile"
-                      : item.link
-                  }
-                  target={item.name == "Bar Menu" ? "_blank" : "_self"}
-                >
-                  <span
-                    className="block px-4 py-2 transition-all duration-300 cursor-pointer w-full hover:text-primaryColor/80 uppercasetext-bg3 hover:text-white"
-                    onClick={toggleMenu}
+              {/* Popup content */}
+              <div className="p-8 pt-12">
+                {/* Navigation items */}
+                <nav className="space-y-1">
+                  {navItems.map((item, index) => (
+                    <Link
+                      key={index}
+                      href={
+                        item.name === "Our Specialities"
+                          ? "/#our-specialities-mobile"
+                          : item.link
+                      }
+                      target={item.name === "Bar Menu" ? "_blank" : "_self"}
+                    >
+                      <div
+                        className="block w-full text-center py-3 px-4 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-all duration-200 cursor-pointer"
+                        onClick={toggleMenu}
+                      >
+                        {item.name}
+                      </div>
+                    </Link>
+                  ))}
+                </nav>
+
+                {/* Get Started button */}
+                <div className="mt-3 ml-1 flex w-full items-center justify-center">
+                  <button
+                    className="bg-blue-600 text-white font-medium text-sm py-3 px-6 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-md"
+                    onClick={() => {
+                      setTriggerModal(true);
+                      toggleMenu();
+                    }}
                   >
-                    {item.name}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+                    Get Started
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       <div ref={observerTargetRef} style={{ height: "1px" }} />
     </>
   );

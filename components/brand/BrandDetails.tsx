@@ -14,8 +14,7 @@ import CommonHero from "../common/CommonHero";
 import Processes from "../service/Processes";
 import CardSection from "../common/CardSection";
 import Cta from "../Home/Cta";
-import { div } from "framer-motion/client";
-import FeaturesSection from "../service/FeaturesSection";
+import SliderScroll from "../common/SlideScroll";
 
 interface IBrandData {
   heading: string;
@@ -29,14 +28,17 @@ interface IBrandData {
     url: string;
   };
   brandImageBlurhash: string;
-  title: string;
   highlights: {
     processTitle: string;
     processDescription: string;
   }[];
-  useCase: string[];
-  projects: string[];
   highlightTitle: string;
+  useCases: {
+    title: string;
+    image: { url: string };
+    hash: string;
+  }[];
+  cta: string;
 }
 
 interface BrandDetailProps {
@@ -51,10 +53,9 @@ const BrandDetailPage: React.FC<BrandDetailProps> = ({
   // Use actual API data without defaults
   const brandData = {
     heading: brand.heading,
-    tagline: brand.title,
+    tagline: brand.heading,
     overview: brand.shortDescription,
     image: brand.brandImage,
-    projects: brand.projects || [],
   };
 
   return (
@@ -73,7 +74,8 @@ const BrandDetailPage: React.FC<BrandDetailProps> = ({
       <Processes process={brand.highlights} title={brand.highlightTitle} />
       <div className="mx-auto max-w-7xl">
         {/* What makes us different Section - Using Rich Text */}
-        <CardSection data={brand.useCase} title="Ideal Use Cases" />
+        {/* <CardSection data={brand.useCase} title="Ideal Use Cases" /> */}
+        <SliderScroll data={brand.useCases} />
         {/* Use Cases - Using Rich Text */}
 
         {/* Project Cards Section */}
@@ -84,7 +86,7 @@ const BrandDetailPage: React.FC<BrandDetailProps> = ({
         /> */}
         {/* CTA Section */}
       </div>
-      <Cta />
+      <Cta title={brand.cta} />
     </div>
   );
 };

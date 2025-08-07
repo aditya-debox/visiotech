@@ -33,7 +33,7 @@ const CommonHero: React.FC<CommonHeroProps> = ({ data, imageUrl }) => {
   return (
     <div className="flex items-center">
       {/* <h1 className="sr-only">{data.srTitle}</h1> */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-24 md:pt-40 pb-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-24 md:pt-40 pb-10 md:pb-20">
         <div
           className={`grid gap-12 lg:gap-16 items-center ${
             imageUrl || data.heroImage?.url || data.serviceImage?.url

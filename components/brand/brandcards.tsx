@@ -16,15 +16,9 @@ interface IBrandData {
     url: string;
   };
   brandImageBlurhash: string;
-  title: string;
   highlights: {
     processTitle: string;
     processDescription: string;
-  };
-  useCase: string[];
-  project: {
-    title: string;
-    description: string;
   };
 }
 
@@ -44,7 +38,7 @@ const BrandCard: React.FC<BrandCardProps> = ({
     if (brand.shortDescription?.text) return brand.shortDescription.text;
     // if (brand.useCase?.text) return brand.useCase.text;
     // if (brand.highlights?.text) return brand.highlights.text;
-    if (brand.project?.description) return brand.project.description;
+    // if (brand.project?.description) return brand.project.description;
     return "Discover more about this service by clicking to learn more.";
   };
 

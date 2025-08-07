@@ -20,24 +20,22 @@ const TrustedCompanies: React.FC<TrustedCompaniesProps> = ({
   return (
     <div className={`${className}`}>
       <div className="max-w-7xl mx-auto px-6 pb-10 md:pb-20 lg:px-12 text-center">
-        <p className="text-black text-lg">{title}</p>
-        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-8 lg:gap-12">
+        <p className="text-black text-lg mb-2">{title}</p>
+        <div className="flex flex-wrap justify-center items-center gap-5 md:gap-10">
           {companies.map((company, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 transition-colors duration-200"
+              className="flex flex-col items-center transition-colors duration-200"
             >
-              <div className="relative w-20 h-20 md:w-35 md:h-25">
+              <div className="relative w-16 h-16 md:w-20 md:h-20">
                 <Image
                   src={company.logo}
                   alt={company.name}
                   fill
-                  className="object-contain grayscale"
+                  className="object-contain"
                 />
               </div>
-              <span className="font-bold text-base md:text-lg">
-                {company.name}
-              </span>
+              <span className="font-medium text-sm">{company.name}</span>
             </div>
           ))}
         </div>

@@ -189,7 +189,7 @@ const BrandCards: React.FC<BrandCardsProps> = ({
                   setCurrent(index);
                   carouselApi?.scrollTo(index);
                 }}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all cursor-pointer duration-300 ${
                   current === index ? "bg-blue-600" : "bg-gray-400"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

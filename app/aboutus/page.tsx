@@ -1,20 +1,10 @@
 import React from "react";
 import { gql } from "graphql-request";
 import client from "@/utils/graphqlClient";
-import WhatMakesUsDifferentSection from "@/components/aboutus/AboutusCommitment";
-import TeamSection from "@/components/aboutus/AboutusOurTeam";
-import CommitmentSection from "@/components/aboutus/AboutusComittmentsection";
-import ServiceAreasSection from "@/components/aboutus/AboutusServiceAreas";
-import AboutusHeroSection from "@/components/aboutus/AboutusHeroSection";
-import OurStorySection from "@/components/aboutus/AboutusOurStory";
-import AboutusCommitment from "@/components/aboutus/AboutusCommitment";
 import AboutUsHero from "@/components/aboutus/AboutusHero";
 import OurStory from "@/components/aboutus/AboutusOurStory";
 import AboutusHighlights from "@/components/aboutus/Aboutushighlights";
 import AboutusOurTeam from "@/components/aboutus/AboutusOurTeam";
-import CardSection from "@/components/common/CardSection";
-import ServiceBlock from "@/components/service/ServiceBlock";
-import Cta from "@/components/Home/Cta";
 import { Metadata } from "next";
 
 export interface IAboutUsData {
@@ -23,9 +13,6 @@ export interface IAboutUsData {
   aboutUsImage: {
     url: string;
   };
-  aboutusMapimage:{
-    url:string
-    }
   aboutUsImageBlurHash: string;
   aboutUsDescription: {
     html: string;
@@ -46,10 +33,9 @@ export interface IAboutUsData {
       html: string;
       raw: any; // Rich text raw content
     };
-
   }[];
   commitment: string;
-  serviceArea: string[];
+  serviceArea: string;
 }
 
 export const metadata: Metadata = {
@@ -78,15 +64,11 @@ export const metadata: Metadata = {
 export default async function AboutUs() {
   const query = gql`
     query GetAboutUs {
-    
       aboutuses {
         title
         aboutUsImage {
           url
         }
-          aboutusMapimage{
-          url
-          }
         aboutUsImageBlurHash
         heroTitle
         aboutUsDescription {
@@ -124,39 +106,27 @@ export default async function AboutUs() {
 
   return (
     <div className="relative min-h-screen">
-      <div className=" mx-auto pt-6 md:pt-6 lg:pt-12">
-      <AboutUsHero 
+      <AboutUsHero
         data={{
           srTitle: aboutusdata.title,
           title: aboutusdata.heroTitle,
           subTitle: aboutusdata.title, // Rich text object
         }}
       />
-      </div>
-      <OurStory serviceImage={aboutusdata.aboutUsImage} description={aboutusdata.aboutUsDescription} />
+      <OurStory
+        serviceImage={aboutusdata.aboutUsImage}
+        description={aboutusdata.aboutUsDescription}
+      />
+
       <AboutusHighlights highlights={aboutusdata.highlights} />
       {/* Add your other sections here */}
-      <div className="">
-       <ServiceAreasSection 
-        title="Service Areas"
-        description="Serving businesses throughout the Greater Atlanta Metropolitan Area"
-        areas={aboutusdata.serviceArea}
-        mapImage={aboutusdata.aboutusMapimage}
-        />
-        </div>
-        <AboutusOurTeam 
+      <AboutusOurTeam
         title="Meet Our Team"
         members={aboutusdata.teamSection.map((member) => ({
           name: member.teamTitle,
           title: member.teamTitle, // You might want to add a separate field for job title
           descriptionRichText: member.teamDescription.raw,
         }))}
-      />
-
-        <Cta
-        description="Want to Work With Atlanta’s Most Trusted Security Experts? Get in Touch Today"
-        title="Schedule Your Free Security Consultation"
-        buttonText="Get Started"
       />
     </div>
   );

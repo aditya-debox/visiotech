@@ -17,17 +17,10 @@ interface IBrandData {
     url: string;
   };
   brandImageBlurhash: string;
-  title: string;
   highlights: {
     processTitle: string;
     processDescription: string;
   };
-  useCase: string[];
-  project: {
-    title: string;
-    description: string;
-  };
-  projets: string[];
 }
 
 export const metadata: Metadata = {
@@ -68,14 +61,10 @@ export default async function Brand() {
           url
         }
         brandImageBlurhash
-        title
         highlights {
           processTitle
           processDescription
         }
-        useCase
-
-        projects
       }
     }
   `;

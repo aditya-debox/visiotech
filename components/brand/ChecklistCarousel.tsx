@@ -75,7 +75,7 @@ const ChecklistCarousel: React.FC<ChecklistCarouselProps> = ({ data, icon, title
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
                   {slideCards.map((card, cardIndex) => (
                     <div key={cardIndex} className="bg-white rounded-xl p-6 border border-gray-200 h-full">
-                      <h3 className="text-lg font-semibold text-white mb-4 text-center bg-blue-600 font-primary rounded-lg py-2">
+                      <h3 className="text-lg font-semibold text-blue-600 mb-4 text-center  font-primary rounded-lg py-2">
                         {card.title}
                       </h3>
                       <div className="space-y-3">

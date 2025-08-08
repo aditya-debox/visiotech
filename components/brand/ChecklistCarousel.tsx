@@ -91,7 +91,7 @@ const ChecklistCarousel: React.FC<ChecklistCarouselProps> = ({ data, icon, title
                                 loading="lazy"
                               />
                             </div>
-                            <span className="text-black/80 font-secondary flex-1">{item}</span>
+                            <span className="text-gray-600 font-secondary text-sm flex-1">{item}</span>
                           </div>
                         ))}
                       </div>
@@ -119,8 +119,8 @@ const ChecklistCarousel: React.FC<ChecklistCarouselProps> = ({ data, icon, title
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-200 ${
                 current - 1 === index 
-                  ? 'bg-blue-600 scale-110' 
-                  : 'bg-blue-300 hover:bg-blue-400'
+                  ? 'bg-blue-600 ' 
+                  : 'bg-gray-400'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

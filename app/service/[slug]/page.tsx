@@ -153,7 +153,7 @@ export default async function ServiceDetails({ params }: PageProps) {
     }
 
     return (
-      <div>
+      <div className=" ">
         <CommonHero
           data={{
             srTitle: serviceData.serviceTitle,

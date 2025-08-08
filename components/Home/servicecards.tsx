@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 interface ServiceDetail {
   slug: string;
@@ -67,6 +68,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             }}
           />
         </div>
+        <div className="flex items-center gap-3 mt-2">
+            <p className="flex text-sm">Learn More</p>
+            <ArrowUpRight className="w-4 h-4 group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />{" "}
+          </div>
       </div>
     </Link>
   );

@@ -11,6 +11,7 @@ import Industries from "@/components/service/Industries";
 import IntroSection from "@/components/Home/IntroSection";
 import Testimonial from "@/components/service/Testomonial";
 import Cta from "@/components/Home/Cta";
+import ChecklistCards from "@/components/brand/ChecklistCarousel";
 
 interface IServiceDetails {
   serviceTitle: string;
@@ -51,6 +52,14 @@ interface IServiceDetails {
     processTitle: string;
     processDescription: string;
   };
+  checklist: {
+    title: string;
+    description: string[];
+  }[];
+  checklistIcon:{
+    url: string;
+  }
+  checklistHeading: string;
 }
 
 interface PageProps {
@@ -59,7 +68,7 @@ interface PageProps {
 
 export default async function ServiceDetails({ params }: PageProps) {
   const { slug } = await params;
-  
+
   // Updated query to use slug as a filter
   const query = gql`
     query ServiceDetail($slug: String!) {
@@ -102,6 +111,14 @@ export default async function ServiceDetails({ params }: PageProps) {
           processTitle
           processDescription
         }
+        checklist {
+          title
+          description
+        }
+        checklistIcon{
+         url
+        }
+        checklistHeading
       }
     }
   `;
@@ -154,9 +171,9 @@ export default async function ServiceDetails({ params }: PageProps) {
         )}
 
         {serviceData.tagline && (
-         <ServiceBlock
-          title="Why This Service Matters"
-          highlights={serviceData.highlights}
+          <ServiceBlock
+            title="Why This Service Matters"
+            highlights={serviceData.highlights}
           />
         )}
 
@@ -175,7 +192,7 @@ export default async function ServiceDetails({ params }: PageProps) {
             />
           )}
         </div>
-
+<ChecklistCards title= {serviceData.checklistHeading}icon={serviceData.checklistIcon.url} data={serviceData.checklist} />
         {serviceData.testimonial && (
           <Testimonial
             introText={serviceData.testimonial}
@@ -185,11 +202,20 @@ export default async function ServiceDetails({ params }: PageProps) {
           />
         )}
 
+        
+
         {serviceData.faq && serviceData.faq.length > 0 && (
           <FAQSection faq={serviceData.faq} />
         )}
+        
+        <Cta
+          className="mt-10 md:mt-15 "
+          title={serviceData.cta.processTitle}
+          description={serviceData.cta.processDescription}
+        />
 
-        <Cta className="mt-10 md:mt-15 " title={serviceData.cta.processTitle} description={serviceData.cta.processDescription} />
+        
+
       </div>
     );
   } catch (error) {

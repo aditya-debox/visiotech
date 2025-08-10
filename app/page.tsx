@@ -186,8 +186,7 @@ export default async function Home() {
 
   return (
     <div className="font-secondary">
-      <NewHeroSection data={homePageData} />
-      <TrustedCompanies companies={companies} />
+      <NewHeroSection data={homePageData} companies={companies} />
       <IntroSection
         introText="Visiotech specializes in commercial security camera installation, surveillance systems, access control, and network infrastructure in Atlanta and surrounding areas."
         authorName=""

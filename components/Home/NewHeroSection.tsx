@@ -3,6 +3,9 @@
 import React from "react";
 import { ArrowRight, Play } from "lucide-react";
 import ModalStore from "@/store/modal";
+import TrustedCompanies from "./TrustedCompanies";
+import Image from "next/image";
+import Bgimage from "@/assets/pexels-kelly-2815167.jpg";
 
 export interface INewHeroSection {
   title: string;
@@ -29,15 +32,27 @@ export interface INewHeroSection {
 
 interface NewHeroSectionProps {
   data: INewHeroSection;
+  companies: any[];
 }
 
-const NewHeroSection: React.FC<NewHeroSectionProps> = ({ data }) => {
+const NewHeroSection: React.FC<NewHeroSectionProps> = ({ data, companies }) => {
   // Mock company logos for the trusted by section
   const { setTriggerModal } = ModalStore();
   return (
     <div className=" bg-white">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={Bgimage} // Replace with your image path
+          alt="Hero background"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Optional overlay for better text readability */}
+        <div className="absolute inset-0 bg-slate-200/70"></div>
+      </div>
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-50 pb-5 text-center">
+      <div className="relative z-10   max-w-7xl mx-auto px-6 lg:px-12 pt-50 pb-5 text-center">
         <h1 className="text-3xl md:text-6xl font-bold font-primary text-gray-900  leading-tight">
           {data.title.split(" ").map((word, index) => (
             <React.Fragment key={index}>
@@ -79,6 +94,7 @@ const NewHeroSection: React.FC<NewHeroSectionProps> = ({ data }) => {
           </button>
         </div>
       </div>
+      <TrustedCompanies className="relative z-10" companies={companies} />
     </div>
   );
 };

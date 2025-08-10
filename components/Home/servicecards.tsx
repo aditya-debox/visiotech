@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import Link from "next/link";
@@ -78,12 +80,34 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 interface ServiceGridProps {
   services: ServiceDetail[];
   className?: string;
+  showAll?: boolean;
 }
-
 const ServiceGrid: React.FC<ServiceGridProps> = ({
   services,
   className = "",
+  showAll = false,
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showLimited, setShowLimited] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+
+      // Reset limited view when resizing
+      if (!mobile) setShowLimited(false);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const shouldLimit = isMobile && showAll;
+  const visibleServices =
+    shouldLimit && showLimited ? services.slice(0, 4) : services;
+
   return (
     <div className={`py-16 ${className}`}>
       <div className="max-w-7xl mx-auto px-6">
@@ -91,19 +115,27 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
           <h2 className="text-2xl md:text-4xl font-bold font-primary text-black mb-2 md:mb-4">
             Our Services
           </h2>
-
           <p className="text-sm md:text-lg text-gray-500 max-w-2xl font-secondary mx-auto">
             See what we offer
           </p>
-
           <div className="w-24 h-1 bg-blue-500 mx-auto mt-3 md:mt-6 rounded-full"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {services.map((service, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4">
+          {visibleServices.map((service, index) => (
             <ServiceCard key={index} service={service} />
           ))}
         </div>
+
+        {shouldLimit && (
+          <div className="mt-8 text-center">
+            <Link href={`/service`}>
+              <button className="text-blue-600 hover:text-blue-800 font-medium transition duration-200">
+                View All
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

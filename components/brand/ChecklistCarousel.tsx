@@ -71,7 +71,7 @@ const ChecklistCarousel: React.FC<ChecklistCarouselProps> = ({ data, icon, title
       )}
       
       {/* Carousel Container */}
-      <div className="relative rounded-2xl p-8">
+      <div className="relative rounded-2xl  p-8">
         <Carousel
           setApi={setApi}
           className="w-full"
@@ -83,9 +83,9 @@ const ChecklistCarousel: React.FC<ChecklistCarouselProps> = ({ data, icon, title
           <CarouselContent className="-ml-4">
             {slidesData.map((slideCards, slideIndex) => (
               <CarouselItem key={slideIndex}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 h-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6  h-full">
                   {slideCards.map((card, cardIndex) => (
-                    <div key={cardIndex} className="bg-white rounded-xl p-4 md:p-6 border border-gray-200 h-full">
+                    <div key={cardIndex} className="bg-white rounded-xl p-4 md:p-6 border shadow-sm border-gray-200 h-full">
                       <h3 className="text-base md:text-lg font-semibold text-blue-600 mb-3 md:mb-4 text-center font-primary rounded-lg py-2">
                         {card.title}
                       </h3>
@@ -128,7 +128,7 @@ const ChecklistCarousel: React.FC<ChecklistCarouselProps> = ({ data, icon, title
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-200 ${
+              className={`w-3 h-3 rounded-full transition-all cursor-pointer shadow-sm duration-200 ${
                 current - 1 === index 
                   ? 'bg-blue-600 ' 
                   : 'bg-gray-400'

@@ -56,9 +56,9 @@ interface IServiceDetails {
     title: string;
     description: string[];
   }[];
-  checklistIcon:{
+  checklistIcon: {
     url: string;
-  }
+  };
   checklistHeading: string;
 }
 
@@ -115,8 +115,8 @@ export default async function ServiceDetails({ params }: PageProps) {
           title
           description
         }
-        checklistIcon{
-         url
+        checklistIcon {
+          url
         }
         checklistHeading
       }
@@ -192,7 +192,11 @@ export default async function ServiceDetails({ params }: PageProps) {
             />
           )}
         </div>
-<ChecklistCards title= {serviceData.checklistHeading}icon={serviceData.checklistIcon.url} data={serviceData.checklist} />
+        <ChecklistCards
+          title={serviceData.checklistHeading}
+          icon={serviceData.checklistIcon.url}
+          data={serviceData.checklist}
+        />
         {serviceData.testimonial && (
           <Testimonial
             introText={serviceData.testimonial}
@@ -202,20 +206,15 @@ export default async function ServiceDetails({ params }: PageProps) {
           />
         )}
 
-        
-
         {serviceData.faq && serviceData.faq.length > 0 && (
           <FAQSection faq={serviceData.faq} />
         )}
-        
+
         <Cta
           className="mt-10 md:mt-15 "
           title={serviceData.cta.processTitle}
           description={serviceData.cta.processDescription}
         />
-
-        
-
       </div>
     );
   } catch (error) {

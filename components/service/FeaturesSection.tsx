@@ -113,12 +113,12 @@ const FeaturesSeciton: React.FC<FeaturesSecitonProps> = ({ features, title }) =>
 
         {/* Show dots only when there are actual pages to navigate */}
         {shouldShowNavigation && totalPages > 1 && (
-          <div className="flex gap-2 sm:gap-4 mt-8 justify-center">
+          <div className="flex space-x-3 mt-8 justify-center">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                className={`w-3 h-3 rounded-full transition-all duration-300 shadow-sm cursor-pointer ${
                   currentPage === index ? "bg-blue-600" : "bg-gray-400"
                 }`}
                 aria-label={`Go to page ${index + 1}`}

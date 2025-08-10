@@ -62,9 +62,9 @@ const Footer = () => {
                 <Image
                   src={FooterLogo}
                   alt="Visiotech Logo"
-                  width={150}
-                  height={60}
-                  className="h-auto w-auto max-w-[130px]"
+                  width={120}
+                  height={80}
+                  className="h-auto w-auto max-w-[160px]  "
                 />
               </div>
               <p className="text-sm text-slate-600 leading-relaxed">

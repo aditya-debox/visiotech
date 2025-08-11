@@ -38,10 +38,7 @@ export default function RootLayout({
         <NextTopLoader color="#3182ce" showSpinner={false} />
         <Navbar />
         <Modal isOpen={triggerModal} onClose={() => setTriggerModal(false)}>
-          <iframe
-            className="w-full"
-            src="https://creatorapp.zohopublic.in/zoho_tech59/visiotech-lead-management/form-perma/Enquiry_Form/nze0WRwMN2w0GZayQJpvHhekWjMPj40sDQJCtqPe6GNvvfBEJ2fMpG9pMQbqvegt6VRz0xOjNUVAr12ur9xsfAuSkGT21Wzrwewp?Services_Master=34877000007080035"
-          />
+          <iframe   className="w-full h-[60vh] my-6" src='https://creatorapp.zohopublic.in/zoho_tech59/visiotech-lead-management/form-embed/Enquiry_Form/nze0WRwMN2w0GZayQJpvHhekWjMPj40sDQJCtqPe6GNvvfBEJ2fMpG9pMQbqvegt6VRz0xOjNUVAr12ur9xsfAuSkGT21Wzrwewp'></iframe>
         </Modal>
         {children}
         <Footer />

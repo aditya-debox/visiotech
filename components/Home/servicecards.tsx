@@ -130,9 +130,9 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
         </div>
 
         {shouldLimit && (
-          <div className="mt-8 text-center">
+          <div className="mt-8  text-center  ">
             <Link href={`/service`}>
-              <button className="text-blue-600 hover:text-blue-800 font-medium transition duration-200">
+              <button className="text-blue-600 border-2 border-blue-400 px-4 items-center rounded-full text-sm py-1.5 hover:text-blue-800 font-medium transition duration-200">
                 View All
               </button>
             </Link>

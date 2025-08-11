@@ -51,7 +51,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
 
         {/* Service Title */}
-        <h3 className="text-lg font-bold text-black/80 group-hover:text-black line-clamp-1">
+        <h3 className="text-lg font-bold text-black/70 group-hover:text-black line-clamp-1">
           {service.serviceTitle}
         </h3>
 
@@ -68,10 +68,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             }}
           />
         </div>
-        <div className="flex items-center gap-3 mt-2">
-            <p className="flex text-sm">Learn More</p>
-            <ArrowUpRight className="w-4 h-4 group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />{" "}
-          </div>
+        <div className="flex items-center gap-1 mt-2">
+          <p className="flex text-gray-500 group-hover:underline underline-offset-2 text-sm">
+            Learn More
+          </p>
+          <ArrowUpRight className="w-4 h-4 group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />{" "}
+        </div>
       </div>
     </Link>
   );

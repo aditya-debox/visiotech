@@ -194,7 +194,7 @@ export default async function ServiceDetails({ params }: PageProps) {
         </div>
         <ChecklistCards
           title={serviceData.checklistHeading}
-          icon={serviceData.checklistIcon.url}
+          icon={serviceData.checklistIcon?.url}
           data={serviceData.checklist}
         />
         {serviceData.testimonial && (

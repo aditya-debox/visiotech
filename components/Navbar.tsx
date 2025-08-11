@@ -35,7 +35,7 @@
         link: "/service",
       },
       {
-        name: "Brands",
+        name: "Brands Partnered",
         link: "/brand",
       },
       {

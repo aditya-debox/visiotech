@@ -268,7 +268,7 @@
                 style={{ zIndex: 45 }}
               >
                 {/* Popup content */}
-                <div className="px-8 pt-12">
+                <div className="px-8 pt-6">
                   {/* Navigation items */}
                   <nav className="space-y-1">
                     {navItems.map((item, index) => (

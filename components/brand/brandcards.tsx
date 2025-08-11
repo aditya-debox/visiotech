@@ -50,8 +50,8 @@ const BrandCard: React.FC<BrandCardProps> = ({
         {/* Content Container */}
         <div className="relative z-10 flex flex-col flex-grow">
           {/* Brand Name and Arrow - Always Visible */}
-          <div className="flex items-center w-full justify-between">
-            <div className="w-24 h-16 flex items-center justify-center pr-4 mb-4">
+          <div className="flex flex-col items-center w-full justify-between">
+            <div className="w-44 h-20 flex items-center justify-center pr-4 mb-4">
               <Image
                 src={brand.brandImage.url}
                 alt={brand.heading}
@@ -60,11 +60,10 @@ const BrandCard: React.FC<BrandCardProps> = ({
                 height="40"
                 objectFit="cover"
                 className="overflow-hidden transition rounded-sm"
-                // placeholder="blur
-                // blurDataURL={blurHashToDataURL(post?.blurHash)}
                 loading="lazy"
               />
             </div>
+
             <h3
               className={`text-lg line-clamp-2 group-hover:underline underline-offset-2 font-medium group-hover:text-black text-black/60 font-secondary transition-all duration-300 flex-grow pr-2`}
             >
@@ -101,7 +100,7 @@ interface BrandCardsProps {
 
 const BrandCards: React.FC<BrandCardsProps> = ({
   brands,
-  title = "Our Brands",
+  title = "Brands Partnered",
   subtitle = "We partner with the best to bring you the best",
   showCTA = true,
 }) => {

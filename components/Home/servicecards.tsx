@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 interface ServiceDetail {
   slug: string;
@@ -48,7 +51,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
 
         {/* Service Title */}
-        <h3 className="text-lg font-bold text-black/80 group-hover:text-black line-clamp-1">
+        <h3 className="text-lg font-bold text-black/70 group-hover:text-black line-clamp-1">
           {service.serviceTitle}
         </h3>
 
@@ -65,6 +68,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             }}
           />
         </div>
+        <div className="flex items-center gap-1 mt-2">
+          <p className="flex text-gray-500 group-hover:underline underline-offset-2 text-sm">
+            Learn More
+          </p>
+          <ArrowUpRight className="w-4 h-4 group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />{" "}
+        </div>
       </div>
     </Link>
   );
@@ -73,12 +82,34 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 interface ServiceGridProps {
   services: ServiceDetail[];
   className?: string;
+  showAll?: boolean;
 }
-
 const ServiceGrid: React.FC<ServiceGridProps> = ({
   services,
   className = "",
+  showAll = false,
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [showLimited, setShowLimited] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+
+      // Reset limited view when resizing
+      if (!mobile) setShowLimited(false);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const shouldLimit = isMobile && showAll;
+  const visibleServices =
+    shouldLimit && showLimited ? services.slice(0, 4) : services;
+
   return (
     <div className={`py-16 ${className}`}>
       <div className="max-w-7xl mx-auto px-6">
@@ -86,19 +117,27 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
           <h2 className="text-2xl md:text-4xl font-bold font-primary text-black mb-2 md:mb-4">
             Our Services
           </h2>
-
           <p className="text-sm md:text-lg text-gray-500 max-w-2xl font-secondary mx-auto">
             See what we offer
           </p>
-
           <div className="w-24 h-1 bg-blue-500 mx-auto mt-3 md:mt-6 rounded-full"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {services.map((service, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4">
+          {visibleServices.map((service, index) => (
             <ServiceCard key={index} service={service} />
           ))}
         </div>
+
+        {shouldLimit && (
+          <div className="mt-8  text-center  ">
+            <Link href={`/service`}>
+              <button className="text-blue-600 border-2 border-blue-400 px-4 items-center rounded-full text-sm py-1.5 hover:text-blue-800 font-medium transition duration-200">
+                View All
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

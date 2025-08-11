@@ -193,9 +193,9 @@ export default async function Home() {
         authorName=""
         authorTitle=""
       />
-      <ServiceGrid services={serviceDetails} />
+      <ServiceGrid showAll={true} services={serviceDetails} />
       <BrandCards
-        title="Our Partners"
+        title="Brands Partnered"
         subtitle="Partners who we served"
         brands={brands}
       />

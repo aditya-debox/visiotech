@@ -35,7 +35,7 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
       link: "/service",
     },
     {
-      name: "Brands",
+      name: "Brands Partnered",
       link: "/brand",
     },
     {

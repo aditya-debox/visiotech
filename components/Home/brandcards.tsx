@@ -10,6 +10,7 @@ import {
 } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface IBrandData {
   heading: string;
@@ -57,8 +58,23 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index }) => {
 
   return (
     <Link href={`/brand/${brand.slug}`}>
-      <div className="group p-6 rounded-xl transition-all duration-300 hover:shadow-lg cursor-pointer flex flex-col bg-white text-black hover:bg-[#2d5df5] hover:text-white h-full">
+      <div className="p-6 rounded-xl transition-all duration-300 cursor-pointer flex flex-col bg-white text-black h-full">
         {/* Title */}
+        <div className="w-full flex justify-center">
+          <div className="w-44 h-20 overflow-hidden flex items-center justify-center pr-4 mb-4">
+            <Image
+              src={brand.brandImage ? brand?.brandImage.url : ""}
+              alt={brand.heading}
+              layout="responsive"
+              width="100"
+              height="40"
+              objectFit="cover"
+              className="overflow-hidden transition rounded-sm"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
         <h3 className="text-xl font-semibold mb-3 text-black group-hover:text-white">
           {brand.heading}
         </h3>
@@ -167,7 +183,7 @@ const BrandCards: React.FC<BrandCardsProps> = ({
                 {slide.map((brand, index) => (
                   <div
                     key={brand.slug || `${slideIndex}-${index}`}
-                    className="h-full bg-white hover:text-white border border-gray-200 shadown-sm rounded-lg hover:bg-blue-600 transition-all duration-300"
+                    className="h-full bg-white hover:text-white border border-gray-200 rounded-lg transition-all duration-300"
                   >
                     <BrandCard
                       brand={brand}

@@ -78,21 +78,21 @@ export interface Brand {
 }
 
 export const metadata: Metadata = {
-  title: "Security Camera Installation in Atlanta | Visiotech",
+  title: "Visiotech - Commercial Security & Network Solutions",
   description:
-    "Visiotech specializes in professional commercial security camera installation, surveillance systems, access control, and structured cabling across Atlanta. Trusted by top businesses including Shell, Circle K, and Havana ATL.",
+    "Atlanta’s trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
   openGraph: {
-    title: "Security Camera Installation in Atlanta | Visiotech",
+    title: "Visiotech - Commercial Security & Network Solutions",
     description:
-      "Visiotech specializes in professional commercial security camera installation, surveillance systems, access control, and structured cabling across Atlanta. Trusted by top businesses including Shell, Circle K, and Havana ATL.",
+      "Atlanta’s trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
     images: [{ url: "/visiotech.png" }],
     type: "article",
   },
   twitter: {
     card: "summary",
-    title: "Security Camera Installation in Atlanta | Visiotech",
+    title: "Visiotech - Commercial Security & Network Solutions",
     description:
-      "Visiotech specializes in professional commercial security camera installation, surveillance systems, access control, and structured cabling across Atlanta. Trusted by top businesses including Shell, Circle K, and Havana ATL.",
+      "Atlanta’s trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
     images: ["/visiotech.png"],
   },
   // alternates: {

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { RichText } from "@graphcms/rich-text-react-renderer";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
 interface ServiceDetail {
   slug: string;
@@ -80,7 +80,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               }}
             />
           </div>
-          
+
           <div className="flex items-center gap-1 mt-3">
             <p className="flex text-gray-500 group-hover:underline underline-offset-2 text-sm">
               Learn More
@@ -158,4 +158,4 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
   );
 };
 
-export default ServiceGrid; 
+export default ServiceGrid;

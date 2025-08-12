@@ -2,7 +2,7 @@
 
 import { blurHashToDataURL } from "@/utils/blurhash";
 import { AnimatePresence, motion } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";

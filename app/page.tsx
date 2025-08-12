@@ -1,17 +1,12 @@
 import BrandCards from "@/components/Home/brandcards";
-import LogoSlider from "@/components/common/LogoSlider";
-import Banner from "@/components/Home/HeroSection";
+import Cta from "@/components/Home/Cta";
 import IntroSection from "@/components/Home/IntroSection";
 import NewHeroSection from "@/components/Home/NewHeroSection";
 import ServiceGrid from "@/components/Home/servicecards";
-import Services from "@/components/Home/Services";
-import Testimonials from "@/components/Home/Testimonial";
+import TestimonialCards from "@/components/Home/TestimonialCards";
 import TrustedCompanies from "@/components/Home/TrustedCompanies";
 import client from "@/utils/graphqlClient";
 import { gql } from "graphql-request";
-import Image from "next/image";
-import TestimonialCards from "@/components/Home/TestimonialCards";
-import Cta from "@/components/Home/Cta";
 import { Metadata } from "next";
 
 export interface IHomePage {
@@ -78,21 +73,22 @@ export interface Brand {
 }
 
 export const metadata: Metadata = {
-  title: "Visiotech - Commercial Security & Network Solutions",
+  metadataBase: new URL("https://visiotechatlanta.com"),
+  title: "Commercial Security & Network Solutions in Atlanta",
   description:
-    "Atlanta’s trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
+    "Atlanta's trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
   openGraph: {
-    title: "Visiotech - Commercial Security & Network Solutions",
+    title: "Commercial Security & Network Solutions in Atlanta",
     description:
-      "Atlanta’s trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
+      "Atlanta's trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
     images: [{ url: "/visiotech.png" }],
     type: "article",
   },
   twitter: {
     card: "summary",
-    title: "Visiotech - Commercial Security & Network Solutions",
+    title: "Commercial Security & Network Solutions in Atlanta",
     description:
-      "Atlanta’s trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
+      "Atlanta's trusted choice for commercial security, surveillance, access control, and network infrastructure solutions.",
     images: ["/visiotech.png"],
   },
   // alternates: {
@@ -113,25 +109,10 @@ export default async function Home() {
           }
           clientName
         }
-        heroVideo {
-          url
-        }
-        serviceDetail {
-          slug
-          serviceTitle
-          serviceDescription {
-            raw
-            text
-          }
-        }
         testimonial {
           name
           description
         }
-        testimonialImage {
-          url
-        }
-        testimonialBh
       }
       serviceDetails {
         serviceTitle
@@ -141,10 +122,6 @@ export default async function Home() {
           raw
         }
         serviceImage {
-          url
-        }
-        
-        serviceIcon {
           url
         }
         slug

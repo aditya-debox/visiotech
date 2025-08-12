@@ -93,7 +93,6 @@ export default async function ServiceDetails({ params }: PageProps) {
         }
         industries
         testimonial
-        tagline
         values {
           processTitle
           processDescription
@@ -101,7 +100,7 @@ export default async function ServiceDetails({ params }: PageProps) {
         serviceImage {
           url
         }
-        serviceImageBlurHash
+        
         faq {
           faqQuestion
           faqAnswer

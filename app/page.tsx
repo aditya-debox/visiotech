@@ -189,7 +189,7 @@ export default async function Home() {
       <NewHeroSection data={homePageData} />
       <TrustedCompanies companies={companies} />
       <IntroSection
-        introText="Visiotech specializes in commercial security camera installation, surveillance systems, access control, and network infrastructure in Atlanta and surrounding areas."
+        introText={homePageData.introText}
         authorName=""
         authorTitle=""
       />

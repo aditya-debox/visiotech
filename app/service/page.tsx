@@ -10,58 +10,59 @@ import FAQSection from "@/components/service/FAQSection";
 import Cta from "@/components/Home/Cta";
 import BrandCards from "@/components/Home/brandcards";
 import ServiceGrid from "@/components/Home/servicecards";
+import ServicesLayout from "@/components/layouts/ServiceLayout";
 import { Metadata } from "next";
 
 interface IServiceDetails {
   serviceTitle: string;
-    headline: string;
-    serviceDescription: {
-      html: string;
-      text: string;
-      raw: any;
-    };
-    slug: string;
-    features: {
-      processTitle: string;
-      processDescription: string;
-    }[];
-    highlights: {
-      processTitle: string;
-      processDescription: string;
-    }[];
-    industries: string[];
-    testimonial: string;
-    values: {
-      processTitle: string;
-      processDescription: string;
-    }[];
-    serviceImage: {
-      url: string;
-    };
-    serviceImageBlurHash: string;
-    faq: {
-      faqQuestion: string;
-      faqAnswer: string;
-    }[];
-    serviceIcon: {
-      url: string;
-    };
-    cta: {
-      processTitle: string;
-      processDescription: string;
-    }[];
+  headline: string;
+  serviceDescription: {
+    html: string;
+    text: string;
+    raw: any;
+  };
+  slug: string;
+  features: {
+    processTitle: string;
+    processDescription: string;
+  }[];
+  highlights: {
+    processTitle: string;
+    processDescription: string;
+  }[];
+  industries: string[];
+  testimonial: string;
+  values: {
+    processTitle: string;
+    processDescription: string;
+  }[];
+  serviceImage: {
+    url: string;
+  };
+  serviceImageBlurHash: string;
+  faq: {
+    faqQuestion: string;
+    faqAnswer: string;
+  }[];
+  serviceIcon: {
+    url: string;
+  };
+  cta: {
+    processTitle: string;
+    processDescription: string;
+  }[];
 }
 
 export const metadata: Metadata = {
   title:
     "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
   description:
-    "Discover Visiotech’s full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+    "Discover Visiotech's full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
   openGraph: {
     title:
       "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
     description:
-      "Discover Visiotech’s full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+      "Discover Visiotech's full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
     images: [{ url: "/visiotech.png" }],
     type: "article",
   },
@@ -70,58 +71,54 @@ export const metadata: Metadata = {
     title:
       "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
     description:
-      "Discover Visiotech’s full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+      "Discover Visiotech's full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
     images: ["/visiotech.png"],
   },
-  // alternates: {
-  //   canonical: "https://lahoregrill.com/our-story",
-  // },
 };
 
 export default async function ServiceDetails() {
   const query = gql`
- query Servicedetial {
-		serviceDetails{
-      serviceTitle
-      headline
-      serviceDescription{
-        html
-        text
-        raw
+    query Servicedetial {
+      serviceDetails{
+        serviceTitle
+        headline
+        serviceDescription{
+          html
+          text
+          raw
+        }
+        slug
+        features{
+          processTitle
+          processDescription
+        }
+        highlights{
+          processTitle
+          processDescription
+        }
+        industries
+        testimonial
+        tagline
+        values{
+          processTitle
+          processDescription
+        }
+        serviceImage{
+          url
+        }
+        serviceImageBlurHash
+        faq{
+          faqQuestion
+          faqAnswer
+        }
+        serviceIcon{
+          url
+        }
+        cta{
+          processTitle
+          processDescription
+        }
       }
-      slug
-      features{
-        processTitle
-        processDescription
-      }
-      highlights{
-        processTitle
-        processDescription
-      }
-      industries
-      testimonial
-      tagline
-      values{
-        processTitle
-        processDescription
-      }
-      serviceImage{
-        url
-      }
-      serviceImageBlurHash
-      faq{
-        faqQuestion
-        faqAnswer
-      }
-      serviceIcon{
-        url
-      }
-      cta{
-        processTitle
-        processDescription
-      }
-      
-    }
     }
   `;
 
@@ -132,22 +129,43 @@ export default async function ServiceDetails() {
     console.log(
       "Available services:",
       response.serviceDetails.map((s) => s.slug)
-    ); // Debug log
+    );
 
     const serviceData = response.serviceDetails;
-    console.log("Found service:", serviceData); // Debug log
+    console.log("Found service:", serviceData);
 
     if (!serviceData) {
-      return null;
+      return (
+        <ServicesLayout 
+          modalTitle="Services Inquiry"
+        >
+          <div className="pt-20">
+            <p>No services found.</p>
+          </div>
+        </ServicesLayout>
+      );
     }
 
     return (
-      <div className="pt-20">
-        <ServiceGrid services={serviceData} />
-        <Cta />
-      </div>
+      <ServicesLayout 
+        
+      >
+        <div className="pt-20">
+          <ServiceGrid services={serviceData} />
+          <Cta />
+        </div>
+      </ServicesLayout>
     );
   } catch (error) {
     console.error("GraphQL Error:", error);
+    return (
+      <ServicesLayout 
+        modalTitle="Services Inquiry"
+      >
+        <div className="pt-20">
+          <p>Error loading services.</p>
+        </div>
+      </ServicesLayout>
+    );
   }
 }

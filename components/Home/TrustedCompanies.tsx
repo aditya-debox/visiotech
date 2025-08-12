@@ -19,9 +19,9 @@ const TrustedCompanies: React.FC<TrustedCompaniesProps> = ({
 }) => {
   return (
     <div className={`${className}`}>
-      <div className="max-w-7xl mx-auto px-6 pb-10 md:pb-20 lg:px-12 text-center">
+      <div className="max-w-7xl w-full mx-auto flex flex-col justify-center items-center px-6 pb-10 md:pb-20 lg:px-12 text-center">
         <p className="text-black text-lg mb-2">{title}</p>
-        <div className="flex flex-wrap justify-center items-center gap-5 md:gap-10">
+        <div className="flex flex-wrap max-w-3xl w-full justify-center items-center gap-5 md:gap-10">
           {companies.map((company, index) => (
             <div
               key={index}

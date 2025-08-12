@@ -1,25 +1,13 @@
 "use client";
-import {
-  Montserrat,
-  Nunito,
-  Playfair_Display,
-  Raleway,
-} from "next/font/google";
-import "./globals.css";
+import { Montserrat } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useEffect, useState } from "react";
 import ModalStore from "@/store/modal";
-import Modal from "@/components/common/Modal";
+import ServiceModal from "@/components/service/ServiceModal";
 import NextTopLoader from "nextjs-toploader";
+import { useEffect, useState } from "react";
 import { gql } from "graphql-request";
 import client from "@/utils/graphqlClient";
-
-// const playfairDisplay = Playfair_Display({
-//   variable: "--font-primary",
-//   weight: ["400", "700", "600", "800", "900"],
-//   subsets: ["latin"],
-// });
 
 const nunito = Montserrat({
   variable: "--font-primary",
@@ -27,19 +15,30 @@ const nunito = Montserrat({
   subsets: ["latin"],
 });
 
+interface ServicesLayoutProps {
+  children: React.ReactNode;
+  serviceSlug?: string;
+  serviceTitle?: string;
+  modalTitle?: string;
+  iframeUrl?: string;
+}
+
 interface HomePageData {
   ctaTitle: string;
   ctaLink: string;
 }
 
-export default function RootLayout({
+export default function ServicesLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  serviceSlug,
+  serviceTitle,
+  modalTitle,
+  iframeUrl,
+}: ServicesLayoutProps) {
   const { triggerModal, setTriggerModal } = ModalStore();
   const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchHomePageData = async () => {
       try {
@@ -62,20 +61,23 @@ export default function RootLayout({
       } catch (error) {
         console.error("Error fetching homepage data:", error);
       } finally {
-        setLoading(false);
+        
       }
     };
 
     fetchHomePageData();
   }, []);
 
-  const getIframeUrl = () => {
-    if (homePageData?.ctaLink) return homePageData.ctaLink;
+  const getModalTitle = () => {
+    if (modalTitle) return modalTitle;
+    if (serviceTitle) return `${serviceTitle}`;
+    if (homePageData?.ctaTitle) return homePageData.ctaTitle;
     return "";
   };
 
-  const getModalTitle = () => {
-    if (homePageData?.ctaTitle) return homePageData.ctaTitle;
+  const getIframeUrl = () => {
+    if (iframeUrl) return iframeUrl;
+    if (homePageData?.ctaLink) return homePageData.ctaLink;
     return "";
   };
 
@@ -84,7 +86,7 @@ export default function RootLayout({
       <body className={`antialiased `}>
         <NextTopLoader color="#3182ce" showSpinner={false} />
         <Navbar />
-        <Modal
+        <ServiceModal
           isOpen={triggerModal}
           onClose={() => setTriggerModal(false)}
           title={getModalTitle()}

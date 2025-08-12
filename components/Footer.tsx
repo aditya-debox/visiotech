@@ -9,6 +9,7 @@ import {
   FaPhone,
   FaMapMarkerAlt,
   FaEnvelope,
+  FaFacebook,
 } from "react-icons/fa";
 
 import React, { useEffect, useState } from "react";
@@ -106,7 +107,7 @@ const Footer = () => {
               </h3>
               <div className="space-y-4">
                 <Link
-                  href="tel:+15551234567"
+                  href="tel:+17707711498"
                   className="flex items-start hover:opacity-80 transition-opacity duration-200"
                 >
                   <FaPhone className="h-4 w-4 text-slate-600 mr-3 mt-1 flex-shrink-0" />
@@ -114,12 +115,12 @@ const Footer = () => {
                     <p className="text-sm font-medium text-slate-900">
                       Call us
                     </p>
-                    <p className="text-sm text-slate-600">+1 (555) 123-4567</p>
+                    <p className="text-sm text-slate-600">+1 (770) 771-1498</p>
                   </div>
                 </Link>
 
                 <Link
-                  href="mailto:info@visiotech.com"
+                  href="mailto:info@visiotechatlanta.com"
                   className="flex items-start hover:opacity-80 transition-opacity duration-200"
                 >
                   <FaEnvelope className="h-4 w-4 text-slate-600 mr-3 mt-1 flex-shrink-0" />
@@ -127,13 +128,15 @@ const Footer = () => {
                     <p className="text-sm font-medium text-slate-900">
                       Email us
                     </p>
-                    <p className="text-sm text-slate-600">info@visiotech.com</p>
+                    <p className="text-sm text-slate-600">
+                      info@visiotechatlanta.com
+                    </p>
                   </div>
                 </Link>
 
                 <Link
                   href={
-                    "https://www.google.com/maps/place/InRadius+Technologies/@19.2359533,72.9850804,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7b9dbde2d1eb3:0xd45101619a7619f!8m2!3d19.2359483!4d72.9876553!16s%2Fg%2F11t3hwb9jq?hl=en&entry=ttu&g_ep=EgoyMDI1MDIwMi4wIKXMDSoASAFQAw%3D%3D"
+                    "https://www.google.com/maps/place/691+Belgrave+Ln,+Tucker,+GA+30084,+USA/@33.8824205,-84.1784548,17z/data=!3m1!4b1!4m6!3m5!1s0x88f5a42d4d9ab399:0x55602d3720e7f0e8!8m2!3d33.8824161!4d-84.1758799!16s%2Fg%2F11c5jf5nx2?entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D"
                   }
                   target="_blank"
                   className="flex items-start hover:opacity-80 transition-opacity duration-200"
@@ -146,9 +149,7 @@ const Footer = () => {
                       </p>
 
                       <p className="text-sm text-slate-600">
-                        123 Tech Street,
-                        <br />
-                        San Francisco, CA 94105
+                        691 belgrave lane tucker ga 30084
                       </p>
                     </div>
                   </div>
@@ -170,7 +171,7 @@ const Footer = () => {
                   <Link
                     className="group flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors duration-200"
                     aria-label="Visiotech on LinkedIn"
-                    href="#"
+                    href="https://www.linkedin.com/company/visiotech-atlanta/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -180,11 +181,21 @@ const Footer = () => {
                   <Link
                     className="group flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors duration-200"
                     aria-label="Visiotech on Instagram"
-                    href="#"
+                    href="https://www.instagram.com/visiotechatlanta/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <FaInstagram className="h-4 w-4 fill-slate-600 group-hover:fill-slate-900" />
+                  </Link>
+
+                  <Link
+                    className="group flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors duration-200"
+                    aria-label="Visiotech on facebook"
+                    href="https://www.facebook.com/visiotechsolutionsatlanta"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaFacebook className="h-4 w-4 fill-slate-600 group-hover:fill-slate-900" />
                   </Link>
                 </div>
               </div>

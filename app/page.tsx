@@ -143,7 +143,7 @@ export default async function Home() {
         serviceImage {
           url
         }
-        serviceImageBlurHash
+        
         serviceIcon {
           url
         }

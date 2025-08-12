@@ -10,7 +10,7 @@ interface ServiceModalProps {
   iframeUrl: string;
 }
 
-const Modal: React.FC<ServiceModalProps> = ({ 
+const ServiceModal: React.FC<ServiceModalProps> = ({ 
   isOpen, 
   onClose, 
   title, 
@@ -47,4 +47,4 @@ const Modal: React.FC<ServiceModalProps> = ({
   );
 };
 
-export default Modal;
+export default ServiceModal;

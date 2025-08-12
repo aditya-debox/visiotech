@@ -35,44 +35,58 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   return (
     <Link href={`service/${service.slug}`}>
       <div
-        className={`bg-white group cursor-pointer rounded-2xl p-0 md:p-4 duration-300 flex flex-col h-full ${className}`}
+        className={`bg-white group cursor-pointer rounded-2xl overflow-hidden duration-300 flex flex-col h-full ${className}`}
       >
-        {/* Service Icon */}
-        <div className="mb-6">
-          <div className="w-fit p-3.5 bg-blue-100  transition-all duration-300 rounded-2xl flex items-center justify-center">
-            <Image
-              src={service.serviceIcon.url}
-              alt={`${service.serviceTitle} icon`}
-              width={32}
-              height={32}
-              className="w-5 h-5 object-contain"
+        {/* Full-width Service Image */}
+        <div className="relative w-full h-48 md:h-40 overflow-hidden">
+          <Image
+            src={service.serviceImage.url}
+            alt={`${service.serviceTitle} image`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            blurDataURL={service.serviceImageBlurHash}
+          />
+          {/* Service Icon Overlay */}
+          {/* <div className="absolute top-4 left-4">
+            <div className="w-fit p-2.5 bg-white/90 backdrop-blur-sm transition-all duration-300 rounded-xl flex items-center justify-center shadow-sm">
+              <Image
+                src={service.serviceIcon.url}
+                alt={`${service.serviceTitle} icon`}
+                width={24}
+                height={24}
+                className="w-4 h-4 object-contain"
+              />
+            </div>
+          </div> */}
+        </div>
+
+        {/* Content Section */}
+        <div className="py-4 md:py-6  pr-4 lg:pr-6 flex flex-col flex-grow">
+          {/* Service Title */}
+          <h3 className="text-lg font-bold text-black/70 group-hover:text-black line-clamp-1 mb-3">
+            {service.serviceTitle}
+          </h3>
+
+          {/* Service Description - Rich Text with Line Clamp */}
+          <div className="mt-auto">
+            <RichText
+              content={service.serviceDescription.raw}
+              renderers={{
+                p: ({ children }) => (
+                  <p className="text-sm line-clamp-2 text-gray-500 group-hover:text-gray-600">
+                    {children}
+                  </p>
+                ),
+              }}
             />
           </div>
-        </div>
-
-        {/* Service Title */}
-        <h3 className="text-lg font-bold text-black/70 group-hover:text-black line-clamp-1">
-          {service.serviceTitle}
-        </h3>
-
-        {/* Service Description - Rich Text with Line Clamp */}
-        <div className="mt-auto">
-          <RichText
-            content={service.serviceDescription.raw}
-            renderers={{
-              p: ({ children }) => (
-                <p className="text-sm line-clamp-2 text-gray-500 group-hover:text-gray-600">
-                  {children}
-                </p>
-              ),
-            }}
-          />
-        </div>
-        <div className="flex items-center gap-1 mt-2">
-          <p className="flex text-gray-500 group-hover:underline underline-offset-2 text-sm">
-            Learn More
-          </p>
-          <ArrowUpRight className="w-4 h-4 group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />{" "}
+          
+          <div className="flex items-center gap-1 mt-3">
+            <p className="flex text-gray-500 group-hover:underline underline-offset-2 text-sm">
+              Learn More
+            </p>
+            <ArrowUpRight className="w-4 h-4 group-hover:text-primary group-hover:rotate-45 transition-all duration-300" />
+          </div>
         </div>
       </div>
     </Link>
@@ -84,6 +98,7 @@ interface ServiceGridProps {
   className?: string;
   showAll?: boolean;
 }
+
 const ServiceGrid: React.FC<ServiceGridProps> = ({
   services,
   className = "",
@@ -130,7 +145,7 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
         </div>
 
         {shouldLimit && (
-          <div className="mt-8  text-center  ">
+          <div className="mt-8 text-center">
             <Link href={`/service`}>
               <button className="text-blue-600 border-2 border-blue-400 px-4 items-center rounded-full text-sm py-1.5 hover:text-blue-800 font-medium transition duration-200">
                 View All
@@ -143,4 +158,4 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({
   );
 };
 
-export default ServiceGrid;
+export default ServiceGrid; 

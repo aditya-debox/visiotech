@@ -1,8 +1,7 @@
-import React from "react";
-import Link from "next/link"; // Add this for navigation to slug pages
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Cta from "../Home/Cta";
+import Link from "next/link"; // Add this for navigation to slug pages
+import React from "react";
 
 interface IBrandData {
   heading: string;
@@ -55,11 +54,9 @@ const BrandCard: React.FC<BrandCardProps> = ({
               <Image
                 src={brand.brandImage.url}
                 alt={brand.heading}
-                layout="responsive"
                 width="100"
                 height="40"
-                objectFit="cover"
-                className="overflow-hidden transition rounded-sm"
+                className="overflow-hidden transition rounded-sm object-cover"
                 loading="lazy"
               />
             </div>

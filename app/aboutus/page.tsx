@@ -1,12 +1,11 @@
-import React from "react";
-import { gql } from "graphql-request";
-import client from "@/utils/graphqlClient";
 import AboutUsHero from "@/components/aboutus/AboutusHero";
-import OurStory from "@/components/aboutus/AboutusOurStory";
 import AboutusHighlights from "@/components/aboutus/Aboutushighlights";
+import OurStory from "@/components/aboutus/AboutusOurStory";
 import AboutusOurTeam from "@/components/aboutus/AboutusOurTeam";
-import { Metadata } from "next";
 import Cta from "@/components/Home/Cta";
+import client from "@/utils/graphqlClient";
+import { gql } from "graphql-request";
+import { Metadata } from "next";
 
 export interface IAboutUsData {
   title: string;
@@ -40,21 +39,25 @@ export interface IAboutUsData {
 }
 
 export const metadata: Metadata = {
-  title: "About Visiotech | Atlanta’s Security Experts",
+  metadataBase: new URL("https://visiotechatlanta.com"),
+  title:
+    "About Visiotech - Trusted Experts in Security & Low-Voltage Integration",
   description:
-    "Learn about Visiotech’s mission to build safer, smarter commercial spaces in Atlanta. Since 2016, we’ve delivered end-to-end security, surveillance, AV, and cabling solutions with certified expertise and rapid execution.",
+    "Learn about Visiotech, Atlanta's trusted provider of commercial security systems, low-voltage design, and smart building integrations since 2016.",
   openGraph: {
-    title: "About Visiotech | Atlanta’s Security Experts",
+    title:
+      "About Visiotech - Trusted Experts in Security & Low-Voltage Integration",
     description:
-      "Learn about Visiotech’s mission to build safer, smarter commercial spaces in Atlanta. Since 2016, we’ve delivered end-to-end security, surveillance, AV, and cabling solutions with certified expertise and rapid execution.",
+      "Learn about Visiotech, Atlanta's trusted provider of commercial security systems, low-voltage design, and smart building integrations since 2016.",
     images: [{ url: "/visiotech.png" }],
     type: "article",
   },
   twitter: {
     card: "summary",
-    title: "About Visiotech | Atlanta’s Security Experts",
+    title:
+      "About Visiotech - Trusted Experts in Security & Low-Voltage Integration",
     description:
-      "Learn about Visiotech’s mission to build safer, smarter commercial spaces in Atlanta. Since 2016, we’ve delivered end-to-end security, surveillance, AV, and cabling solutions with certified expertise and rapid execution.",
+      "Learn about Visiotech, Atlanta's trusted provider of commercial security systems, low-voltage design, and smart building integrations since 2016.",
     images: ["/visiotech.png"],
   },
   // alternates: {
@@ -129,7 +132,7 @@ export default async function AboutUs() {
           descriptionRichText: member.teamDescription.raw,
         }))}
       />
-      <Cta/>
+      <Cta />
     </div>
   );
 }

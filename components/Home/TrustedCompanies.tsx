@@ -1,5 +1,5 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 interface Company {
   name: string;
@@ -30,7 +30,7 @@ const TrustedCompanies: React.FC<TrustedCompaniesProps> = ({
               <div className="relative w-16 h-16 md:w-20 md:h-20">
                 <Image
                   src={company.logo}
-                  alt={company.name}
+                  alt={company.name ?? "Company Logo"}
                   fill
                   className="object-contain"
                 />

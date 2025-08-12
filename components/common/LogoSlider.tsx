@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import Image from "next/legacy/image";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
-import Image from "next/legacy/image";
 
 interface LogoSliderProps {
   space?: boolean;
@@ -191,8 +191,7 @@ const LogoSlider: React.FC<LogoSliderProps> = ({ space }) => {
                     alt={el.alt}
                     width={100}
                     height={100}
-                    className="h-full w-full "
-                    objectFit="contain"
+                    className="h-full w-full object-contain"
                   />
                 </div>
               </SwiperSlide>

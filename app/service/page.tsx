@@ -98,7 +98,7 @@ export default async function ServiceDetails() {
         }
         industries
         testimonial
-        tagline
+        
         values{
           processTitle
           processDescription
@@ -106,7 +106,7 @@ export default async function ServiceDetails() {
         serviceImage{
           url
         }
-        serviceImageBlurHash
+        
         faq{
           faqQuestion
           faqAnswer

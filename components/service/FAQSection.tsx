@@ -37,14 +37,14 @@ const FAQSection: React.FC<FAQProps> = ({ faq }) => {
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex items-center justify-between pb-6 text-left transition-colors"
               >
-                <h3 className="font-primary text-lg font-semibold text-gray-900 cursor-pointer">
+                <h3 className="font-primary text-sm md:text-lg font-semibold text-gray-900 cursor-pointer">
                   {item.faqQuestion}
                 </h3>
                 
                 {/* Plus/Minus Icon */}
                 <div className="">
                   <motion.div
-                    className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center"
+                    className="w-6 md:w-8 h-6 md:h-8 bg-blue-600 rounded-full flex items-center justify-center"
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -54,10 +54,10 @@ const FAQSection: React.FC<FAQProps> = ({ faq }) => {
                       transition={{ duration: 0.3 }}
                     >
                       {/* Horizontal line */}
-                      <div className="w-4 h-0.5 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                      <div className="w-3 md:w-4 h-0.5 md:h-0.5 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                       {/* Vertical line */}
                       <motion.div
-                        className="w-0.5 h-4 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                        className="w-0.5 h-3 md:h-4 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                         animate={{ 
                           scaleY: openIndex === index ? 0 : 1,
                           opacity: openIndex === index ? 0 : 1 

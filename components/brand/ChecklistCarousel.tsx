@@ -102,7 +102,7 @@ const ChecklistCarousel: React.FC<ChecklistCarouselProps> = ({ data, icon, title
                                 loading="lazy"
                               />
                             </div>
-                            <span className="text-gray-600 font-secondary text-xs md:text-sm flex-1">{item}</span>
+                            <span className="text-gray-600 font-secondary text-sm flex-1">{item}</span>
                           </div>
                         ))}
                       </div>

@@ -37,7 +37,7 @@ const FAQSection: React.FC<FAQProps> = ({ faq }) => {
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex items-center justify-between pb-6 text-left transition-colors"
               >
-                <h3 className="font-primary text-sm md:text-lg font-semibold text-gray-900 cursor-pointer">
+                <h3 className="font-primary text-base md:text-lg font-semibold text-gray-900 cursor-pointer">
                   {item.faqQuestion}
                 </h3>
                 

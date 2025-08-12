@@ -61,7 +61,6 @@ export default function ServicesLayout({
       } catch (error) {
         console.error("Error fetching homepage data:", error);
       } finally {
-        
       }
     };
 
@@ -85,7 +84,7 @@ export default function ServicesLayout({
     <html lang="en" className={` ${nunito.variable}`}>
       <body className={`antialiased `}>
         <NextTopLoader color="#3182ce" showSpinner={false} />
-        <Navbar />
+        {/* <Navbar /> */}
         <ServiceModal
           isOpen={triggerModal}
           onClose={() => setTriggerModal(false)}
@@ -93,7 +92,7 @@ export default function ServicesLayout({
           iframeUrl={getIframeUrl()}
         />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

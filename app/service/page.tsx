@@ -36,9 +36,6 @@ interface IServiceDetails {
     faqQuestion: string;
     faqAnswer: string;
   }[];
-  serviceIcon: {
-    url: string;
-  };
   cta: {
     processTitle: string;
     processDescription: string;
@@ -100,9 +97,6 @@ export default async function ServiceDetails() {
         faq {
           faqQuestion
           faqAnswer
-        }
-        serviceIcon {
-          url
         }
         cta {
           processTitle

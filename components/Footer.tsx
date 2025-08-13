@@ -7,7 +7,6 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedinIn,
-  FaMapMarkerAlt,
   FaPhone,
 } from "react-icons/fa";
 import FooterLogo from "../assets/visiotech-crop.png";
@@ -133,7 +132,7 @@ const Footer = () => {
                   </div>
                 </Link>
 
-                <Link
+                {/* <Link
                   href={
                     "https://www.google.com/maps/place/691+Belgrave+Ln,+Tucker,+GA+30084,+USA/@33.8824205,-84.1784548,17z/data=!3m1!4b1!4m6!3m5!1s0x88f5a42d4d9ab399:0x55602d3720e7f0e8!8m2!3d33.8824161!4d-84.1758799!16s%2Fg%2F11c5jf5nx2?entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D"
                   }
@@ -152,7 +151,7 @@ const Footer = () => {
                       </p>
                     </div>
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </div>
 

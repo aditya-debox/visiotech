@@ -1,16 +1,8 @@
-import React from "react";
-import { gql } from "graphql-request";
-import client from "@/utils/graphqlClient";
-import CommonHero from "@/components/common/CommonHero";
-import FeaturesSection from "@/components/service/FeaturesSection";
-import Link from "next/link";
-import ServiceBlock from "@/components/service/ServiceBlock";
-import Processes from "@/components/service/Processes";
-import FAQSection from "@/components/service/FAQSection";
 import Cta from "@/components/Home/Cta";
-import BrandCards from "@/components/Home/brandcards";
 import ServiceGrid from "@/components/Home/servicecards";
 import ServicesLayout from "@/components/layouts/ServiceLayout";
+import client from "@/utils/graphqlClient";
+import { gql } from "graphql-request";
 import { Metadata } from "next";
 
 interface IServiceDetails {
@@ -44,9 +36,6 @@ interface IServiceDetails {
     faqQuestion: string;
     faqAnswer: string;
   }[];
-  serviceIcon: {
-    url: string;
-  };
   cta: {
     processTitle: string;
     processDescription: string;
@@ -54,24 +43,22 @@ interface IServiceDetails {
 }
 
 export const metadata: Metadata = {
-  title:
-    "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
+  metadataBase: new URL("https://visiotechatlanta.com"),
+  title: "Security & Low Voltage Services Atlanta | Visiotech Solutions",
   description:
-    "Discover Visiotech's full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+    "Explore Visiotech's services in Atlanta—security cameras, video surveillance, access control, AV, networking, and low-voltage integration for businesses.",
   openGraph: {
-    title:
-      "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
+    title: "Security & Low Voltage Services Atlanta | Visiotech Solutions",
     description:
-      "Discover Visiotech's full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+      "Explore Visiotech's services in Atlanta—security cameras, video surveillance, access control, AV, networking, and low-voltage integration for businesses.",
     images: [{ url: "/visiotech.png" }],
     type: "article",
   },
   twitter: {
     card: "summary",
-    title:
-      "Commercial Security Services in Atlanta | Cameras, Access, Cabling & More",
+    title: "Security & Low Voltage Services Atlanta | Visiotech Solutions",
     description:
-      "Discover Visiotech's full suite of commercial security services in Atlanta—from camera installation and video surveillance to access control, structured cabling, AV systems, and smart integrations tailored to your business.",
+      "Explore Visiotech's services in Atlanta—security cameras, video surveillance, access control, AV, networking, and low-voltage integration for businesses.",
     images: ["/visiotech.png"],
   },
 };
@@ -79,42 +66,39 @@ export const metadata: Metadata = {
 export default async function ServiceDetails() {
   const query = gql`
     query Servicedetial {
-      serviceDetails{
+      serviceDetails {
         serviceTitle
         headline
-        serviceDescription{
+        serviceDescription {
           html
           text
           raw
         }
         slug
-        features{
+        features {
           processTitle
           processDescription
         }
-        highlights{
+        highlights {
           processTitle
           processDescription
         }
         industries
         testimonial
-        
-        values{
+
+        values {
           processTitle
           processDescription
         }
-        serviceImage{
+        serviceImage {
           url
         }
-        
-        faq{
+
+        faq {
           faqQuestion
           faqAnswer
         }
-        serviceIcon{
-          url
-        }
-        cta{
+        cta {
           processTitle
           processDescription
         }
@@ -126,19 +110,12 @@ export default async function ServiceDetails() {
     const response = await client.request<{
       serviceDetails: IServiceDetails[];
     }>(query);
-    console.log(
-      "Available services:",
-      response.serviceDetails.map((s) => s.slug)
-    );
 
     const serviceData = response.serviceDetails;
-    console.log("Found service:", serviceData);
 
     if (!serviceData) {
       return (
-        <ServicesLayout 
-          modalTitle="Services Inquiry"
-        >
+        <ServicesLayout modalTitle="Services Inquiry">
           <div className="pt-20">
             <p>No services found.</p>
           </div>
@@ -147,9 +124,7 @@ export default async function ServiceDetails() {
     }
 
     return (
-      <ServicesLayout 
-        
-      >
+      <ServicesLayout>
         <div className="pt-20">
           <ServiceGrid services={serviceData} />
           <Cta />
@@ -159,9 +134,7 @@ export default async function ServiceDetails() {
   } catch (error) {
     console.error("GraphQL Error:", error);
     return (
-      <ServicesLayout 
-        modalTitle="Services Inquiry"
-      >
+      <ServicesLayout modalTitle="Services Inquiry">
         <div className="pt-20">
           <p>Error loading services.</p>
         </div>

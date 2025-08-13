@@ -1,19 +1,14 @@
 "use client";
-import {
-  Montserrat,
-  Nunito,
-  Playfair_Display,
-  Raleway,
-} from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { useEffect, useState } from "react";
-import ModalStore from "@/store/modal";
 import Modal from "@/components/common/Modal";
-import NextTopLoader from "nextjs-toploader";
-import { gql } from "graphql-request";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import ModalStore from "@/store/modal";
 import client from "@/utils/graphqlClient";
+import { gql } from "graphql-request";
+import { Montserrat } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import { useEffect, useState } from "react";
+import "./globals.css";
 
 // const playfairDisplay = Playfair_Display({
 //   variable: "--font-primary",
@@ -40,6 +35,7 @@ export default function RootLayout({
   const { triggerModal, setTriggerModal } = ModalStore();
   const [homePageData, setHomePageData] = useState<HomePageData | null>(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchHomePageData = async () => {
       try {

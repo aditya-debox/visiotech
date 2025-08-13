@@ -1,9 +1,11 @@
 import React from "react";
-import { Settings, BarChart3, Clock, Shield } from "lucide-react";
 
 interface Highlight {
-  processTitle: string;
-  processDescription: string;
+  title: string;
+  description: string;
+  iconImage: {
+    url: string;
+  };
 }
 
 interface AboutusHighlightsProps {
@@ -11,9 +13,6 @@ interface AboutusHighlightsProps {
 }
 
 const AboutusHighlights: React.FC<AboutusHighlightsProps> = ({ highlights }) => {
-  // Icons array to map with highlights - you can customize these
-  const icons = [Settings, BarChart3, Clock, Shield];
-
   return (
     <section className="py-16 ">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 font-primary">
@@ -31,23 +30,25 @@ const AboutusHighlights: React.FC<AboutusHighlightsProps> = ({ highlights }) => 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {highlights.map((highlight, index) => {
-            const IconComponent = icons[index % icons.length];
-            
             return (
               <div key={index} className="text-center">
                 {/* Icon */}
                 <div className="bg-blue-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <IconComponent className="w-8 h-8 text-blue-500" />
+                  <img 
+                    src={highlight.iconImage.url} 
+                    alt={highlight.title}
+                    className="w-8 h-8 object-contain"
+                  />
                 </div>
                 
                 {/* Title */}
                 <h3 className="text-lg font-semibold font-primary text-gray-900 mb-4">
-                  {highlight.processTitle}
+                  {highlight.title}
                 </h3>
                 
                 {/* Description */}
                 <p className="text-gray-600 text-sm leading-relaxed font-secondary">
-                  {highlight.processDescription}
+                  {highlight.description}
                 </p>
               </div>
             );

@@ -2,19 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import FooterLogo from "../assets/visiotech-crop.png";
 import {
-  FaInstagram,
-  FaLinkedinIn,
-  FaPhone,
-  FaMapMarkerAlt,
   FaEnvelope,
   FaFacebook,
+  FaInstagram,
+  FaLinkedinIn,
+  FaMapMarkerAlt,
+  FaPhone,
 } from "react-icons/fa";
+import FooterLogo from "../assets/visiotech-crop.png";
 
-import React, { useEffect, useState } from "react";
 import client from "@/utils/graphqlClient";
 import { gql } from "graphql-request";
+import { useEffect, useState } from "react";
 
 interface ServiceDetails {
   serviceTitle: string;
@@ -42,7 +42,6 @@ const Footer = () => {
         if (response.serviceDetails) {
           setService(response.serviceDetails);
         }
-        console.log(response.serviceDetails);
       } catch (error) {
         console.error("GraphQL Error:", error);
       }
@@ -149,7 +148,7 @@ const Footer = () => {
                       </p>
 
                       <p className="text-sm text-slate-600">
-                        691 belgrave lane tucker ga 30084
+                        691 Belgrave Lane, Tucker, GA 30084
                       </p>
                     </div>
                   </div>
@@ -233,7 +232,7 @@ const Footer = () => {
             {/* Copyright and Powered by */}
             <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500">
               <p className="text-center sm:text-left">
-                © 2024 Visiotech. All rights reserved.
+                © 2025 Visiotech. All rights reserved.
               </p>
             </div>
 
@@ -242,7 +241,7 @@ const Footer = () => {
               <p className="text-center sm:text-right">
                 Developed by{" "}
                 <Link
-                  href="https://debox.co.in?utm_source=site&utm_id=visiotech"
+                  href="https://www.debox.co.in?utm_source=visiotech_website&utm_medium=website_footer&utm_campaign=footer_reference"
                   target="_blank"
                   className="font-medium text-slate-700 hover:text-slate-900 transition-colors duration-200"
                 >

@@ -1,15 +1,14 @@
 "use client";
 
+import logo from "@/assets/visiotech-crop.png";
+import ModalStore from "@/store/modal";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import logo from "@/assets/visiotech-crop.png";
-import ModalStore from "@/store/modal";
 
 interface INavProps {
   email?: string;
@@ -193,7 +192,7 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
             >
               <Image
                 src={logo || ""}
-                alt="logo"
+                alt="Visiotech Logo"
                 fill
                 sizes=""
                 className="object-contain"
@@ -224,7 +223,9 @@ const Navbar: React.FC<INavProps> = ({ email, phone }) => {
               className="bg-blue-600 text-white font-secondary flex items-center justify-center rounded-full px-4 text-sm active:bg-blue-800 active:text-blue-100 cursor-pointer"
               onClick={() => setTriggerModal(true)}
             >
-              <button className="py-1.5 leading-none md:leading-relaxed">Get Started</button>
+              <button className="py-1.5 leading-none md:leading-relaxed cursor-pointer">
+                Get Started
+              </button>
             </div>
 
             {/* Mobile Menu Button */}

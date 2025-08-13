@@ -17,7 +17,6 @@ interface IBrandData {
   brandImage: {
     url: string;
   };
-  brandImageBlurhash: string;
   highlights: {
     processTitle: string;
     processDescription: string;
@@ -45,7 +44,6 @@ async function getBrandData(slug: string): Promise<IBrandData | null> {
         brandImage {
           url
         }
-        brandImageBlurhash
         highlights {
           processTitle
           processDescription

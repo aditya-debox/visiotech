@@ -1,8 +1,8 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 interface OurStoryProps {
-    serviceImage: {
+  serviceImage: {
     url: string;
   };
   description: {
@@ -22,9 +22,9 @@ const OurStory: React.FC<OurStoryProps> = ({ description, serviceImage }) => {
             <h2 className="text-xl md:text-3xl font-bold text-black mb-6">
               Our Story
             </h2>
-            
+
             {/* Use the HTML content from aboutdata.description */}
-            <div 
+            <div
               className="text-gray-600 text-base md:text-lg leading-relaxed space-y-4"
               dangerouslySetInnerHTML={{ __html: description.html }}
             />
@@ -33,11 +33,10 @@ const OurStory: React.FC<OurStoryProps> = ({ description, serviceImage }) => {
           {/* Right Content - Analytics Dashboard */}
           <div className="relative">
             <Image
-            src={serviceImage.url}
-            alt="Our Story Image"
-            width={800}
-            height={600}
-            
+              src={serviceImage.url}
+              alt="Our Story Image"
+              width={800}
+              height={600}
             />
           </div>
         </div>

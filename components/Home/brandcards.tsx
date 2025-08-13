@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
 } from "../ui/carousel";
-import { Card, CardContent } from "../ui/card";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 
 interface IBrandData {
   heading: string;
@@ -65,11 +64,9 @@ const BrandCard: React.FC<BrandCardProps> = ({ brand, index }) => {
             <Image
               src={brand.brandImage ? brand?.brandImage.url : ""}
               alt={brand.heading}
-              layout="responsive"
               width="100"
               height="40"
-              objectFit="cover"
-              className="overflow-hidden transition rounded-sm"
+              className="overflow-hidden transition rounded-sm object-cover"
               loading="lazy"
             />
           </div>

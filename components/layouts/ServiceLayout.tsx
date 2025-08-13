@@ -1,13 +1,11 @@
 "use client";
-import { Montserrat } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ModalStore from "@/store/modal";
 import ServiceModal from "@/components/service/ServiceModal";
+import ModalStore from "@/store/modal";
+import client from "@/utils/graphqlClient";
+import { gql } from "graphql-request";
+import { Montserrat } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { useEffect, useState } from "react";
-import { gql } from "graphql-request";
-import client from "@/utils/graphqlClient";
 
 const nunito = Montserrat({
   variable: "--font-primary",
@@ -84,7 +82,6 @@ export default function ServicesLayout({
     <html lang="en" className={` ${nunito.variable}`}>
       <body className={`antialiased `}>
         <NextTopLoader color="#3182ce" showSpinner={false} />
-        {/* <Navbar /> */}
         <ServiceModal
           isOpen={triggerModal}
           onClose={() => setTriggerModal(false)}
@@ -92,7 +89,6 @@ export default function ServicesLayout({
           iframeUrl={getIframeUrl()}
         />
         {children}
-        {/* <Footer /> */}
       </body>
     </html>
   );

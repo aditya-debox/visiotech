@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import React from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
 interface ServiceAreasSectionProps {
   title?: string;
@@ -18,12 +18,12 @@ const ServiceAreasSection: React.FC<ServiceAreasSectionProps> = ({
   description = "Serving businesses throughout the Greater Atlanta Metropolitan Area",
   areas,
   mapImage,
-  className = ""
+  className = "",
 }) => {
   return (
-    <section className={`py-12 ${className}`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-30 items-center ">
+    <section className={`${className}`}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-30 ">
           {/* Left Content */}
           <div>
             <h2 className="text-xl md:text-3xl font-bold text-black mb-6">
@@ -32,7 +32,7 @@ const ServiceAreasSection: React.FC<ServiceAreasSectionProps> = ({
             <p className="font-primary text-base md:text-lg text-gray-600 mb-8">
               {description}
             </p>
-            
+
             {/* Areas List */}
             {areas && areas.length > 0 && (
               <div className="grid grid-cols-2 lg:grid-cols-2 gap-4">
@@ -52,7 +52,7 @@ const ServiceAreasSection: React.FC<ServiceAreasSectionProps> = ({
           <div className="relative">
             <div className="h-96 flex items-center overflow-hidden">
               {mapImage?.url ? (
-                  <div className="relative w-full h-full ">
+                <div className="relative w-full h-full ">
                   <Image
                     src={mapImage.url}
                     alt={mapImage.alt || "Service area map"}

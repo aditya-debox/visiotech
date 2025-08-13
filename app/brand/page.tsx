@@ -1,8 +1,7 @@
-import React from "react";
-import { gql } from "graphql-request";
-import client from "@/utils/graphqlClient";
 import BrandCards from "@/components/brand/brandcards";
 import Cta from "@/components/Home/Cta";
+import client from "@/utils/graphqlClient";
+import { gql } from "graphql-request";
 import { Metadata } from "next";
 
 interface IBrandData {
@@ -16,7 +15,6 @@ interface IBrandData {
   brandImage: {
     url: string;
   };
-  brandImageBlurhash: string;
   highlights: {
     processTitle: string;
     processDescription: string;
@@ -24,21 +22,22 @@ interface IBrandData {
 }
 
 export const metadata: Metadata = {
-  title: "Security Camera Installation in Atlanta | Visiotech",
+  metadataBase: new URL("https://visiotechatlanta.com"),
+  title: "Trusted Security & Low Voltage Brand Partners | Visiotech Atlanta",
   description:
-    "Explore the trusted brands we install—LTS, Hikvision, Honeywell, Axis, Bosch, and Dahua. Visiotech is a certified dealer offering NDAA-compliant, enterprise-grade security and surveillance technology in Atlanta.",
+    "Visiotech partners with leading brands like LTS, Honeywell, Axis, and Bosch to deliver reliable, NDAA-compliant security and low-voltage solutions in Atlanta.",
   openGraph: {
-    title: "Security Camera Installation in Atlanta | Visiotech",
+    title: "Trusted Security & Low Voltage Brand Partners | Visiotech Atlanta",
     description:
-      "Explore the trusted brands we install—LTS, Hikvision, Honeywell, Axis, Bosch, and Dahua. Visiotech is a certified dealer offering NDAA-compliant, enterprise-grade security and surveillance technology in Atlanta.",
+      "Visiotech partners with leading brands like LTS, Honeywell, Axis, and Bosch to deliver reliable, NDAA-compliant security and low-voltage solutions in Atlanta.",
     images: [{ url: "/visiotech.png" }],
     type: "article",
   },
   twitter: {
     card: "summary",
-    title: "Security Camera Installation in Atlanta | Visiotech",
+    title: "Trusted Security & Low Voltage Brand Partners | Visiotech Atlanta",
     description:
-      "Explore the trusted brands we install—LTS, Hikvision, Honeywell, Axis, Bosch, and Dahua. Visiotech is a certified dealer offering NDAA-compliant, enterprise-grade security and surveillance technology in Atlanta.",
+      "Visiotech partners with leading brands like LTS, Honeywell, Axis, and Bosch to deliver reliable, NDAA-compliant security and low-voltage solutions in Atlanta.",
     images: ["/visiotech.png"],
   },
   // alternates: {
@@ -60,7 +59,6 @@ export default async function Brand() {
         brandImage {
           url
         }
-        brandImageBlurhash
         highlights {
           processTitle
           processDescription

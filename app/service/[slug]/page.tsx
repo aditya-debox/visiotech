@@ -46,9 +46,7 @@ interface IServiceDetails {
     faqQuestion: string;
     faqAnswer: string;
   }[];
-  serviceIcon: {
-    url: string;
-  };
+
   cta: {
     processTitle: string;
     processDescription: string;
@@ -104,9 +102,6 @@ export default async function ServiceDetails({ params }: PageProps) {
         faq {
           faqQuestion
           faqAnswer
-        }
-        serviceIcon {
-          url
         }
         cta {
           processTitle
@@ -182,7 +177,7 @@ export default async function ServiceDetails({ params }: PageProps) {
             />
           )}
 
-          {serviceData.tagline && ( 
+          {serviceData && ( 
             <ServiceBlock
               title="Why This Service Matters"
               highlights={serviceData.highlights}

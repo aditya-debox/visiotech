@@ -14,7 +14,6 @@ interface IBrandData {
   brandImage: {
     url: string;
   };
-  brandImageBlurhash: string;
   highlights: {
     processTitle: string;
     processDescription: string;

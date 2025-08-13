@@ -2,6 +2,7 @@ import AboutUsHero from "@/components/aboutus/AboutusHero";
 import AboutusHighlights from "@/components/aboutus/Aboutushighlights";
 import OurStory from "@/components/aboutus/AboutusOurStory";
 import AboutusOurTeam from "@/components/aboutus/AboutusOurTeam";
+import ServiceAreasSection from "@/components/aboutus/AboutusServiceAreas";
 import Cta from "@/components/Home/Cta";
 import client from "@/utils/graphqlClient";
 import { gql } from "graphql-request";
@@ -9,19 +10,24 @@ import { Metadata } from "next";
 
 export interface IAboutUsData {
   title: string;
+  ctaCardTitle: string
+  ctaCardDescription: string;
   heroTitle: string;
   aboutUsImage: {
     url: string;
   };
-  aboutUsImageBlurHash: string;
-  aboutUsDescription: {
+    aboutUsDescription: {
     html: string;
     text: string;
     raw: any; // Rich text raw content
   };
   highlights: {
-    processTitle: string;
-    processDescription: string;
+    title: string;
+    description: string;
+    iconImage: {
+      url: string;
+    };
+
   }[];
   teamSection: {
     teamImage: {
@@ -35,7 +41,10 @@ export interface IAboutUsData {
     };
   }[];
   commitment: string;
-  serviceArea: string;
+  serviceArea: string[];
+  aboutusMapimage:{
+    url:string
+  }
 }
 
 export const metadata: Metadata = {
@@ -70,10 +79,12 @@ export default async function AboutUs() {
     query GetAboutUs {
       aboutuses {
         title
+        ctaCardTitle
+        ctaCardDescription
         aboutUsImage {
           url
         }
-        aboutUsImageBlurHash
+        
         heroTitle
         aboutUsDescription {
           html
@@ -81,14 +92,13 @@ export default async function AboutUs() {
           raw
         }
         highlights {
-          processTitle
-          processDescription
+          title
+          description
+          iconImage{
+          url
+          }
         }
         teamSection {
-          teamImage {
-            url
-          }
-          teamImageBlurHash
           teamTitle
           teamDescription {
             html
@@ -97,6 +107,9 @@ export default async function AboutUs() {
         }
         commitment
         serviceArea
+        aboutusMapimage{
+          url
+        }
       }
     }
   `;
@@ -132,7 +145,14 @@ export default async function AboutUs() {
           descriptionRichText: member.teamDescription.raw,
         }))}
       />
-      <Cta />
+
+      <ServiceAreasSection 
+        title="Our Service Areas"
+        description = "Serving businesses throughout the Greater Atlanta Metropolitan Area"
+        areas={aboutusdata.serviceArea }
+        mapImage={aboutusdata.aboutusMapimage}
+      />
+      <Cta title={aboutusdata.ctaCardTitle} description={aboutusdata.ctaCardDescription} />
     </div>
   );
 }

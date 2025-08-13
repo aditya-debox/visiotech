@@ -18,9 +18,7 @@ interface ServiceDetail {
     url: string;
   };
   serviceImageBlurHash: string;
-  serviceIcon: {
-    url: string;
-  };
+
 }
 
 interface ServiceCardProps {

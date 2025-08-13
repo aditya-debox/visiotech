@@ -13,6 +13,8 @@ export interface IHomePage {
   title: string;
   subTitle: string;
   introText: string;
+  ctaCardTitle: string;
+  ctaCardDescription: string;
   client: {
     clientLogo: {
       url: string;
@@ -103,6 +105,8 @@ export default async function Home() {
         title
         subTitle
         introText
+        ctaCardTitle
+        ctaCardDescription
         client {
           clientLogo {
             url
@@ -137,7 +141,7 @@ export default async function Home() {
         brandImage {
           url
         }
-        brandImageBlurhash
+     
       }
     }
   `;
@@ -178,7 +182,8 @@ export default async function Home() {
       />
       <TestimonialCards testimonials={homePageData.testimonial} />
       <Cta
-        title="Schedule Your Free Security Consultation"
+        title={homePageData.ctaCardTitle}
+        description={homePageData.ctaCardDescription}
         buttonText="Get Started"
       />
     </div>

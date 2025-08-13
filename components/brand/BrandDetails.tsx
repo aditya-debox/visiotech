@@ -1,15 +1,4 @@
 import React from "react";
-import Link from "next/link";
-import {
-  CheckCircle,
-  Shield,
-  Eye,
-  Zap,
-  Building,
-  Store,
-  Car,
-} from "lucide-react";
-import { RichText } from "@graphcms/rich-text-react-renderer";
 import CommonHero from "../common/CommonHero";
 import Processes from "../service/Processes";
 import CardSection from "../common/CardSection";
@@ -27,7 +16,6 @@ interface IBrandData {
   brandImage: {
     url: string;
   };
-  brandImageBlurhash: string;
   highlights: {
     processTitle: string;
     processDescription: string;

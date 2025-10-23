@@ -7,6 +7,7 @@ import { Metadata } from "next";
 interface IBrandData {
   heading: string;
   slug: string;
+  brandOrder: number;
   shortDescription: {
     text: string;
     html: string;
@@ -51,6 +52,7 @@ export default async function Brand() {
       brands {
         heading
         slug
+        brandOrder
         shortDescription {
           text
           html
@@ -68,7 +70,22 @@ export default async function Brand() {
   `;
 
   const response = await client.request<{ brands: IBrandData[] }>(query);
-  const brandsdata = response.brands;
+
+  // Sort brands by brandOrder (1 first, 2 second, etc. - 0 goes to end)
+  const brandsdata = response.brands.sort((a, b) => {
+    const orderA = a.brandOrder || 0;
+    const orderB = b.brandOrder || 0;
+
+    if (orderA === 0 && orderB === 0) return 0;
+    if (orderA === 0) return 1;
+    if (orderB === 0) return -1;
+    return orderA - orderB;
+  });
+
+  console.log(
+    "Brand Order:",
+    brandsdata.map((b) => ({ heading: b.heading, brandOrder: b.brandOrder }))
+  );
 
   return (
     <div>

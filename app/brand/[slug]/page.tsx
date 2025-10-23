@@ -9,6 +9,7 @@ import Link from "next/link";
 interface IBrandData {
   heading: string;
   slug: string;
+  brandOrder: number;
   shortDescription: {
     text: string;
     html: string;
@@ -36,6 +37,7 @@ async function getBrandData(slug: string): Promise<IBrandData | null> {
       brands(where: { slug: $slug }) {
         heading
         slug
+        brandOrder
         shortDescription {
           text
           html

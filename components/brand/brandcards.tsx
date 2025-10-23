@@ -6,6 +6,7 @@ import React from "react";
 interface IBrandData {
   heading: string;
   slug: string;
+  brandOrder: number;
   shortDescription: {
     text: string;
     html: string;

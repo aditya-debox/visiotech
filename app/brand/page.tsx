@@ -82,11 +82,6 @@ export default async function Brand() {
     return orderA - orderB;
   });
 
-  console.log(
-    "Brand Order:",
-    brandsdata.map((b) => ({ heading: b.heading, brandOrder: b.brandOrder }))
-  );
-
   return (
     <div>
       <BrandCards brands={brandsdata} />
